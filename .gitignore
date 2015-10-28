@@ -58,3 +58,6 @@ target/
 
 # Virtualenv
 /deps/
+
+# Development database
+db.sqlite3

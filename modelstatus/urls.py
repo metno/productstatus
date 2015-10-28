@@ -16,6 +16,14 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+import modelstatus.core.api
+import tastypie.api
+
+v1_api = tastypie.api.Api(api_name='v1')
+v1_api.register(modelstatus.core.api.ModelResource())
+v1_api.register(modelstatus.core.api.ModelRunResource())
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api/', include(v1_api.urls)),
 ]

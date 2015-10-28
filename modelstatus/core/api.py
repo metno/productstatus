@@ -6,6 +6,7 @@ import modelstatus.core.models
 class ModelResource(resources.ModelResource):
     class Meta:
         queryset = modelstatus.core.models.Model.objects.all()
+        excludes = ['level', 'lft', 'rght', 'tree_id']
 
 
 class ModelRunResource(resources.ModelResource):

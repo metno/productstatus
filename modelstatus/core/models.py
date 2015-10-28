@@ -1,12 +1,15 @@
 from django.db import models
 
+import mptt.models
 
-class Model(models.Model):
+
+class Model(mptt.models.MPTTModel):
     """
     A unique weather model.
     """
     LENGTH_UNITS = (('m', 'meters'), ('deg', 'degrees'))
 
+    parent = mptt.models.TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
     name = models.CharField(max_length=255, unique=True)
     grid_resolution = models.DecimalField(max_digits=10, decimal_places=5)
     grid_resolution_unit = models.CharField(max_length=16, choices=LENGTH_UNITS)
@@ -61,10 +64,11 @@ class Data(models.Model):
         }
 
 
-class DataFile(models.Model):
+class DataFile(mptt.models.MPTTModel):
     """
     A data file or service containing specific data dictated by the Data class.
     """
+    parent = mptt.models.TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
     uri = models.ForeignKey('Data')
     url = models.CharField(max_length=1024)
     format = models.ForeignKey('DataFormat')

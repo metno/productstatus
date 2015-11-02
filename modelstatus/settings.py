@@ -103,3 +103,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# ZeroMQ socket settings
+
+ZEROMQ_PUBLISH_SOCKET = 'tcp://0.0.0.0:9797'
+ZEROMQ_SUBSCRIBE_SOCKET = 'tcp://127.0.0.1:9796'

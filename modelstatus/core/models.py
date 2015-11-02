@@ -1,5 +1,6 @@
 from django.db import models
 
+import uuid
 import mptt.models
 
 
@@ -9,17 +10,20 @@ class Model(mptt.models.MPTTModel):
     """
     LENGTH_UNITS = (('m', 'meters'), ('deg', 'degrees'))
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     parent = mptt.models.TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
     name = models.CharField(max_length=255, unique=True)
-    grid_resolution = models.DecimalField(max_digits=10, decimal_places=5)
-    grid_resolution_unit = models.CharField(max_length=16, choices=LENGTH_UNITS)
-    prognosis_length = models.IntegerField()
-    time_steps = models.IntegerField()
-    projection = models.ForeignKey('Projection')
-    bounding_box = models.CharField(max_length=255)
-    wdb_data_provider = models.CharField(max_length=255, unique=True)
+    grid_resolution = models.DecimalField(max_digits=10, decimal_places=5, null=True, blank=True)
+    grid_resolution_unit = models.CharField(max_length=16, choices=LENGTH_UNITS, null=True, blank=True)
+    prognosis_length = models.IntegerField(null=True, blank=True)
+    time_steps = models.IntegerField(null=True, blank=True)
+    projection = models.ForeignKey('Projection', null=True, blank=True)
+    bounding_box = models.CharField(max_length=255, null=True, blank=True)
+    wdb_data_provider = models.CharField(max_length=255, unique=True, null=True, blank=True)
     contact = models.ForeignKey('Person')
     institution = models.ForeignKey('Institution')
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True, editable=False)
     # TODO: transformations - is this model derived from other models?
 
     def __unicode__(self):
@@ -30,9 +34,12 @@ class ModelRun(models.Model):
     """
     A single calculation of a weather model.
     """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     reference_time = models.DateTimeField()
     model = models.ForeignKey('Model')
     version = models.IntegerField()
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True, editable=False)
 
     class Meta:
         unique_together = ('reference_time', 'model', 'version',)
@@ -49,18 +56,19 @@ class Data(models.Model):
     """
     A set of variables for a specific time period within a single model run.
     """
-    uri = models.CharField(primary_key=True, max_length=1024)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     model_run = models.ForeignKey('ModelRun')
     time_period_begin = models.DateTimeField()
     time_period_end = models.DateTimeField()
-    variables = models.ManyToManyField('Variable')
+    variables = models.ManyToManyField('Variable', blank=True)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True, editable=False)
 
     def __unicode__(self):
-        return u'%(uri)s: data from %(begin)s to %(end)s for model run #%(modelrun)d' % {
-            'uri': self.uri,
+        return u'Data from %(begin)s to %(end)s for model run %(modelrun)s' % {
             'begin': unicode(self.time_period_begin),
             'end': unicode(self.time_period_end),
-            'modelrun': self.model_run.id,
+            'modelrun': unicode(self.model_run),
         }
 
 
@@ -68,18 +76,20 @@ class DataFile(mptt.models.MPTTModel):
     """
     A data file or service containing specific data dictated by the Data class.
     """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     parent = mptt.models.TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
-    uri = models.ForeignKey('Data')
+    data = models.ForeignKey('Data')
     url = models.CharField(max_length=1024)
     format = models.ForeignKey('DataFormat')
-    expires = models.DateTimeField()
+    expires = models.DateTimeField(null=True, blank=True)
     service_backend = models.ForeignKey('ServiceBackend')
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True, editable=False)
     # TODO: transformations
 
     def __unicode__(self):
-        return u'%(url)s: data file for %(uri)s in format %(format)s' % {
+        return u'%(url)s: %(format)s data file' % {
             'url': self.url,
-            'uri': self.uri.uri,
             'format': unicode(self.format),
         }
 
@@ -88,7 +98,10 @@ class DataFormat(models.Model):
     """
     A data format, e.g. NetCDF, GRIB, web service, etc.
     """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(unique=True, max_length=255)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True, editable=False)
 
     def __unicode__(self):
         return self.name
@@ -98,8 +111,11 @@ class ServiceBackend(models.Model):
     """
     A service providing a data file.
     """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(unique=True, max_length=255)
     documentation_url = models.URLField(max_length=1024)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True, editable=False)
 
     def __unicode__(self):
         return self.name
@@ -109,7 +125,10 @@ class Variable(models.Model):
     """
     A standardized CF variable name.
     """
-    name = models.CharField(primary_key=True, max_length=255)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(unique=True, max_length=255)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True, editable=False)
 
     def __unicode__(self):
         return self.name
@@ -119,8 +138,11 @@ class Person(models.Model):
     """
     A single human being.
     """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True, editable=False)
 
     def __unicode__(self):
         return u'%(name)s <%(email)s>' % {
@@ -133,7 +155,10 @@ class Institution(models.Model):
     """
     A single institution.
     """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(unique=True, max_length=255)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True, editable=False)
 
     def __unicode__(self):
         return self.name
@@ -143,8 +168,11 @@ class Projection(models.Model):
     """
     A geographic projection, as defined by proj.
     """
-    id = models.CharField(primary_key=True, max_length=255)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(unique=True, max_length=255)
     definition = models.CharField(unique=True, max_length=1024)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    modified = models.DateTimeField(auto_now=True, editable=False)
 
     def __unicode__(self):
-        return self.id
+        return self.name

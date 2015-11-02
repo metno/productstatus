@@ -22,6 +22,14 @@ import tastypie.api
 v1_api = tastypie.api.Api(api_name='v1')
 v1_api.register(modelstatus.core.api.ModelResource())
 v1_api.register(modelstatus.core.api.ModelRunResource())
+v1_api.register(modelstatus.core.api.DataResource())
+v1_api.register(modelstatus.core.api.DataFileResource())
+v1_api.register(modelstatus.core.api.DataFormatResource())
+v1_api.register(modelstatus.core.api.ServiceBackendResource())
+v1_api.register(modelstatus.core.api.VariableResource())
+v1_api.register(modelstatus.core.api.PersonResource())
+v1_api.register(modelstatus.core.api.InstitutionResource())
+v1_api.register(modelstatus.core.api.ProjectionResource())
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),

@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
+import sys
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
@@ -110,3 +112,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 ZEROMQ_PUBLISH_SOCKET = 'tcp://0.0.0.0:9797'
 ZEROMQ_SUBSCRIBE_SOCKET = 'tcp://127.0.0.1:9796'
+
+# Import site-specific (production) settings, overwriting any local default variables
+try:
+    from local_settings import *
+except ImportError:
+    sys.stderr.write("Failed to import local_settings, continuing with defaults\n")

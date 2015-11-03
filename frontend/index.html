@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="modelstatusApp">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Weather model status</title>
+        <script src="static/lib/angular.min.js"></script>
+        <script src="static/lib/resource.js"></script>
+        <script src="static/app/modelstatus.js"></script>
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="static/style.css" />
+    </head>
+
+    <body ng-controller="ModelRunCtrl" ng-init="refresh()">
+
+        <h1>Weather model status</h1>
+
+        <p>This web page makes queries against the <em>Modelstatus</em> model
+        run index. The index is updated each time a numerical model run has
+        been finished.</p>
+
+        <p>
+            Last updated: <strong>{{now|date:'yyyy-MM-dd HH:mm:ss':'UTC'}}</strong>
+            <button type="button" ng-click="refresh()">Refresh</button>
+        </p>
+
+        <p>All timestamps in UTC. Local time offset: {{now|date:'Z'}}</p>
+
+        <p>
+            <label for="id">Look up specific ID:</label>
+            <input name="id" type="number" ng-model="filter.id" />
+            <button type="button" ng-click="filter.id = ''">Reset</button>
+        </p>
+
+        <p>
+            <label for="data_provider">Filter by data provider:</label>
+            <input name="data_provider" type="text" ng-model="filter.data_provider" />
+            <button type="button" ng-click="filter.data_provider = ''">Reset</button>
+        </p>
+
+        <p>
+            <label for="reference_time">Filter by reference time:</label>
+            <input name="reference_time" type="datetime" ng-model="filter.reference_time" />
+            <button type="button" ng-click="filter.reference_time = ''">Reset</button>
+        </p>
+
+        <p>
+            <label for="limit">Number of result rows:</label>
+            <input name="limit" type="number" ng-model="limit" />
+            <button type="button" ng-click="limit = 20">Reset</button>
+        </p>
+
+        <table cellspacing="0" cellpadding="0">
+            <tr>
+                <th>ID</th>
+                <th>Version</th>
+                <th>Data provider</th>
+                <th>Reference time</th>
+                <th>Added to database</th>
+            </tr>
+            <tr ng-repeat="model_run in model_runs">
+                <td><a href="javascript:;" ng-click="filter.id = model_run.id">{{model_run.id}}</a></td>
+                <td>{{model_run.version}}</td>
+                <td><a href="javascript:;" ng-click="filter.data_provider = model_run.data_provider">{{model_run.data_provider}}</a></td>
+                <td><a href="javascript:;" ng-click="filter.reference_time = model_run.reference_time">{{model_run.reference_time|date:'yyyy-MM-dd HH:mm:ss':'UTC'}}</a></td>
+                <td>{{model_run.created_date|date:'yyyy-MM-dd HH:mm:ss':'UTC'}}</td>
+            </tr>
+        </table>
+
+    </body>
+
+</html>

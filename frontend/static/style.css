@@ -1,0 +1,28 @@
+body {
+    width: 66%;
+    margin: 3em auto;
+    color: #111;
+    font-family: "Source Sans Pro", "Bitstream Charter", "Times", serif;
+}
+
+table {
+    width: 100%;
+    border: 0;
+}
+
+table th {
+    border-bottom: 1px solid #444;
+    text-align: left;
+}
+
+table td, table th {
+    padding: 0.2em 0;
+}
+
+a {
+    color: crimson;
+}
+
+p {
+    margin: 0.5em 0;
+}

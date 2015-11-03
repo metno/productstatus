@@ -16,7 +16,7 @@ Modelstatus is a persistent storage for weather model metadata and run-time info
 
 3. Install ZeroMQ dev libraries. You need at least version 3.0:
 
-    $ sudo apt-get install libzmq-dev build-essential python-dev
+    $ sudo apt-get install libzmq-dev build-essential python-dev libpq-dev
 
 4. Install the Modelstatus dependencies:
 

@@ -104,6 +104,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 # ZeroMQ socket settings
 
 ZEROMQ_PUBLISH_SOCKET = 'tcp://0.0.0.0:9797'

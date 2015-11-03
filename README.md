@@ -42,6 +42,12 @@ You can create a superuser by running:
 
     $ ./manage.py createsuperuser
 
+## Setting up API user permissions
+
+You must grant write access to the certain models required for your API user. This can be done by editing users through the Django administration interface.
+
+For `add` access, it is neccessary to define `change` access as well. This is reported as a bug upstream: https://github.com/django-tastypie/django-tastypie/issues/1391
+
 ## Required parameters for a model run
 
 In order to post information about a model run, you'll need the following information:

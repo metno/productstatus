@@ -13,6 +13,9 @@ class BaseMeta:
 
 class ModelResource(resources.ModelResource):
     parent = fields.ForeignKey('modelstatus.core.api.ModelResource', 'parent', null=True)
+    projection = fields.ForeignKey('modelstatus.core.api.ProjectionResource', 'projection')
+    contact = fields.ForeignKey('modelstatus.core.api.PersonResource', 'contact')
+    institution = fields.ForeignKey('modelstatus.core.api.InstitutionResource', 'institution')
 
     class Meta(BaseMeta):
         queryset = modelstatus.core.models.Model.objects.all()
@@ -42,6 +45,7 @@ class ModelRunResource(resources.ModelResource):
 
 class DataResource(resources.ModelResource):
     model_run = fields.ForeignKey('modelstatus.core.api.ModelRunResource', 'model_run')
+    variables = fields.ManyToManyField('modelstatus.core.api.VariableResource', 'variables', null=True)
 
     class Meta(BaseMeta):
         queryset = modelstatus.core.models.Data.objects.all()

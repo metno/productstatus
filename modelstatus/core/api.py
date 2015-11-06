@@ -28,6 +28,7 @@ class ModelResource(resources.ModelResource):
 
 class ModelRunResource(resources.ModelResource):
     model = fields.ForeignKey('modelstatus.core.api.ModelResource', 'model')
+    version = fields.IntegerField(attribute='version', readonly=True)
 
     class Meta(BaseMeta):
         queryset = modelstatus.core.models.ModelRun.objects.all()

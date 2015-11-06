@@ -41,6 +41,26 @@ class ModelRun(models.Model):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
+    def save(self, *args, **kwargs):
+        """
+        Ensure that the 'version' field remains untouched when saving an
+        existing model run, and auto-increment that field when creating a model
+        run with a reference time and model combination that already exists.
+        """
+        existing = ModelRun.objects.filter(id=self.id)
+        if existing.count() == 1:
+            self.version = existing[0].version
+        else:
+            qs = ModelRun.objects.filter(
+                    model=self.model,
+                    reference_time=self.reference_time,
+                    ).order_by('-version')
+            if qs.count() == 0:
+                self.version = 1
+            else:
+                self.version = qs[0].version + 1
+        return super(ModelRun, self).save(*args, **kwargs)
+
     class Meta:
         unique_together = ('reference_time', 'model', 'version',)
 

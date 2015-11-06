@@ -9,11 +9,13 @@ class BaseResource(resources.ModelResource):
     `id` property can never be set manually.
     """
 
-    id = fields.CharField(attribute='id', unique=True, readonly=True)
-
     def hydrate(self, bundle):
+        """
+        Only copy the supplied ID into the destination object if it already
+        exists in the database. Otherwise, use an auto-generated UUID.
+        """
         if 'id' in bundle.data:
-            bundle.obj.id = bundle.data['id']
+            bundle.data['id'] = bundle.obj.id
         return bundle
 
 

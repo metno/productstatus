@@ -4,7 +4,9 @@ import errno
 import logging
 import zmq
 
+
 MESSAGE_PROTOCOL_VERSION = [1, 2, 0]
+
 
 class ZMQPublisher(object):
     """
@@ -44,7 +46,7 @@ class ZMQPublisher(object):
                 if e.errno == errno.EINTR:
                     if error_count < 2:
                         logging.warn("Interrupted while transmitting ZeroMQ message, retrying")
-                        error_count +=1
+                        error_count += 1
                         continue
                     else:
                         logging.critical("ZeroMQ sending has been interrupted multiple times..Giving up!")
@@ -63,10 +65,10 @@ class ZMQPublisher(object):
         resource_name = ZMQPublisher.get_resource_name(model_instance)
         msg = {
             'url': "%s://%s%s/%s/%s/" % (settings.MODELSTATUS_PROTOCOL,
-                                        settings.MODELSTATUS_HOST,
-                                        settings.MODELSTATUS_BASE_PATH,
-                                        resource_name,
-                                        model_instance.id),
+                                         settings.MODELSTATUS_HOST,
+                                         settings.MODELSTATUS_BASE_PATH,
+                                         resource_name,
+                                         model_instance.id),
             'version': MESSAGE_PROTOCOL_VERSION,
             'resource': resource_name,
             'type': 'resource',

@@ -1,8 +1,9 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 from django.conf import settings
 
 import zmq
+
 
 class Command(BaseCommand):
     help = 'Start the ZeroMQ publisher service'

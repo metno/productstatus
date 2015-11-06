@@ -51,10 +51,9 @@ class ModelRun(models.Model):
         if existing.count() == 1:
             self.version = existing[0].version
         else:
-            qs = ModelRun.objects.filter(
-                    model=self.model,
-                    reference_time=self.reference_time,
-                    ).order_by('-version')
+            qs = ModelRun.objects.filter(model=self.model,
+                                         reference_time=self.reference_time,
+                                         ).order_by('-version')
             if qs.count() == 0:
                 self.version = 1
             else:

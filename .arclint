@@ -1,0 +1,16 @@
+{
+    "linters": {
+        "python": {
+            "type": "flake8",
+            "include": "(\\.py$)",
+            "severity": {
+                "E501": "disabled",
+                "F403": "disabled"
+            },
+            "exclude": [
+                "(^build/)",
+                "(^deps/)"
+            ]
+        }
+    }
+}

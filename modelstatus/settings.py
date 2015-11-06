@@ -122,4 +122,3 @@ try:
     from local_settings import *
 except ImportError:
     sys.stderr.write("Failed to import local_settings, continuing with defaults\n")
-

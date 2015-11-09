@@ -1,0 +1,305 @@
+[
+{
+    "fields": {
+        "parent": null,
+        "wdb_data_provider": "arome_metcoop_2500m",
+        "grid_resolution": "2500.00000",
+        "name": "AROME MetCoOp 2500m",
+        "grid_resolution_unit": "m",
+        "created": "2015-10-28T16:18:30.704Z",
+        "time_steps": 66,
+        "tree_id": 1,
+        "modified": "2015-10-28T16:18:31.823Z",
+        "lft": 1,
+        "bounding_box": "0,0,0,0",
+        "contact": "e215b153-7d93-443e-8246-165c9b70f180",
+        "prognosis_length": 66,
+        "level": 0,
+        "rght": 2,
+        "institution": "16f48ccc-3b9a-4c02-a03a-f836fff4b03b",
+        "projection": "e07d64d6-66b2-4cfb-ab6b-f406d00f5600"
+    },
+    "model": "core.model",
+    "pk": "66340f0b-2c2c-436d-a077-3d939f4f7283"
+},
+{
+    "fields": {
+        "model": "66340f0b-2c2c-436d-a077-3d939f4f7283",
+        "reference_time": "2015-10-28T00:00:00Z",
+        "version": 1,
+        "modified": "2015-10-28T16:18:33.864Z",
+        "created": "2015-10-28T16:18:32.880Z"
+    },
+    "model": "core.modelrun",
+    "pk": "c491e9c8-0abd-4763-ba50-efcf6e6c2f25"
+},
+{
+    "fields": {
+        "created": "2015-10-28T16:18:14.191Z",
+        "variables": [
+            "bf8515aa-188f-4d0b-a2cc-44ebd3104081"
+        ],
+        "time_period_end": "2015-10-28T09:00:00Z",
+        "modified": "2015-10-28T16:18:15.415Z",
+        "time_period_begin": "2015-10-28T00:00:00Z",
+        "model_run": "c491e9c8-0abd-4763-ba50-efcf6e6c2f25"
+    },
+    "model": "core.data",
+    "pk": "d78d50b8-5119-45fd-8195-6e5623cebd8b"
+},
+{
+    "fields": {
+        "rght": 2,
+        "expires": "2015-10-28T09:00:00Z",
+        "parent": null,
+        "format": "d921b282-b4b1-435f-b7e8-2b58daa8a0ff",
+        "url": "https://datastore1.met.no/file.nc",
+        "service_backend": "f314a536-bb96-4d2a-83cd-9764e2e3e16a",
+        "modified": "2015-10-28T16:18:22.279Z",
+        "created": "2015-10-28T16:18:19.495Z",
+        "lft": 1,
+        "tree_id": 1,
+        "level": 0,
+        "data": "d78d50b8-5119-45fd-8195-6e5623cebd8b"
+    },
+    "model": "core.datafile",
+    "pk": "093c9ce8-b2d7-43eb-8c74-a84cdc6ca9e2"
+},
+{
+    "fields": {
+        "rght": 2,
+        "expires": "2015-10-28T16:07:38Z",
+        "parent": null,
+        "format": "d921b282-b4b1-435f-b7e8-2b58daa8a0ff",
+        "url": "https://datastore2.met.no/file.nc",
+        "service_backend": "ee3a5890-f31f-4dbc-ad3d-6df06370d271",
+        "modified": "2015-10-28T16:18:22.279Z",
+        "created": "2015-10-28T16:18:19.495Z",
+        "lft": 1,
+        "tree_id": 2,
+        "level": 0,
+        "data": "d78d50b8-5119-45fd-8195-6e5623cebd8b"
+    },
+    "model": "core.datafile",
+    "pk": "fd8397df-d734-41d1-b98c-0f5202798ded"
+},
+{
+    "fields": {
+        "name": "NetCDF",
+        "modified": "2015-10-28T16:18:24.567Z",
+        "created": "2015-10-28T16:18:23.511Z"
+    },
+    "model": "core.dataformat",
+    "pk": "d921b282-b4b1-435f-b7e8-2b58daa8a0ff"
+},
+{
+    "fields": {
+        "documentation_url": "https://localhost",
+        "name": "Datastore2",
+        "modified": "2015-10-28T16:18:41.152Z",
+        "created": "2015-10-28T16:18:40.104Z"
+    },
+    "model": "core.servicebackend",
+    "pk": "ee3a5890-f31f-4dbc-ad3d-6df06370d271"
+},
+{
+    "fields": {
+        "documentation_url": "https://localhost",
+        "name": "Datastore1",
+        "modified": "2015-10-28T16:18:41.152Z",
+        "created": "2015-10-28T16:18:40.104Z"
+    },
+    "model": "core.servicebackend",
+    "pk": "f314a536-bb96-4d2a-83cd-9764e2e3e16a"
+},
+{
+    "fields": {
+        "name": "air_temperature_2m",
+        "modified": "2015-10-28T16:18:43.472Z",
+        "created": "2015-10-28T16:18:42.360Z"
+    },
+    "model": "core.variable",
+    "pk": "bf8515aa-188f-4d0b-a2cc-44ebd3104081"
+},
+{
+    "fields": {
+        "created": "2015-10-28T16:18:34.848Z",
+        "name": "Kim Tore Jensen",
+        "modified": "2015-10-28T16:18:36.440Z",
+        "email": "kimtj@met.no"
+    },
+    "model": "core.person",
+    "pk": "e215b153-7d93-443e-8246-165c9b70f180"
+},
+{
+    "fields": {
+        "name": "MET Norway",
+        "modified": "2015-10-28T16:18:28.431Z",
+        "created": "2015-10-28T16:18:27.015Z"
+    },
+    "model": "core.institution",
+    "pk": "16f48ccc-3b9a-4c02-a03a-f836fff4b03b"
+},
+{
+    "fields": {
+        "definition": "+proj=lcc +lon_0=15 +lat_0=63 +lat_1=63 +lat_2=63 +R=6.371e+06 +units=m +no_defs",
+        "name": "lambert_conformal_conic",
+        "modified": "2015-10-28T16:18:39.096Z",
+        "created": "2015-10-28T16:18:37.616Z"
+    },
+    "model": "core.projection",
+    "pk": "e07d64d6-66b2-4cfb-ab6b-f406d00f5600"
+},
+ {
+        "fields": {
+            "date_joined": "2015-11-04T13:06:28Z",
+            "email": "gully@nomad.com",
+            "first_name": "",
+            "groups": [],
+            "is_active": true,
+            "is_staff": true,
+            "is_superuser": false,
+            "last_login": "2015-11-04T13:11:25Z",
+            "last_name": "",
+            "password": "pbkdf2_sha256$20000$R0Rftu2qL0Gz$eSF8xRDpoaACItUsdiWKr0ptAhCeG87qjgD6cx09kas=",
+             "user_permissions": [
+                7,
+                8,
+                10,
+                11,
+                13,
+                14,
+                25,
+                26,
+                1,
+                2,
+                4,
+                5,
+                22,
+                23,
+                28,
+                29,
+                16,
+                17,
+                19,
+                20
+            ],
+            "username": "gully"
+        },
+        "model": "auth.user",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "created": "2015-11-04T13:06:54.751Z",
+            "key": "22bf0c5386fc834cbc1a71e38c0009c8d413e90b",
+            "user": 2
+        },
+        "model": "tastypie.apikey",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "bounding_box": "0,0,0,0",
+            "contact": "8e547c76-6639-450d-a077-5dbcabeb3581",
+            "created": "2015-11-05T11:32:59.932Z",
+            "grid_resolution": "4000.00000",
+            "grid_resolution_unit": "m",
+            "institution": "a5eb5df1-704c-4450-a7a4-388f7e54c496",
+            "level": 0,
+            "lft": 1,
+            "modified": "2015-11-05T11:32:59.932Z",
+            "name": "Nordic",
+            "parent": null,
+            "prognosis_length": 60,
+            "projection": "c2b3d081-bb4d-4dea-975b-0126bdab6691",
+            "rght": 2,
+            "time_steps": 60,
+            "tree_id": 1,
+            "wdb_data_provider": "nordic_roms"
+        },
+        "model": "core.model",
+        "pk": "8efab026-434e-4baf-b8ed-d921a1b0b427"
+    },
+    {
+        "fields": {
+            "created": "2015-11-05T11:33:14.969Z",
+            "model": "8efab026-434e-4baf-b8ed-d921a1b0b427",
+            "modified": "2015-11-05T11:33:14.969Z",
+            "reference_time": "2015-11-05T18:00:00Z",
+            "version": 0
+        },
+        "model": "core.modelrun",
+        "pk": "6d82a090-2c2b-4cd8-8524-180c87ed3bea"
+    },
+    {
+        "fields": {
+            "created": "2015-11-05T11:32:12.114Z",
+            "email": "blurgh@hepp.com",
+            "modified": "2015-11-05T11:32:12.114Z",
+            "name": "Blurgh"
+        },
+        "model": "core.person",
+        "pk": "8e547c76-6639-450d-a077-5dbcabeb3581"
+    },
+    {
+        "fields": {
+            "created": "2015-11-05T11:32:46.533Z",
+            "modified": "2015-11-05T11:32:46.533Z",
+            "name": "SMHI"
+        },
+        "model": "core.institution",
+        "pk": "a5eb5df1-704c-4450-a7a4-388f7e54c496"
+    },
+     {
+        "fields": {
+            "created": "2015-11-05T11:31:03.285Z",
+            "definition": "+2 heppers",
+            "modified": "2015-11-05T11:31:03.285Z",
+            "name": "Mercator"
+        },
+        "model": "core.projection",
+        "pk": "c2b3d081-bb4d-4dea-975b-0126bdab6691"
+    },
+    {
+        "fields": {
+            "date_joined": "2015-11-05T14:06:45.429Z",
+            "email": "",
+            "first_name": "",
+            "groups": [],
+            "is_active": true,
+            "is_staff": true,
+            "is_superuser": true,
+            "last_login": null,
+            "last_name": "",
+            "password": "pbkdf2_sha256$20000$ifeNdFbj2GZw$RfkmLwj4iLseV72Pj/12h8B+BMwI+4VOCZ8lCXw4tKM=",
+            "user_permissions": [],
+            "username": "admin"
+        },
+        "model": "auth.user",
+        "pk": 1
+    },
+     {
+        "fields": {
+            "created": "2015-11-05T14:11:44.012Z",
+            "modified": "2015-11-05T14:11:44.012Z",
+            "name": "sea_temperature"
+        },
+        "model": "core.variable",
+        "pk": "d4d56cb0-bafa-48e3-9cc6-844e0c1adcf6"
+    },
+ {
+        "fields": {
+            "created": "2015-11-05T14:12:15.467Z",
+            "model_run": "6d82a090-2c2b-4cd8-8524-180c87ed3bea",
+            "modified": "2015-11-05T14:12:15.467Z",
+            "time_period_begin": "2015-11-05T00:00:00Z",
+            "time_period_end": "2015-11-08T18:00:00Z",
+            "variables": [
+                "d4d56cb0-bafa-48e3-9cc6-844e0c1adcf6"
+            ]
+        },
+        "model": "core.data",
+        "pk": "4d473596-862e-4d02-a08b-61a349a678bd"
+    }
+]

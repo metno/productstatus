@@ -1,6 +1,19 @@
-from tastypie import fields, resources, authentication, authorization
+from tastypie import fields, resources, authentication, authorization, serializers
+
+import dateutil.tz
 
 import modelstatus.core.models
+
+
+class Serializer(serializers.Serializer):
+    formats = ['json']
+
+    def format_datetime(self, data):
+        """
+        Strange behavior: unless this method is overridden, Tastypie will
+        return a naive datetime object. (???)
+        """
+        return data.astimezone(tz=dateutil.tz.tzutc())
 
 
 class BaseResource(resources.ModelResource):
@@ -28,6 +41,7 @@ class BaseMeta:
         authentication.Authentication(),
     )
     authorization = authorization.DjangoAuthorization()
+    serializer = Serializer()
 
 
 class ModelResource(BaseResource):

@@ -53,7 +53,7 @@ class ModelRunCollectionTest(BaseTestCases.ModelstatusCollectionTest):
         self.assertValidJSONResponse(resp)
 
         decoded_content = self.unserialize(resp)
-        self.assertEqual(decoded_content['objects'][0]['reference_time'], '2015-10-28T00:00:00')
+        self.assertEqual(decoded_content['objects'][0]['reference_time'], '2015-10-28T00:00:00Z')
 
     def test_order_by_desc(self):
         """
@@ -64,7 +64,7 @@ class ModelRunCollectionTest(BaseTestCases.ModelstatusCollectionTest):
         self.assertValidJSONResponse(resp)
 
         decoded_content = self.unserialize(resp)
-        self.assertEqual(decoded_content['objects'][0]['reference_time'], '2015-11-05T18:00:00')
+        self.assertEqual(decoded_content['objects'][0]['reference_time'], '2015-11-05T18:00:00Z')
 
     def test_increment_version(self):
         """

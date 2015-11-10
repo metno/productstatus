@@ -19,6 +19,21 @@ class DataCollectionTest(BaseTestCases.ModelstatusCollectionTest):
             }
         self.__model_class__ = Data
 
+    def test_post_with_only_model_run(self):
+        """
+        Test that a POST request supplying only a `model_run` resource is being accepted.
+        is correct.
+        """
+        data = {
+            "model_run": "/api/v1/model_run/c491e9c8-0abd-4763-ba50-efcf6e6c2f25/"
+        }
+        response = self.api_client.post(self.base_url,
+                                        format='json',
+                                        data=data,
+                                        authentication=self.api_key_header,
+                                        )
+        self.assertHttpCreated(response)
+
 
 class DataItemTest(BaseTestCases.ModelstatusItemTest):
 

@@ -79,8 +79,8 @@ class Data(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     model_run = models.ForeignKey('ModelRun')
-    time_period_begin = models.DateTimeField()
-    time_period_end = models.DateTimeField()
+    time_period_begin = models.DateTimeField(null=True, blank=True)
+    time_period_end = models.DateTimeField(null=True, blank=True)
     variables = models.ManyToManyField('Variable', blank=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)

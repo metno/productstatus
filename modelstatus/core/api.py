@@ -40,6 +40,8 @@ class ModelResource(BaseResource):
         queryset = modelstatus.core.models.Model.objects.all()
         filtering = {
             'wdb_data_provider': ['exact'],
+            'grib_center': ['exact'],
+            'grib_generating_process_id': ['exact'],
             'lft': resources.ALL,
             'rght': resources.ALL,
         }

@@ -9,8 +9,6 @@ import uuid
 
 class Migration(migrations.Migration):
 
-    replaces = [(b'core', '0001_initial'), (b'core', '0002_auto_20151028_1615'), (b'core', '0003_auto_20151028_1618'), (b'core', '0004_auto_20151028_1620')]
-
     dependencies = [
     ]
 

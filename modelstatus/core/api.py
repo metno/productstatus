@@ -46,7 +46,7 @@ class BaseMeta:
 
 class ModelResource(BaseResource):
     parent = fields.ForeignKey('modelstatus.core.api.ModelResource', 'parent', null=True)
-    projection = fields.ForeignKey('modelstatus.core.api.ProjectionResource', 'projection')
+    projection = fields.ForeignKey('modelstatus.core.api.ProjectionResource', 'projection', null=True)
     contact = fields.ForeignKey('modelstatus.core.api.PersonResource', 'contact')
     institution = fields.ForeignKey('modelstatus.core.api.InstitutionResource', 'institution')
 

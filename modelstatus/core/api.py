@@ -53,6 +53,7 @@ class ModelResource(BaseResource):
     class Meta(BaseMeta):
         queryset = modelstatus.core.models.Model.objects.all()
         filtering = {
+            'name': ['exact'],
             'wdb_data_provider': ['exact'],
             'grib_center': ['exact'],
             'grib_generating_process_id': ['exact'],

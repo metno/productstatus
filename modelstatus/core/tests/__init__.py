@@ -14,11 +14,11 @@ class ModelstatusResourceTest(ResourceTestCase):
         super(ModelstatusResourceTest, self).setUp()
 
         self.url_prefix = '/api/v1'
-        self.username = 'gully'
-        self.password = 'foyle'
+        self.username = 'admin'
+        self.password = 'admin'
 
         # create_apikey generates Authorization http header. The key itself is already in the fixture.
-        self.api_key_header = self.create_apikey(self.username, "22bf0c5386fc834cbc1a71e38c0009c8d413e90b")
+        self.api_key_header = self.create_apikey(self.username, "5bcf851f09bc65043d987910e1448781fcf4ea12")
 
     def unserialize(self, response):
 

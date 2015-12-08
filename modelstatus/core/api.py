@@ -44,14 +44,15 @@ class BaseMeta:
     serializer = Serializer()
 
 
-class ModelResource(BaseResource):
-    parent = fields.ForeignKey('modelstatus.core.api.ModelResource', 'parent', null=True)
+class ProductResource(BaseResource):
+    parents = fields.ManyToManyField('modelstatus.core.api.ProductResource', 'parents', null=True)
     projection = fields.ForeignKey('modelstatus.core.api.ProjectionResource', 'projection', null=True)
     contact = fields.ForeignKey('modelstatus.core.api.PersonResource', 'contact')
     institution = fields.ForeignKey('modelstatus.core.api.InstitutionResource', 'institution')
+    license = fields.ForeignKey('modelstatus.core.api.LicenseResource', 'license')
 
     class Meta(BaseMeta):
-        queryset = modelstatus.core.models.Model.objects.all()
+        queryset = modelstatus.core.models.Product.objects.all()
         filtering = {
             'name': ['exact'],
             'wdb_data_provider': ['exact'],
@@ -62,15 +63,14 @@ class ModelResource(BaseResource):
         }
 
 
-class ModelRunResource(BaseResource):
-    model = fields.ForeignKey('modelstatus.core.api.ModelResource', 'model')
+class ProductInstanceResource(BaseResource):
+    product = fields.ForeignKey('modelstatus.core.api.ProductResource', 'product')
     version = fields.IntegerField(attribute='version', readonly=True)
 
     class Meta(BaseMeta):
-        queryset = modelstatus.core.models.ModelRun.objects.all()
-        resource_name = 'model_run'
+        queryset = modelstatus.core.models.ProductInstance.objects.all()
         filtering = {
-            'model': ['exact'],
+            'product': ['exact'],
             'reference_time': resources.ALL,
             'version': resources.ALL,
         }
@@ -81,29 +81,28 @@ class ModelRunResource(BaseResource):
 
 
 class DataResource(BaseResource):
-    model_run = fields.ForeignKey('modelstatus.core.api.ModelRunResource', 'model_run')
+    productinstance = fields.ForeignKey('modelstatus.core.api.ProductInstanceResource', 'product_instance')
     variables = fields.ManyToManyField('modelstatus.core.api.VariableResource', 'variables', null=True)
 
     class Meta(BaseMeta):
         queryset = modelstatus.core.models.Data.objects.all()
         filtering = {
-            'model_run': ['exact'],
+            'productinstance': ['exact'],
             'time_period_begin': resources.ALL,
             'time_period_end': resources.ALL,
         }
 
 
-class DataFileResource(BaseResource):
+class DataInstanceResource(BaseResource):
     data = fields.ForeignKey('modelstatus.core.api.DataResource', 'data')
     format = fields.ForeignKey('modelstatus.core.api.DataFormatResource', 'format')
-    service_backend = fields.ForeignKey('modelstatus.core.api.ServiceBackendResource', 'service_backend')
+    servicebackend = fields.ForeignKey('modelstatus.core.api.ServiceBackendResource', 'service_backend')
 
     class Meta(BaseMeta):
-        queryset = modelstatus.core.models.DataFile.objects.all()
-        resource_name = 'data_file'
+        queryset = modelstatus.core.models.DataInstance.objects.all()
         filtering = {
             'data': ['exact'],
-            'service_backend': ['exact'],
+            'servicebackend': ['exact'],
             'format': ['exact'],
             'expires': resources.ALL,
             'lft': resources.ALL,
@@ -114,7 +113,6 @@ class DataFileResource(BaseResource):
 class DataFormatResource(BaseResource):
     class Meta(BaseMeta):
         queryset = modelstatus.core.models.DataFormat.objects.all()
-        resource_name = 'data_format'
         filtering = {
             'name': resources.ALL,
         }
@@ -123,7 +121,6 @@ class DataFormatResource(BaseResource):
 class ServiceBackendResource(BaseResource):
     class Meta(BaseMeta):
         queryset = modelstatus.core.models.ServiceBackend.objects.all()
-        resource_name = 'service_backend'
 
 
 class VariableResource(BaseResource):
@@ -144,3 +141,8 @@ class InstitutionResource(BaseResource):
 class ProjectionResource(BaseResource):
     class Meta(BaseMeta):
         queryset = modelstatus.core.models.Projection.objects.all()
+
+
+class LicenseResource(BaseResource):
+    class Meta(BaseMeta):
+        queryset = modelstatus.core.models.License.objects.all()

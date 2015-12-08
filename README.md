@@ -2,7 +2,10 @@
 
 ## Abstract
 
-Modelstatus is a persistent storage for weather model metadata and run-time information. It provides a REST API for data retrieval and manipulation.
+Modelstatus is a persistent storage for weather product metadata and run-time information. It provides a REST API for data retrieval and manipulation.
+
+![Graphical representation of data model]
+(doc/model_graph.png)
 
 ## Setting it up
 
@@ -48,25 +51,31 @@ You must grant write access to the certain models required for your API user. Th
 
 For `add` access, it is neccessary to define `change` access as well. This is reported as a bug upstream: https://github.com/django-tastypie/django-tastypie/issues/1391
 
-## Required parameters for a model run
+## Generating the data model graph
 
-In order to post information about a model run, you'll need the following information:
+```
+$ ./manage.py graph_models core -x created,modified | dot -Tpng > doc/model_graph.png
+```
 
-### Model
+## Required parameters for a product instance
 
-A //Model// represents an immutable weather model, consisting of a specific resolution, bounding box, number of time steps, etc. The Model can be created from the Django administration interface, and retrieved using the API.
+In order to post information about a product instance, you'll need the following information:
+
+### Product
+
+A //Product// is a data set definition. It defines who is responsible, the bounding box, projection, grid resolution, number of time steps, and also includes references to names in other metadata systems such as WDB. The Product can be created from the Django administration interface, and retrieved using the API.
 
 ### Reference time
 
-The start date and time, including time zone, for the model's prognosis.
+The start date and time, including time zone, for the product's prognosis.
 
 ### Dataset version
 
-In most cases, this can be set to `1`. In case a weather model run fails, and a re-run has been done, this number must be increased, in order to indicate to clients that a newer data set exists.
+In most cases, this can be set to `1`. In case upstream product generation fails, and a re-run has been done, this number must be increased, in order to indicate to clients that a newer data set exists.
 
 ### Data format
 
-Each file produced by a model run has its specific data format, for instance GRIB or NetCDF. This data format must be reported to Modelstatus. Data formats can be managed from the Django administration interface, and retrieved using the API.
+Each file produced during product generation has its specific data format, for instance GRIB or NetCDF. This data format must be reported to Modelstatus. Data formats can be managed from the Django administration interface, and retrieved using the API.
 
 ### Service backend
 
@@ -80,15 +89,15 @@ If a data file is not to be stored permanently, its exact end-of-life time, incl
 
 Each data file must have an URL, from which it can be retrieved until its expiry time.
 
-## An example of posting a model run and its data set
+## An example of posting a product instance and its data set
 
 This example is illustrated using [httpie](https://pypi.python.org/pypi/httpie).
 
-Imagine our model run of the //Arome MetCoOp 2500m// model have completed, its reference time is //2015-10-29T00:00:00Z//, and the resulting data set is a //NetCDF// file which we have placed on our imaginary file servers //Datastore1// and //Datastore2//.
+Imagine an instance of the product //Arome MetCoOp 2500m// has been generated, its reference time is //2015-10-29T00:00:00Z//, and the resulting data set is a //NetCDF// file which we have placed on our imaginary file servers //Datastore1// and //Datastore2//.
 
-How do we know which //Model// resource to reference? In a lot of cases, this value could be hard-coded into your configuration, since the UUID will not change. But you could also filter the Model resource collection to figure it out dynamically, for instance by searching for the WDB data provider name:
+How do we know which //Product// resource to reference? In a lot of cases, this value could be hard-coded into your configuration, since the UUID will not change. But you could also filter the Product resource collection to figure it out dynamically, for instance by searching for the WDB data provider name:
 
-    $ http GET http://localhost:8000/api/v1/model/?wdb_data_provider=arome_metcoop_2500m
+    $ http GET http://localhost:8000/api/v1/product/?wdb_data_provider=arome_metcoop_2500m
 
     HTTP/1.0 200 OK
     Cache-Control: no-cache
@@ -117,31 +126,31 @@ How do we know which //Model// resource to reference? In a lot of cases, this va
                 "name": "AROME MetCoOp 2500m",
                 "parent": null,
                 "prognosis_length": 66,
-                "resource_uri": "/api/v1/model/66340f0b-2c2c-436d-a077-3d939f4f7283/",
+                "resource_uri": "/api/v1/product/66340f0b-2c2c-436d-a077-3d939f4f7283/",
                 "time_steps": 66,
                 "wdb_data_provider": "arome_metcoop_2500m"
             }
         ]
     }
 
-Now that we have a resource URI for the model, we can go ahead and POST our model run:
+Now that we have a resource URI for the product, we can go ahead and POST our product instance:
 
-    $ http --json POST http://localhost:8000/api/v1/model_run/ \
-        model=/api/v1/model/66340f0b-2c2c-436d-a077-3d939f4f7283/ \
+    $ http --json POST http://localhost:8000/api/v1/productinstance/ \
+        product=/api/v1/product/66340f0b-2c2c-436d-a077-3d939f4f7283/ \
         reference_time=2015-10-29T00:00:00Z \
         version=1
 
     HTTP/1.0 201 CREATED
     Content-Type: text/html; charset=utf-8
     Date: Thu, 29 Oct 2015 10:10:25 GMT
-    Location: http://localhost:8000/api/v1/model_run/4e3ddbd0-a7e1-40cd-bef9-6ab55e0352a7/
+    Location: http://localhost:8000/api/v1/productinstance/4e3ddbd0-a7e1-40cd-bef9-6ab55e0352a7/
     Server: WSGIServer/0.1 Python/2.7.3
     Vary: Accept
     X-Frame-Options: SAMEORIGIN
 
-We can inspect our newly created model run resource:
+We can inspect our newly created product instance resource:
 
-    $ http GET http://localhost:8000/api/v1/model_run/4e3ddbd0-a7e1-40cd-bef9-6ab55e0352a7/
+    $ http GET http://localhost:8000/api/v1/productinstance/4e3ddbd0-a7e1-40cd-bef9-6ab55e0352a7/
 
     HTTP/1.0 200 OK
     Cache-Control: no-cache
@@ -154,17 +163,17 @@ We can inspect our newly created model run resource:
     {
         "created": "2015-10-29T10:10:25.858306",
         "id": "4e3ddbd0-a7e1-40cd-bef9-6ab55e0352a7",
-        "model": "/api/v1/model/66340f0b-2c2c-436d-a077-3d939f4f7283/",
+        "product": "/api/v1/product/66340f0b-2c2c-436d-a077-3d939f4f7283/",
         "modified": "2015-10-29T10:10:25.858340",
         "reference_time": "2015-10-29T00:00:00",
-        "resource_uri": "/api/v1/model_run/4e3ddbd0-a7e1-40cd-bef9-6ab55e0352a7/",
+        "resource_uri": "/api/v1/productinstance/4e3ddbd0-a7e1-40cd-bef9-6ab55e0352a7/",
         "version": 1
     }
 
 Now, lets post some files. We know that our data set contains 66 hours of data, and it is stored in a single file. We must first post information about which time period our data set spans, and optionally, which parameters it contains:
 
     $ http --json POST http://localhost:8000/api/v1/data/ \
-        model_run=/api/v1/model_run/4e3ddbd0-a7e1-40cd-bef9-6ab55e0352a7/ \
+        productinstance=/api/v1/productinstance/4e3ddbd0-a7e1-40cd-bef9-6ab55e0352a7/ \
         time_period_begin=2015-10-29T00:00:00Z \
         time_period_end=2015-10-31T18:00:00Z
 
@@ -191,7 +200,7 @@ The newly created object is a canonical and immutable representation of the data
     {
         "created": "2015-10-29T10:17:28.299035",
         "id": "8c381dc4-7d09-4edd-ae58-39715d04397c",
-        "model_run": "/api/v1/model_run/4e3ddbd0-a7e1-40cd-bef9-6ab55e0352a7/",
+        "productinstance": "/api/v1/productinstance/4e3ddbd0-a7e1-40cd-bef9-6ab55e0352a7/",
         "modified": "2015-10-29T10:17:28.299048",
         "resource_uri": "/api/v1/data/8c381dc4-7d09-4edd-ae58-39715d04397c/",
         "time_period_begin": "2015-10-29T00:00:00",

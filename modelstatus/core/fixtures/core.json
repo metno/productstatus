@@ -1,305 +1,1114 @@
 [
-{
-    "fields": {
-        "parent": null,
-        "wdb_data_provider": "arome_metcoop_2500m",
-        "grid_resolution": "2500.00000",
-        "name": "AROME MetCoOp 2500m",
-        "grid_resolution_unit": "m",
-        "created": "2015-10-28T16:18:30.704Z",
-        "time_steps": 66,
-        "tree_id": 1,
-        "modified": "2015-10-28T16:18:31.823Z",
-        "lft": 1,
-        "bounding_box": "0,0,0,0",
-        "contact": "e215b153-7d93-443e-8246-165c9b70f180",
-        "prognosis_length": 66,
-        "level": 0,
-        "rght": 2,
-        "institution": "16f48ccc-3b9a-4c02-a03a-f836fff4b03b",
-        "projection": "e07d64d6-66b2-4cfb-ab6b-f406d00f5600"
-    },
-    "model": "core.model",
-    "pk": "66340f0b-2c2c-436d-a077-3d939f4f7283"
-},
-{
-    "fields": {
-        "model": "66340f0b-2c2c-436d-a077-3d939f4f7283",
-        "reference_time": "2015-10-28T00:00:00Z",
-        "version": 1,
-        "modified": "2015-10-28T16:18:33.864Z",
-        "created": "2015-10-28T16:18:32.880Z"
-    },
-    "model": "core.modelrun",
-    "pk": "c491e9c8-0abd-4763-ba50-efcf6e6c2f25"
-},
-{
-    "fields": {
-        "created": "2015-10-28T16:18:14.191Z",
-        "variables": [
-            "bf8515aa-188f-4d0b-a2cc-44ebd3104081"
-        ],
-        "time_period_end": "2015-10-28T09:00:00Z",
-        "modified": "2015-10-28T16:18:15.415Z",
-        "time_period_begin": "2015-10-28T00:00:00Z",
-        "model_run": "c491e9c8-0abd-4763-ba50-efcf6e6c2f25"
-    },
-    "model": "core.data",
-    "pk": "d78d50b8-5119-45fd-8195-6e5623cebd8b"
-},
-{
-    "fields": {
-        "rght": 2,
-        "expires": "2015-10-28T09:00:00Z",
-        "parent": null,
-        "format": "d921b282-b4b1-435f-b7e8-2b58daa8a0ff",
-        "url": "https://datastore1.met.no/file.nc",
-        "service_backend": "f314a536-bb96-4d2a-83cd-9764e2e3e16a",
-        "modified": "2015-10-28T16:18:22.279Z",
-        "created": "2015-10-28T16:18:19.495Z",
-        "lft": 1,
-        "tree_id": 1,
-        "level": 0,
-        "data": "d78d50b8-5119-45fd-8195-6e5623cebd8b"
-    },
-    "model": "core.datafile",
-    "pk": "093c9ce8-b2d7-43eb-8c74-a84cdc6ca9e2"
-},
-{
-    "fields": {
-        "rght": 2,
-        "expires": "2015-10-28T16:07:38Z",
-        "parent": null,
-        "format": "d921b282-b4b1-435f-b7e8-2b58daa8a0ff",
-        "url": "https://datastore2.met.no/file.nc",
-        "service_backend": "ee3a5890-f31f-4dbc-ad3d-6df06370d271",
-        "modified": "2015-10-28T16:18:22.279Z",
-        "created": "2015-10-28T16:18:19.495Z",
-        "lft": 1,
-        "tree_id": 2,
-        "level": 0,
-        "data": "d78d50b8-5119-45fd-8195-6e5623cebd8b"
-    },
-    "model": "core.datafile",
-    "pk": "fd8397df-d734-41d1-b98c-0f5202798ded"
-},
-{
-    "fields": {
-        "name": "NetCDF",
-        "modified": "2015-10-28T16:18:24.567Z",
-        "created": "2015-10-28T16:18:23.511Z"
-    },
-    "model": "core.dataformat",
-    "pk": "d921b282-b4b1-435f-b7e8-2b58daa8a0ff"
-},
-{
-    "fields": {
-        "documentation_url": "https://localhost",
-        "name": "Datastore2",
-        "modified": "2015-10-28T16:18:41.152Z",
-        "created": "2015-10-28T16:18:40.104Z"
-    },
-    "model": "core.servicebackend",
-    "pk": "ee3a5890-f31f-4dbc-ad3d-6df06370d271"
-},
-{
-    "fields": {
-        "documentation_url": "https://localhost",
-        "name": "Datastore1",
-        "modified": "2015-10-28T16:18:41.152Z",
-        "created": "2015-10-28T16:18:40.104Z"
-    },
-    "model": "core.servicebackend",
-    "pk": "f314a536-bb96-4d2a-83cd-9764e2e3e16a"
-},
-{
-    "fields": {
-        "name": "air_temperature_2m",
-        "modified": "2015-10-28T16:18:43.472Z",
-        "created": "2015-10-28T16:18:42.360Z"
-    },
-    "model": "core.variable",
-    "pk": "bf8515aa-188f-4d0b-a2cc-44ebd3104081"
-},
-{
-    "fields": {
-        "created": "2015-10-28T16:18:34.848Z",
-        "name": "Kim Tore Jensen",
-        "modified": "2015-10-28T16:18:36.440Z",
-        "email": "kimtj@met.no"
-    },
-    "model": "core.person",
-    "pk": "e215b153-7d93-443e-8246-165c9b70f180"
-},
-{
-    "fields": {
-        "name": "MET Norway",
-        "modified": "2015-10-28T16:18:28.431Z",
-        "created": "2015-10-28T16:18:27.015Z"
-    },
-    "model": "core.institution",
-    "pk": "16f48ccc-3b9a-4c02-a03a-f836fff4b03b"
-},
-{
-    "fields": {
-        "definition": "+proj=lcc +lon_0=15 +lat_0=63 +lat_1=63 +lat_2=63 +R=6.371e+06 +units=m +no_defs",
-        "name": "lambert_conformal_conic",
-        "modified": "2015-10-28T16:18:39.096Z",
-        "created": "2015-10-28T16:18:37.616Z"
-    },
-    "model": "core.projection",
-    "pk": "e07d64d6-66b2-4cfb-ab6b-f406d00f5600"
-},
- {
+    {
         "fields": {
-            "date_joined": "2015-11-04T13:06:28Z",
-            "email": "gully@nomad.com",
-            "first_name": "",
-            "groups": [],
-            "is_active": true,
-            "is_staff": true,
-            "is_superuser": false,
-            "last_login": "2015-11-04T13:11:25Z",
-            "last_name": "",
-            "password": "pbkdf2_sha256$20000$R0Rftu2qL0Gz$eSF8xRDpoaACItUsdiWKr0ptAhCeG87qjgD6cx09kas=",
-             "user_permissions": [
-                7,
-                8,
-                10,
-                11,
-                13,
-                14,
-                25,
-                26,
-                1,
-                2,
-                4,
-                5,
-                22,
-                23,
-                28,
-                29,
-                16,
-                17,
-                19,
-                20
+            "wdb_data_provider": "",
+            "grid_resolution": "1000.00000",
+            "name": "This is a test product",
+            "license": "92a5a153-53a4-4170-a0bc-cbd4ed14a05c",
+            "created": "2015-12-08T09:19:21.176Z",
+            "time_steps": 120,
+            "variables": [
+                "0305bccf-0775-4707-9aef-e26aa0f377af",
+                "72a56a36-0567-41f0-bcbe-5ff90c3d79ac"
             ],
-            "username": "gully"
+            "modified": "2015-12-08T09:20:42.977Z",
+            "bounding_box": "0,0,0,0",
+            "contact": "b407e09d-b0c4-4289-95fe-75a2497f6eaa",
+            "ecmwf_stream_name": "",
+            "grid_resolution_unit": "m",
+            "prognosis_length": 240,
+            "parents": [],
+            "institution": "b3528b13-84aa-49a2-8895-77c1b3fce9d8",
+            "projection": null
         },
-        "model": "auth.user",
+        "model": "core.product",
+        "pk": "7d3fe736-5902-44d5-a34c-86f877190523"
+    },
+    {
+        "fields": {
+            "product": "7d3fe736-5902-44d5-a34c-86f877190523",
+            "created": "2015-12-08T09:24:51.836Z",
+            "reference_time": "2015-12-08T00:00:00Z",
+            "modified": "2015-12-08T09:24:51.836Z",
+            "state": 1,
+            "version": 1
+        },
+        "model": "core.productinstance",
+        "pk": "88d28ffd-d448-4319-a94e-16889955f94a"
+    },
+    {
+        "fields": {
+            "product": "7d3fe736-5902-44d5-a34c-86f877190523",
+            "created": "2015-12-08T11:33:19.810Z",
+            "reference_time": "2015-12-07T00:00:00Z",
+            "modified": "2015-12-08T11:33:19.810Z",
+            "state": 1,
+            "version": 1
+        },
+        "model": "core.productinstance",
+        "pk": "c29bc2af-f989-4dc9-a17d-de774f93f187"
+    },
+    {
+        "fields": {
+            "created": "2015-12-08T09:28:08.783Z",
+            "variables": [
+                "0305bccf-0775-4707-9aef-e26aa0f377af",
+                "72a56a36-0567-41f0-bcbe-5ff90c3d79ac"
+            ],
+            "time_period_end": "2015-12-19T00:00:00Z",
+            "modified": "2015-12-08T09:28:08.783Z",
+            "time_period_begin": "2015-12-08T00:00:00Z",
+            "product_instance": "88d28ffd-d448-4319-a94e-16889955f94a"
+        },
+        "model": "core.data",
+        "pk": "434405fa-b3ca-42b1-b764-959d06370b32"
+    },
+    {
+        "fields": {
+            "expires": null,
+            "created": "2015-12-08T09:28:53.360Z",
+            "url": "https://datastore2.example.com/test.nc",
+            "format": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc",
+            "service_backend": "7f287791-b10f-41c5-ada8-327783573e29",
+            "modified": "2015-12-08T09:28:53.360Z",
+            "data": "434405fa-b3ca-42b1-b764-959d06370b32"
+        },
+        "model": "core.datainstance",
+        "pk": "8e52633f-04bc-40d5-99e1-6b1c9b9010f4"
+    },
+    {
+        "fields": {
+            "expires": null,
+            "created": "2015-12-08T09:28:40.997Z",
+            "url": "https://datastore1.example.com/test.nc",
+            "format": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc",
+            "service_backend": "495bb3be-e327-4840-accf-afefcd411e06",
+            "modified": "2015-12-08T09:28:40.997Z",
+            "data": "434405fa-b3ca-42b1-b764-959d06370b32"
+        },
+        "model": "core.datainstance",
+        "pk": "ae443952-7990-4cee-9913-41dfd0092dc1"
+    },
+    {
+        "fields": {
+            "name": "netcdf",
+            "modified": "2015-12-08T09:16:10.639Z",
+            "created": "2015-12-08T09:16:10.639Z"
+        },
+        "model": "core.dataformat",
+        "pk": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc"
+    },
+    {
+        "fields": {
+            "documentation_url": "http://example.com",
+            "name": "Datastore1",
+            "modified": "2015-12-08T09:21:16.617Z",
+            "created": "2015-12-08T09:21:16.617Z"
+        },
+        "model": "core.servicebackend",
+        "pk": "495bb3be-e327-4840-accf-afefcd411e06"
+    },
+    {
+        "fields": {
+            "documentation_url": "http://example.com",
+            "name": "Datastore2",
+            "modified": "2015-12-08T09:21:24.593Z",
+            "created": "2015-12-08T09:21:24.593Z"
+        },
+        "model": "core.servicebackend",
+        "pk": "7f287791-b10f-41c5-ada8-327783573e29"
+    },
+    {
+        "fields": {
+            "name": "TestVar1",
+            "modified": "2015-12-08T09:19:46.972Z",
+            "created": "2015-12-08T09:19:46.972Z"
+        },
+        "model": "core.variable",
+        "pk": "0305bccf-0775-4707-9aef-e26aa0f377af"
+    },
+    {
+        "fields": {
+            "name": "TestVar2",
+            "modified": "2015-12-08T09:19:51.232Z",
+            "created": "2015-12-08T09:19:51.232Z"
+        },
+        "model": "core.variable",
+        "pk": "72a56a36-0567-41f0-bcbe-5ff90c3d79ac"
+    },
+    {
+        "fields": {
+            "created": "2015-12-08T09:17:35.283Z",
+            "name": "Foo Bar",
+            "modified": "2015-12-08T09:17:35.283Z",
+            "email": "foo.bar@example.com"
+        },
+        "model": "core.person",
+        "pk": "b407e09d-b0c4-4289-95fe-75a2497f6eaa"
+    },
+    {
+        "fields": {
+            "name": "MET Norway",
+            "modified": "2015-12-08T09:16:29.438Z",
+            "created": "2015-12-08T09:16:29.438Z"
+        },
+        "model": "core.institution",
+        "pk": "b3528b13-84aa-49a2-8895-77c1b3fce9d8"
+    },
+    {
+        "fields": {
+            "definition": " +proj=cea +lon_0=Central Meridian +lat_ts=Standard Parallel +x_0=False Easting +y_0=False Northing",
+            "name": "Cylindrical Equal Area",
+            "modified": "2015-12-08T11:38:24.731Z",
+            "created": "2015-12-08T11:38:24.731Z"
+        },
+        "model": "core.projection",
+        "pk": "d454efcc-d822-4d60-a65c-e94680953768"
+    },
+    {
+        "fields": {
+            "name": "Public domain",
+            "created": "2015-12-08T09:18:58.598Z",
+            "url": "",
+            "modified": "2015-12-08T09:18:58.598Z",
+            "public": true,
+            "description": ""
+        },
+        "model": "core.license",
+        "pk": "92a5a153-53a4-4170-a0bc-cbd4ed14a05c"
+    },
+    {
+        "fields": {
+            "model": "product",
+            "app_label": "core"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "model": "productinstance",
+            "app_label": "core"
+        },
+        "model": "contenttypes.contenttype",
         "pk": 2
     },
     {
         "fields": {
-            "created": "2015-11-04T13:06:54.751Z",
-            "key": "22bf0c5386fc834cbc1a71e38c0009c8d413e90b",
-            "user": 2
+            "model": "data",
+            "app_label": "core"
         },
-        "model": "tastypie.apikey",
+        "model": "contenttypes.contenttype",
+        "pk": 3
+    },
+    {
+        "fields": {
+            "model": "datainstance",
+            "app_label": "core"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 4
+    },
+    {
+        "fields": {
+            "model": "dataformat",
+            "app_label": "core"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 5
+    },
+    {
+        "fields": {
+            "model": "servicebackend",
+            "app_label": "core"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 6
+    },
+    {
+        "fields": {
+            "model": "variable",
+            "app_label": "core"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 7
+    },
+    {
+        "fields": {
+            "model": "person",
+            "app_label": "core"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 8
+    },
+    {
+        "fields": {
+            "model": "institution",
+            "app_label": "core"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 9
+    },
+    {
+        "fields": {
+            "model": "projection",
+            "app_label": "core"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 10
+    },
+    {
+        "fields": {
+            "model": "license",
+            "app_label": "core"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 11
+    },
+    {
+        "fields": {
+            "model": "apiaccess",
+            "app_label": "tastypie"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 12
+    },
+    {
+        "fields": {
+            "model": "apikey",
+            "app_label": "tastypie"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 13
+    },
+    {
+        "fields": {
+            "model": "logentry",
+            "app_label": "admin"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 14
+    },
+    {
+        "fields": {
+            "model": "permission",
+            "app_label": "auth"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 15
+    },
+    {
+        "fields": {
+            "model": "group",
+            "app_label": "auth"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 16
+    },
+    {
+        "fields": {
+            "model": "user",
+            "app_label": "auth"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 17
+    },
+    {
+        "fields": {
+            "model": "contenttype",
+            "app_label": "contenttypes"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 18
+    },
+    {
+        "fields": {
+            "model": "session",
+            "app_label": "sessions"
+        },
+        "model": "contenttypes.contenttype",
+        "pk": 19
+    },
+    {
+        "fields": {
+            "expire_date": "2015-12-22T09:15:40.518Z",
+            "session_data": "ZjYwNzJhNjA0NjM0ZTE4ZjRiMDcyMTZiMjg2MDViYjc3YjFlMDhkYjp7Il9hdXRoX3VzZXJfaGFzaCI6ImRiNzI4YmE1ZjIyZmM5ZGM2ZGViYTU2OTI4ZWY3OGUyZDhlYjc2NTUiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0="
+        },
+        "model": "sessions.session",
+        "pk": "d1ozjzqy4eravje9dw166c2iiu2hi4bg"
+    },
+    {
+        "fields": {
+            "codename": "add_product",
+            "name": "Can add product",
+            "content_type": 1
+        },
+        "model": "auth.permission",
         "pk": 1
     },
     {
         "fields": {
-            "bounding_box": "0,0,0,0",
-            "contact": "8e547c76-6639-450d-a077-5dbcabeb3581",
-            "created": "2015-11-05T11:32:59.932Z",
-            "grid_resolution": "4000.00000",
-            "grid_resolution_unit": "m",
-            "institution": "a5eb5df1-704c-4450-a7a4-388f7e54c496",
-            "level": 0,
-            "lft": 1,
-            "modified": "2015-11-05T11:32:59.932Z",
-            "name": "Nordic",
-            "parent": null,
-            "prognosis_length": 60,
-            "projection": "c2b3d081-bb4d-4dea-975b-0126bdab6691",
-            "rght": 2,
-            "time_steps": 60,
-            "tree_id": 1,
-            "wdb_data_provider": "nordic_roms"
+            "codename": "change_product",
+            "name": "Can change product",
+            "content_type": 1
         },
-        "model": "core.model",
-        "pk": "8efab026-434e-4baf-b8ed-d921a1b0b427"
+        "model": "auth.permission",
+        "pk": 2
     },
     {
         "fields": {
-            "created": "2015-11-05T11:33:14.969Z",
-            "model": "8efab026-434e-4baf-b8ed-d921a1b0b427",
-            "modified": "2015-11-05T11:33:14.969Z",
-            "reference_time": "2015-11-05T18:00:00Z",
-            "version": 0
+            "codename": "delete_product",
+            "name": "Can delete product",
+            "content_type": 1
         },
-        "model": "core.modelrun",
-        "pk": "6d82a090-2c2b-4cd8-8524-180c87ed3bea"
+        "model": "auth.permission",
+        "pk": 3
     },
     {
         "fields": {
-            "created": "2015-11-05T11:32:12.114Z",
-            "email": "blurgh@hepp.com",
-            "modified": "2015-11-05T11:32:12.114Z",
-            "name": "Blurgh"
+            "codename": "add_productinstance",
+            "name": "Can add product instance",
+            "content_type": 2
         },
-        "model": "core.person",
-        "pk": "8e547c76-6639-450d-a077-5dbcabeb3581"
+        "model": "auth.permission",
+        "pk": 4
     },
     {
         "fields": {
-            "created": "2015-11-05T11:32:46.533Z",
-            "modified": "2015-11-05T11:32:46.533Z",
-            "name": "SMHI"
+            "codename": "change_productinstance",
+            "name": "Can change product instance",
+            "content_type": 2
         },
-        "model": "core.institution",
-        "pk": "a5eb5df1-704c-4450-a7a4-388f7e54c496"
-    },
-     {
-        "fields": {
-            "created": "2015-11-05T11:31:03.285Z",
-            "definition": "+2 heppers",
-            "modified": "2015-11-05T11:31:03.285Z",
-            "name": "Mercator"
-        },
-        "model": "core.projection",
-        "pk": "c2b3d081-bb4d-4dea-975b-0126bdab6691"
+        "model": "auth.permission",
+        "pk": 5
     },
     {
         "fields": {
-            "date_joined": "2015-11-05T14:06:45.429Z",
-            "email": "",
+            "codename": "delete_productinstance",
+            "name": "Can delete product instance",
+            "content_type": 2
+        },
+        "model": "auth.permission",
+        "pk": 6
+    },
+    {
+        "fields": {
+            "codename": "add_data",
+            "name": "Can add data",
+            "content_type": 3
+        },
+        "model": "auth.permission",
+        "pk": 7
+    },
+    {
+        "fields": {
+            "codename": "change_data",
+            "name": "Can change data",
+            "content_type": 3
+        },
+        "model": "auth.permission",
+        "pk": 8
+    },
+    {
+        "fields": {
+            "codename": "delete_data",
+            "name": "Can delete data",
+            "content_type": 3
+        },
+        "model": "auth.permission",
+        "pk": 9
+    },
+    {
+        "fields": {
+            "codename": "add_datainstance",
+            "name": "Can add data instance",
+            "content_type": 4
+        },
+        "model": "auth.permission",
+        "pk": 10
+    },
+    {
+        "fields": {
+            "codename": "change_datainstance",
+            "name": "Can change data instance",
+            "content_type": 4
+        },
+        "model": "auth.permission",
+        "pk": 11
+    },
+    {
+        "fields": {
+            "codename": "delete_datainstance",
+            "name": "Can delete data instance",
+            "content_type": 4
+        },
+        "model": "auth.permission",
+        "pk": 12
+    },
+    {
+        "fields": {
+            "codename": "add_dataformat",
+            "name": "Can add data format",
+            "content_type": 5
+        },
+        "model": "auth.permission",
+        "pk": 13
+    },
+    {
+        "fields": {
+            "codename": "change_dataformat",
+            "name": "Can change data format",
+            "content_type": 5
+        },
+        "model": "auth.permission",
+        "pk": 14
+    },
+    {
+        "fields": {
+            "codename": "delete_dataformat",
+            "name": "Can delete data format",
+            "content_type": 5
+        },
+        "model": "auth.permission",
+        "pk": 15
+    },
+    {
+        "fields": {
+            "codename": "add_servicebackend",
+            "name": "Can add service backend",
+            "content_type": 6
+        },
+        "model": "auth.permission",
+        "pk": 16
+    },
+    {
+        "fields": {
+            "codename": "change_servicebackend",
+            "name": "Can change service backend",
+            "content_type": 6
+        },
+        "model": "auth.permission",
+        "pk": 17
+    },
+    {
+        "fields": {
+            "codename": "delete_servicebackend",
+            "name": "Can delete service backend",
+            "content_type": 6
+        },
+        "model": "auth.permission",
+        "pk": 18
+    },
+    {
+        "fields": {
+            "codename": "add_variable",
+            "name": "Can add variable",
+            "content_type": 7
+        },
+        "model": "auth.permission",
+        "pk": 19
+    },
+    {
+        "fields": {
+            "codename": "change_variable",
+            "name": "Can change variable",
+            "content_type": 7
+        },
+        "model": "auth.permission",
+        "pk": 20
+    },
+    {
+        "fields": {
+            "codename": "delete_variable",
+            "name": "Can delete variable",
+            "content_type": 7
+        },
+        "model": "auth.permission",
+        "pk": 21
+    },
+    {
+        "fields": {
+            "codename": "add_person",
+            "name": "Can add person",
+            "content_type": 8
+        },
+        "model": "auth.permission",
+        "pk": 22
+    },
+    {
+        "fields": {
+            "codename": "change_person",
+            "name": "Can change person",
+            "content_type": 8
+        },
+        "model": "auth.permission",
+        "pk": 23
+    },
+    {
+        "fields": {
+            "codename": "delete_person",
+            "name": "Can delete person",
+            "content_type": 8
+        },
+        "model": "auth.permission",
+        "pk": 24
+    },
+    {
+        "fields": {
+            "codename": "add_institution",
+            "name": "Can add institution",
+            "content_type": 9
+        },
+        "model": "auth.permission",
+        "pk": 25
+    },
+    {
+        "fields": {
+            "codename": "change_institution",
+            "name": "Can change institution",
+            "content_type": 9
+        },
+        "model": "auth.permission",
+        "pk": 26
+    },
+    {
+        "fields": {
+            "codename": "delete_institution",
+            "name": "Can delete institution",
+            "content_type": 9
+        },
+        "model": "auth.permission",
+        "pk": 27
+    },
+    {
+        "fields": {
+            "codename": "add_projection",
+            "name": "Can add projection",
+            "content_type": 10
+        },
+        "model": "auth.permission",
+        "pk": 28
+    },
+    {
+        "fields": {
+            "codename": "change_projection",
+            "name": "Can change projection",
+            "content_type": 10
+        },
+        "model": "auth.permission",
+        "pk": 29
+    },
+    {
+        "fields": {
+            "codename": "delete_projection",
+            "name": "Can delete projection",
+            "content_type": 10
+        },
+        "model": "auth.permission",
+        "pk": 30
+    },
+    {
+        "fields": {
+            "codename": "add_license",
+            "name": "Can add license",
+            "content_type": 11
+        },
+        "model": "auth.permission",
+        "pk": 31
+    },
+    {
+        "fields": {
+            "codename": "change_license",
+            "name": "Can change license",
+            "content_type": 11
+        },
+        "model": "auth.permission",
+        "pk": 32
+    },
+    {
+        "fields": {
+            "codename": "delete_license",
+            "name": "Can delete license",
+            "content_type": 11
+        },
+        "model": "auth.permission",
+        "pk": 33
+    },
+    {
+        "fields": {
+            "codename": "add_apiaccess",
+            "name": "Can add api access",
+            "content_type": 12
+        },
+        "model": "auth.permission",
+        "pk": 34
+    },
+    {
+        "fields": {
+            "codename": "change_apiaccess",
+            "name": "Can change api access",
+            "content_type": 12
+        },
+        "model": "auth.permission",
+        "pk": 35
+    },
+    {
+        "fields": {
+            "codename": "delete_apiaccess",
+            "name": "Can delete api access",
+            "content_type": 12
+        },
+        "model": "auth.permission",
+        "pk": 36
+    },
+    {
+        "fields": {
+            "codename": "add_apikey",
+            "name": "Can add api key",
+            "content_type": 13
+        },
+        "model": "auth.permission",
+        "pk": 37
+    },
+    {
+        "fields": {
+            "codename": "change_apikey",
+            "name": "Can change api key",
+            "content_type": 13
+        },
+        "model": "auth.permission",
+        "pk": 38
+    },
+    {
+        "fields": {
+            "codename": "delete_apikey",
+            "name": "Can delete api key",
+            "content_type": 13
+        },
+        "model": "auth.permission",
+        "pk": 39
+    },
+    {
+        "fields": {
+            "codename": "add_logentry",
+            "name": "Can add log entry",
+            "content_type": 14
+        },
+        "model": "auth.permission",
+        "pk": 40
+    },
+    {
+        "fields": {
+            "codename": "change_logentry",
+            "name": "Can change log entry",
+            "content_type": 14
+        },
+        "model": "auth.permission",
+        "pk": 41
+    },
+    {
+        "fields": {
+            "codename": "delete_logentry",
+            "name": "Can delete log entry",
+            "content_type": 14
+        },
+        "model": "auth.permission",
+        "pk": 42
+    },
+    {
+        "fields": {
+            "codename": "add_permission",
+            "name": "Can add permission",
+            "content_type": 15
+        },
+        "model": "auth.permission",
+        "pk": 43
+    },
+    {
+        "fields": {
+            "codename": "change_permission",
+            "name": "Can change permission",
+            "content_type": 15
+        },
+        "model": "auth.permission",
+        "pk": 44
+    },
+    {
+        "fields": {
+            "codename": "delete_permission",
+            "name": "Can delete permission",
+            "content_type": 15
+        },
+        "model": "auth.permission",
+        "pk": 45
+    },
+    {
+        "fields": {
+            "codename": "add_group",
+            "name": "Can add group",
+            "content_type": 16
+        },
+        "model": "auth.permission",
+        "pk": 46
+    },
+    {
+        "fields": {
+            "codename": "change_group",
+            "name": "Can change group",
+            "content_type": 16
+        },
+        "model": "auth.permission",
+        "pk": 47
+    },
+    {
+        "fields": {
+            "codename": "delete_group",
+            "name": "Can delete group",
+            "content_type": 16
+        },
+        "model": "auth.permission",
+        "pk": 48
+    },
+    {
+        "fields": {
+            "codename": "add_user",
+            "name": "Can add user",
+            "content_type": 17
+        },
+        "model": "auth.permission",
+        "pk": 49
+    },
+    {
+        "fields": {
+            "codename": "change_user",
+            "name": "Can change user",
+            "content_type": 17
+        },
+        "model": "auth.permission",
+        "pk": 50
+    },
+    {
+        "fields": {
+            "codename": "delete_user",
+            "name": "Can delete user",
+            "content_type": 17
+        },
+        "model": "auth.permission",
+        "pk": 51
+    },
+    {
+        "fields": {
+            "codename": "add_contenttype",
+            "name": "Can add content type",
+            "content_type": 18
+        },
+        "model": "auth.permission",
+        "pk": 52
+    },
+    {
+        "fields": {
+            "codename": "change_contenttype",
+            "name": "Can change content type",
+            "content_type": 18
+        },
+        "model": "auth.permission",
+        "pk": 53
+    },
+    {
+        "fields": {
+            "codename": "delete_contenttype",
+            "name": "Can delete content type",
+            "content_type": 18
+        },
+        "model": "auth.permission",
+        "pk": 54
+    },
+    {
+        "fields": {
+            "codename": "add_session",
+            "name": "Can add session",
+            "content_type": 19
+        },
+        "model": "auth.permission",
+        "pk": 55
+    },
+    {
+        "fields": {
+            "codename": "change_session",
+            "name": "Can change session",
+            "content_type": 19
+        },
+        "model": "auth.permission",
+        "pk": 56
+    },
+    {
+        "fields": {
+            "codename": "delete_session",
+            "name": "Can delete session",
+            "content_type": 19
+        },
+        "model": "auth.permission",
+        "pk": 57
+    },
+    {
+        "fields": {
+            "username": "admin",
             "first_name": "",
-            "groups": [],
-            "is_active": true,
-            "is_staff": true,
-            "is_superuser": true,
-            "last_login": null,
             "last_name": "",
-            "password": "pbkdf2_sha256$20000$ifeNdFbj2GZw$RfkmLwj4iLseV72Pj/12h8B+BMwI+4VOCZ8lCXw4tKM=",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2015-12-08T09:14:59Z",
+            "groups": [],
             "user_permissions": [],
-            "username": "admin"
+            "password": "pbkdf2_sha256$20000$cyUtxiEnCONS$mHZBzHQJ6s/eTDXN0dEg0CcagBBzotzvN7ti9jsiM88=",
+            "email": "",
+            "date_joined": "2015-12-08T09:14:56Z"
         },
         "model": "auth.user",
         "pk": 1
     },
-     {
+    {
         "fields": {
-            "created": "2015-11-05T14:11:44.012Z",
-            "modified": "2015-11-05T14:11:44.012Z",
-            "name": "sea_temperature"
+            "action_flag": 2,
+            "action_time": "2015-12-08T09:15:28.895Z",
+            "object_repr": "admin",
+            "object_id": "1",
+            "change_message": "Changed username.",
+            "user": 1,
+            "content_type": 17
         },
-        "model": "core.variable",
-        "pk": "d4d56cb0-bafa-48e3-9cc6-844e0c1adcf6"
+        "model": "admin.logentry",
+        "pk": 1
     },
- {
+    {
         "fields": {
-            "created": "2015-11-05T14:12:15.467Z",
-            "model_run": "6d82a090-2c2b-4cd8-8524-180c87ed3bea",
-            "modified": "2015-11-05T14:12:15.467Z",
-            "time_period_begin": "2015-11-05T00:00:00Z",
-            "time_period_end": "2015-11-08T18:00:00Z",
-            "variables": [
-                "d4d56cb0-bafa-48e3-9cc6-844e0c1adcf6"
-            ]
+            "action_flag": 2,
+            "action_time": "2015-12-08T09:15:40.433Z",
+            "object_repr": "admin",
+            "object_id": "1",
+            "change_message": "Changed password.",
+            "user": 1,
+            "content_type": 17
         },
-        "model": "core.data",
-        "pk": "4d473596-862e-4d02-a08b-61a349a678bd"
+        "model": "admin.logentry",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2015-12-08T09:16:10.639Z",
+            "object_repr": "netcdf",
+            "object_id": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc",
+            "change_message": "",
+            "user": 1,
+            "content_type": 5
+        },
+        "model": "admin.logentry",
+        "pk": 3
+    },
+    {
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2015-12-08T09:16:29.438Z",
+            "object_repr": "MET Norway",
+            "object_id": "b3528b13-84aa-49a2-8895-77c1b3fce9d8",
+            "change_message": "",
+            "user": 1,
+            "content_type": 9
+        },
+        "model": "admin.logentry",
+        "pk": 4
+    },
+    {
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2015-12-08T09:17:35.283Z",
+            "object_repr": "Foo Bar <foo.bar@example.com>",
+            "object_id": "b407e09d-b0c4-4289-95fe-75a2497f6eaa",
+            "change_message": "",
+            "user": 1,
+            "content_type": 8
+        },
+        "model": "admin.logentry",
+        "pk": 5
+    },
+    {
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2015-12-08T09:18:58.599Z",
+            "object_repr": "Public domain",
+            "object_id": "92a5a153-53a4-4170-a0bc-cbd4ed14a05c",
+            "change_message": "",
+            "user": 1,
+            "content_type": 11
+        },
+        "model": "admin.logentry",
+        "pk": 6
+    },
+    {
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2015-12-08T09:19:21.180Z",
+            "object_repr": "This is a test product",
+            "object_id": "7d3fe736-5902-44d5-a34c-86f877190523",
+            "change_message": "",
+            "user": 1,
+            "content_type": 1
+        },
+        "model": "admin.logentry",
+        "pk": 7
+    },
+    {
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2015-12-08T09:19:46.973Z",
+            "object_repr": "TestVar1",
+            "object_id": "0305bccf-0775-4707-9aef-e26aa0f377af",
+            "change_message": "",
+            "user": 1,
+            "content_type": 7
+        },
+        "model": "admin.logentry",
+        "pk": 8
+    },
+    {
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2015-12-08T09:19:51.232Z",
+            "object_repr": "TestVar2",
+            "object_id": "72a56a36-0567-41f0-bcbe-5ff90c3d79ac",
+            "change_message": "",
+            "user": 1,
+            "content_type": 7
+        },
+        "model": "admin.logentry",
+        "pk": 9
+    },
+    {
+        "fields": {
+            "action_flag": 2,
+            "action_time": "2015-12-08T09:20:42.980Z",
+            "object_repr": "This is a test product",
+            "object_id": "7d3fe736-5902-44d5-a34c-86f877190523",
+            "change_message": "Changed variables, grid_resolution, grid_resolution_unit, prognosis_length, time_steps and bounding_box.",
+            "user": 1,
+            "content_type": 1
+        },
+        "model": "admin.logentry",
+        "pk": 10
+    },
+    {
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2015-12-08T09:21:16.617Z",
+            "object_repr": "Datastore1",
+            "object_id": "495bb3be-e327-4840-accf-afefcd411e06",
+            "change_message": "",
+            "user": 1,
+            "content_type": 6
+        },
+        "model": "admin.logentry",
+        "pk": 11
+    },
+    {
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2015-12-08T09:21:24.593Z",
+            "object_repr": "Datastore2",
+            "object_id": "7f287791-b10f-41c5-ada8-327783573e29",
+            "change_message": "",
+            "user": 1,
+            "content_type": 6
+        },
+        "model": "admin.logentry",
+        "pk": 12
+    },
+    {
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2015-12-08T09:24:51.837Z",
+            "object_repr": "This is a test product at 2015-12-08 00:00:00+00:00 version 1",
+            "object_id": "88d28ffd-d448-4319-a94e-16889955f94a",
+            "change_message": "",
+            "user": 1,
+            "content_type": 2
+        },
+        "model": "admin.logentry",
+        "pk": 13
+    },
+    {
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2015-12-08T09:28:08.786Z",
+            "object_repr": "Data from 2015-12-08 00:00:00+00:00 to 2015-12-19 00:00:00+00:00 for model run This is a test product at 2015-12-08 00:00:00+00:00 version 1",
+            "object_id": "434405fa-b3ca-42b1-b764-959d06370b32",
+            "change_message": "",
+            "user": 1,
+            "content_type": 3
+        },
+        "model": "admin.logentry",
+        "pk": 14
+    },
+    {
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2015-12-08T09:28:40.998Z",
+            "object_repr": "https://datastore1.example.com/test.nc: netcdf data file",
+            "object_id": "ae443952-7990-4cee-9913-41dfd0092dc1",
+            "change_message": "",
+            "user": 1,
+            "content_type": 4
+        },
+        "model": "admin.logentry",
+        "pk": 15
+    },
+    {
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2015-12-08T09:28:53.360Z",
+            "object_repr": "https://datastore2.example.com/test.nc: netcdf data file",
+            "object_id": "8e52633f-04bc-40d5-99e1-6b1c9b9010f4",
+            "change_message": "",
+            "user": 1,
+            "content_type": 4
+        },
+        "model": "admin.logentry",
+        "pk": 16
+    },
+    {
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2015-12-08T11:33:19.810Z",
+            "object_repr": "This is a test product at 2015-12-07 00:00:00+00:00 version 1",
+            "object_id": "c29bc2af-f989-4dc9-a17d-de774f93f187",
+            "change_message": "",
+            "user": 1,
+            "content_type": 2
+        },
+        "model": "admin.logentry",
+        "pk": 17
+    },
+    {
+        "fields": {
+            "action_flag": 1,
+            "action_time": "2015-12-08T11:38:24.731Z",
+            "object_repr": "Cylindrical Equal Area",
+            "object_id": "d454efcc-d822-4d60-a65c-e94680953768",
+            "change_message": "",
+            "user": 1,
+            "content_type": 10
+        },
+        "model": "admin.logentry",
+        "pk": 18
+    },
+    {
+        "fields": {
+            "user": 1,
+            "key": "5bcf851f09bc65043d987910e1448781fcf4ea12",
+            "created": "2015-12-08T09:16:01.183Z"
+        },
+        "model": "tastypie.apikey",
+        "pk": 1
     }
 ]

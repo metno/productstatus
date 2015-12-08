@@ -8,24 +8,24 @@ class DataCollectionTest(BaseTestCases.ModelstatusCollectionTest):
         super(DataCollectionTest, self).setUp()
 
         self.base_url = "%s%s" % (self.url_prefix, "/data/")
-        self.collection_size = 2
+        self.collection_size = 1
         self.post_data = {
             "variables": [
-                "/api/v1/variable/bf8515aa-188f-4d0b-a2cc-44ebd3104081/"
+                "/api/v1/variable/72a56a36-0567-41f0-bcbe-5ff90c3d79ac/"
                 ],
             "time_period_end": "2015-11-23T12:00:00Z",
             "time_period_begin": "2015-11-20T00:00:00Z",
-            "model_run": "/api/v1/model_run/c491e9c8-0abd-4763-ba50-efcf6e6c2f25/"
+            "productinstance": "/api/v1/productinstance/88d28ffd-d448-4319-a94e-16889955f94a/"
             }
         self.__model_class__ = Data
 
     def test_post_with_only_model_run(self):
         """
-        Test that a POST request supplying only a `model_run` resource is being accepted.
+        Test that a POST request supplying only a `productinstance` resource is being accepted.
         is correct.
         """
         data = {
-            "model_run": "/api/v1/model_run/c491e9c8-0abd-4763-ba50-efcf6e6c2f25/"
+            "productinstance": "/api/v1/productinstance/88d28ffd-d448-4319-a94e-16889955f94a/"
         }
         response = self.api_client.post(self.base_url,
                                         format='json',

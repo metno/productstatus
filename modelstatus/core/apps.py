@@ -15,6 +15,6 @@ class ModelStatusConfig(AppConfig):
 
         self.zmq = modelstatus.core.zeromq.ZMQPublisher(settings.ZEROMQ_SUBSCRIBE_SOCKET)
 
-        publish_resources = ['ModelRun', 'DataFile', 'Data']
+        publish_resources = ['ProductInstance', 'DataInstance', 'Data']
         for resource in publish_resources:
             post_save.connect(self.zmq.publish_resource, sender=self.get_model(resource))

@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
-import sys
+import logging
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -101,6 +101,59 @@ USE_L10N = True
 USE_TZ = True
 
 
+# Configure logging.
+#
+# This configuration sets up two loggers:
+#
+# 1. If DEBUG=True, print all logging messages to stdout
+# 2. Log every message to syslog, if priority is INFO or higher
+#
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': 'productstatus[%(process)d] %(name)s (%(levelname)s) %(message)s'
+        },
+        'simple': {
+            'format': '[%(asctime)s] %(name)s (%(levelname)s) %(message)s',
+            'datefmt': '%d/%b/%Y %H:%M:%S'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'syslog': {
+            'level': 'INFO',
+            'class': 'logging.handlers.SysLogHandler',
+            'facility': 'local7',
+            'address': '/dev/log',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        # root logger
+        '': {
+            'handlers': ['console', 'syslog'],
+            'level': 'DEBUG',
+            'disabled': False
+        },
+    },
+}
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
@@ -121,4 +174,4 @@ PRODUCTSTATUS_PROTOCOL = 'http'
 try:
     from local_settings import *
 except ImportError:
-    sys.stderr.write("Failed to import local_settings, continuing with defaults\n")
+    logging.warning("Failed to import local_settings, continuing with defaults")

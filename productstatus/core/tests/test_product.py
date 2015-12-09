@@ -1,8 +1,8 @@
 from . import BaseTestCases
-from modelstatus.core.models import Product
+from productstatus.core.models import Product
 
 
-class ProductCollectionTest(BaseTestCases.ModelstatusCollectionTest):
+class ProductCollectionTest(BaseTestCases.ProductstatusCollectionTest):
 
     def setUp(self):
         super(ProductCollectionTest, self).setUp()
@@ -25,7 +25,7 @@ class ProductCollectionTest(BaseTestCases.ModelstatusCollectionTest):
         self.__model_class__ = Product
 
 
-class ProductItemTest(BaseTestCases.ModelstatusItemTest):
+class ProductItemTest(BaseTestCases.ProductstatusItemTest):
 
     def setUp(self):
         super(ProductItemTest, self).setUp()

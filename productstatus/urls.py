@@ -1,4 +1,4 @@
-"""modelstatus URL Configuration
+"""productstatus URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -16,21 +16,21 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-import modelstatus.core.api
+import productstatus.core.api
 import tastypie.api
 
 v1_api = tastypie.api.Api(api_name='v1')
-v1_api.register(modelstatus.core.api.ProductResource())
-v1_api.register(modelstatus.core.api.ProductInstanceResource())
-v1_api.register(modelstatus.core.api.DataResource())
-v1_api.register(modelstatus.core.api.DataInstanceResource())
-v1_api.register(modelstatus.core.api.DataFormatResource())
-v1_api.register(modelstatus.core.api.ServiceBackendResource())
-v1_api.register(modelstatus.core.api.VariableResource())
-v1_api.register(modelstatus.core.api.PersonResource())
-v1_api.register(modelstatus.core.api.InstitutionResource())
-v1_api.register(modelstatus.core.api.ProjectionResource())
-v1_api.register(modelstatus.core.api.LicenseResource())
+v1_api.register(productstatus.core.api.ProductResource())
+v1_api.register(productstatus.core.api.ProductInstanceResource())
+v1_api.register(productstatus.core.api.DataResource())
+v1_api.register(productstatus.core.api.DataInstanceResource())
+v1_api.register(productstatus.core.api.DataFormatResource())
+v1_api.register(productstatus.core.api.ServiceBackendResource())
+v1_api.register(productstatus.core.api.VariableResource())
+v1_api.register(productstatus.core.api.PersonResource())
+v1_api.register(productstatus.core.api.InstitutionResource())
+v1_api.register(productstatus.core.api.ProjectionResource())
+v1_api.register(productstatus.core.api.LicenseResource())
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),

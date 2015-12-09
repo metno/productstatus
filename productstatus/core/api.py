@@ -2,7 +2,7 @@ from tastypie import fields, resources, authentication, authorization, serialize
 
 import dateutil.tz
 
-import modelstatus.core.models
+import productstatus.core.models
 
 
 class Serializer(serializers.Serializer):
@@ -45,14 +45,14 @@ class BaseMeta:
 
 
 class ProductResource(BaseResource):
-    parents = fields.ManyToManyField('modelstatus.core.api.ProductResource', 'parents', null=True)
-    projection = fields.ForeignKey('modelstatus.core.api.ProjectionResource', 'projection', null=True)
-    contact = fields.ForeignKey('modelstatus.core.api.PersonResource', 'contact')
-    institution = fields.ForeignKey('modelstatus.core.api.InstitutionResource', 'institution')
-    license = fields.ForeignKey('modelstatus.core.api.LicenseResource', 'license')
+    parents = fields.ManyToManyField('productstatus.core.api.ProductResource', 'parents', null=True)
+    projection = fields.ForeignKey('productstatus.core.api.ProjectionResource', 'projection', null=True)
+    contact = fields.ForeignKey('productstatus.core.api.PersonResource', 'contact')
+    institution = fields.ForeignKey('productstatus.core.api.InstitutionResource', 'institution')
+    license = fields.ForeignKey('productstatus.core.api.LicenseResource', 'license')
 
     class Meta(BaseMeta):
-        queryset = modelstatus.core.models.Product.objects.all()
+        queryset = productstatus.core.models.Product.objects.all()
         filtering = {
             'name': ['exact'],
             'wdb_data_provider': ['exact'],
@@ -64,11 +64,11 @@ class ProductResource(BaseResource):
 
 
 class ProductInstanceResource(BaseResource):
-    product = fields.ForeignKey('modelstatus.core.api.ProductResource', 'product')
+    product = fields.ForeignKey('productstatus.core.api.ProductResource', 'product')
     version = fields.IntegerField(attribute='version', readonly=True)
 
     class Meta(BaseMeta):
-        queryset = modelstatus.core.models.ProductInstance.objects.all()
+        queryset = productstatus.core.models.ProductInstance.objects.all()
         filtering = {
             'product': ['exact'],
             'reference_time': resources.ALL,
@@ -81,11 +81,11 @@ class ProductInstanceResource(BaseResource):
 
 
 class DataResource(BaseResource):
-    productinstance = fields.ForeignKey('modelstatus.core.api.ProductInstanceResource', 'product_instance')
-    variables = fields.ManyToManyField('modelstatus.core.api.VariableResource', 'variables', null=True)
+    productinstance = fields.ForeignKey('productstatus.core.api.ProductInstanceResource', 'product_instance')
+    variables = fields.ManyToManyField('productstatus.core.api.VariableResource', 'variables', null=True)
 
     class Meta(BaseMeta):
-        queryset = modelstatus.core.models.Data.objects.all()
+        queryset = productstatus.core.models.Data.objects.all()
         filtering = {
             'productinstance': ['exact'],
             'time_period_begin': resources.ALL,
@@ -94,12 +94,12 @@ class DataResource(BaseResource):
 
 
 class DataInstanceResource(BaseResource):
-    data = fields.ForeignKey('modelstatus.core.api.DataResource', 'data')
-    format = fields.ForeignKey('modelstatus.core.api.DataFormatResource', 'format')
-    servicebackend = fields.ForeignKey('modelstatus.core.api.ServiceBackendResource', 'service_backend')
+    data = fields.ForeignKey('productstatus.core.api.DataResource', 'data')
+    format = fields.ForeignKey('productstatus.core.api.DataFormatResource', 'format')
+    servicebackend = fields.ForeignKey('productstatus.core.api.ServiceBackendResource', 'service_backend')
 
     class Meta(BaseMeta):
-        queryset = modelstatus.core.models.DataInstance.objects.all()
+        queryset = productstatus.core.models.DataInstance.objects.all()
         filtering = {
             'data': ['exact'],
             'servicebackend': ['exact'],
@@ -112,7 +112,7 @@ class DataInstanceResource(BaseResource):
 
 class DataFormatResource(BaseResource):
     class Meta(BaseMeta):
-        queryset = modelstatus.core.models.DataFormat.objects.all()
+        queryset = productstatus.core.models.DataFormat.objects.all()
         filtering = {
             'name': resources.ALL,
         }
@@ -120,29 +120,29 @@ class DataFormatResource(BaseResource):
 
 class ServiceBackendResource(BaseResource):
     class Meta(BaseMeta):
-        queryset = modelstatus.core.models.ServiceBackend.objects.all()
+        queryset = productstatus.core.models.ServiceBackend.objects.all()
 
 
 class VariableResource(BaseResource):
     class Meta(BaseMeta):
-        queryset = modelstatus.core.models.Variable.objects.all()
+        queryset = productstatus.core.models.Variable.objects.all()
 
 
 class PersonResource(BaseResource):
     class Meta(BaseMeta):
-        queryset = modelstatus.core.models.Person.objects.all()
+        queryset = productstatus.core.models.Person.objects.all()
 
 
 class InstitutionResource(BaseResource):
     class Meta(BaseMeta):
-        queryset = modelstatus.core.models.Institution.objects.all()
+        queryset = productstatus.core.models.Institution.objects.all()
 
 
 class ProjectionResource(BaseResource):
     class Meta(BaseMeta):
-        queryset = modelstatus.core.models.Projection.objects.all()
+        queryset = productstatus.core.models.Projection.objects.all()
 
 
 class LicenseResource(BaseResource):
     class Meta(BaseMeta):
-        queryset = modelstatus.core.models.License.objects.all()
+        queryset = productstatus.core.models.License.objects.all()

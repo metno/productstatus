@@ -2,18 +2,18 @@ from django.db.models.signals import post_save
 from django.apps import AppConfig
 from django.conf import settings
 
-import modelstatus.core.zeromq
+import productstatus.core.zeromq
 
 
-class ModelStatusConfig(AppConfig):
-    name = 'modelstatus.core'
+class ProductstatusConfig(AppConfig):
+    name = 'productstatus.core'
 
     def ready(self):
         """
-        Set signal hook for sending zeromq messages for specific modelstatus models/resources.
+        Set signal hook for sending ZeroMQ messages for specific Productstatus models/resources.
         """
 
-        self.zmq = modelstatus.core.zeromq.ZMQPublisher(settings.ZEROMQ_SUBSCRIBE_SOCKET)
+        self.zmq = productstatus.core.zeromq.ZMQPublisher(settings.ZEROMQ_SUBSCRIBE_SOCKET)
 
         publish_resources = ['ProductInstance', 'DataInstance', 'Data']
         for resource in publish_resources:

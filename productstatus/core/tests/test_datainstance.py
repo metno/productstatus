@@ -1,8 +1,8 @@
 from . import BaseTestCases
-from modelstatus.core.models import DataInstance
+from productstatus.core.models import DataInstance
 
 
-class DataInstanceCollectionTest(BaseTestCases.ModelstatusCollectionTest):
+class DataInstanceCollectionTest(BaseTestCases.ProductstatusCollectionTest):
 
     def setUp(self):
         super(DataInstanceCollectionTest, self).setUp()
@@ -19,7 +19,7 @@ class DataInstanceCollectionTest(BaseTestCases.ModelstatusCollectionTest):
         self.__model_class__ = DataInstance
 
 
-class DataInstanceItemTest(BaseTestCases.ModelstatusItemTest):
+class DataInstanceItemTest(BaseTestCases.ProductstatusItemTest):
 
     def setUp(self):
         super(DataInstanceItemTest, self).setUp()

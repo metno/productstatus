@@ -1,8 +1,8 @@
-from modelstatus.core.models import ProductInstance
+from productstatus.core.models import ProductInstance
 from . import BaseTestCases
 
 
-class ProductInstanceCollectionTest(BaseTestCases.ModelstatusCollectionTest):
+class ProductInstanceCollectionTest(BaseTestCases.ProductstatusCollectionTest):
 
     def setUp(self):
         super(ProductInstanceCollectionTest, self).setUp()
@@ -100,7 +100,7 @@ class ProductInstanceCollectionTest(BaseTestCases.ModelstatusCollectionTest):
         return self.unserialize(response)['version']
 
 
-class ProductInstanceItemTest(BaseTestCases.ModelstatusItemTest):
+class ProductInstanceItemTest(BaseTestCases.ProductstatusItemTest):
 
     def setUp(self):
         super(ProductInstanceItemTest, self).setUp()

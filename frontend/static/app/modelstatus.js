@@ -1,14 +1,14 @@
 "use strict";
 
-var modelstatusApp = angular.module('modelstatusApp', ['ngResource']);
+var productstatusApp = angular.module('productstatusApp', ['ngResource']);
 
-modelstatusApp.factory('ModelRun', ['$resource',
+productstatusApp.factory('ModelRun', ['$resource',
     function($resource) {
-        return $resource('/modelstatus/v0/model_run/:id');
+        return $resource('/productstatus/v0/model_run/:id');
     }]
 );
 
-modelstatusApp.controller('ModelRunCtrl', ['$scope', 'ModelRun', function($scope, ModelRun) {
+productstatusApp.controller('ModelRunCtrl', ['$scope', 'ModelRun', function($scope, ModelRun) {
 
     $scope.now = new Date();
     $scope.filter = {};

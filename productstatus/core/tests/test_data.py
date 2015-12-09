@@ -1,8 +1,8 @@
 from . import BaseTestCases
-from modelstatus.core.models import Data
+from productstatus.core.models import Data
 
 
-class DataCollectionTest(BaseTestCases.ModelstatusCollectionTest):
+class DataCollectionTest(BaseTestCases.ProductstatusCollectionTest):
 
     def setUp(self):
         super(DataCollectionTest, self).setUp()
@@ -35,7 +35,7 @@ class DataCollectionTest(BaseTestCases.ModelstatusCollectionTest):
         self.assertHttpCreated(response)
 
 
-class DataItemTest(BaseTestCases.ModelstatusItemTest):
+class DataItemTest(BaseTestCases.ProductstatusItemTest):
 
     def setUp(self):
         super(DataItemTest, self).setUp()

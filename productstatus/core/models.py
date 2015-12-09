@@ -1,5 +1,5 @@
 #
-# Modelstatus data model
+# Productstatus data model
 #
 # Please update the image in the documentation when making changes here, see
 # "Generating the data model graph" in README.md.

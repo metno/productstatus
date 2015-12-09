@@ -2,7 +2,7 @@ import json
 from tastypie.test import ResourceTestCase
 
 
-class ModelstatusResourceTest(ResourceTestCase):
+class ProductstatusResourceTest(ResourceTestCase):
     """
     Base test resource that setup attributes and methods common to all
     test classes. This class will be inherited by the BaseTestCases.* classes.
@@ -11,7 +11,7 @@ class ModelstatusResourceTest(ResourceTestCase):
     fixtures = ['core.json']
 
     def setUp(self):
-        super(ModelstatusResourceTest, self).setUp()
+        super(ProductstatusResourceTest, self).setUp()
 
         self.url_prefix = '/api/v1'
         self.username = 'admin'
@@ -30,7 +30,7 @@ class BaseTestCases:
     Nested base test classes so the unittest framework won't run the tests defined here.
     """
 
-    class ModelstatusCollectionTest(ModelstatusResourceTest):
+    class ProductstatusCollectionTest(ProductstatusResourceTest):
         """
         The tests defined here will be run for all the classes that inherit this baseclass.
         Please note that each subclass MUST set all the attributes in their own
@@ -38,7 +38,7 @@ class BaseTestCases:
         """
 
         def setUp(self):
-            super(BaseTestCases.ModelstatusCollectionTest, self).setUp()
+            super(BaseTestCases.ProductstatusCollectionTest, self).setUp()
 
             self.collection_size = 0
             self.base_url = self.url_prefix
@@ -63,9 +63,9 @@ class BaseTestCases:
             self.assertValidJSONResponse(response)
             self.assertEqual(len(self.unserialize(response)['objects']), self.collection_size)
 
-    class ModelstatusItemTest(ModelstatusResourceTest):
+    class ProductstatusItemTest(ProductstatusResourceTest):
 
         def setUp(self):
-            super(BaseTestCases.ModelstatusItemTest, self).setUp()
+            super(BaseTestCases.ProductstatusItemTest, self).setUp()
 
             self.base_url = self.url_prefix

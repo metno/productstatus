@@ -1,19 +1,19 @@
-# Modelstatus
+# Productstatus
 
 ## Abstract
 
-Modelstatus is a persistent storage for weather product metadata and run-time information. It provides a REST API for data retrieval and manipulation.
+Productstatus is a persistent storage for weather product metadata and run-time information. It provides a REST API for data retrieval and manipulation.
 
 ![Graphical representation of data model]
 (doc/model_graph.png)
 
 ## Setting it up
 
-1. Checkout the source code from https://github.com/metno/modelstatus.git
+1. Checkout the source code from https://github.com/metno/productstatus.git
 
-2. (Optional, recommended:) set up a virtual environment for the Modelstatus python packages and their dependencies:
+2. (Optional, recommended:) set up a virtual environment for the Productstatus python packages and their dependencies:
 
-    $ cd modelstatus
+    $ cd productstatus
     $ virtualenv deps
     $ . deps/bin/activate
 
@@ -21,7 +21,7 @@ Modelstatus is a persistent storage for weather product metadata and run-time in
 
     $ sudo apt-get install libzmq-dev build-essential python-dev libpq-dev
 
-4. Install the Modelstatus dependencies:
+4. Install the Productstatus dependencies:
 
     $ pip install -r requirements.txt
 
@@ -75,7 +75,7 @@ In most cases, this can be set to `1`. In case upstream product generation fails
 
 ### Data format
 
-Each file produced during product generation has its specific data format, for instance GRIB or NetCDF. This data format must be reported to Modelstatus. Data formats can be managed from the Django administration interface, and retrieved using the API.
+Each file produced during product generation has its specific data format, for instance GRIB or NetCDF. This data format must be reported to Productstatus. Data formats can be managed from the Django administration interface, and retrieved using the API.
 
 ### Service backend
 

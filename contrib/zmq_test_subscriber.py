@@ -8,4 +8,4 @@ socket.setsockopt(zmq.SUBSCRIBE, '')
 while True:
     print "Listening..."
     msg = socket.recv_json()
-    print "Modelstatus msg:%s" % (msg)
+    print "Productstatus msg:%s" % (msg)

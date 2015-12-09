@@ -15,7 +15,7 @@ class ZMQPublisher(object):
 
     The method publish_resource should be connected
     as a callback function to a signal for models we wish to send out
-    messages about. Do this in modelstatus.core.apps.
+    messages about. Do this in productstatus.core.apps.
     """
 
     def __init__(self, socket_str):
@@ -64,9 +64,9 @@ class ZMQPublisher(object):
 
         resource_name = ZMQPublisher.get_resource_name(model_instance)
         msg = {
-            'url': "%s://%s%s/%s/%s/" % (settings.MODELSTATUS_PROTOCOL,
-                                         settings.MODELSTATUS_HOST,
-                                         settings.MODELSTATUS_BASE_PATH,
+            'url': "%s://%s%s/%s/%s/" % (settings.PRODUCTSTATUS_PROTOCOL,
+                                         settings.PRODUCTSTATUS_HOST,
+                                         settings.PRODUCTSTATUS_BASE_PATH,
                                          resource_name,
                                          model_instance.id),
             'version': MESSAGE_PROTOCOL_VERSION,

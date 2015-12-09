@@ -45,6 +45,10 @@ You can create a superuser by running:
 
     $ ./manage.py createsuperuser
 
+## Running tests
+
+    ./manage.py test productstatus.core.tests
+
 ## Setting up API user permissions
 
 You must grant write access to the certain models required for your API user. This can be done by editing users through the Django administration interface.

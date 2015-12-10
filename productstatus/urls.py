@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 import productstatus.core.api
+import productstatus.core.views
 import tastypie.api
 
 v1_api = tastypie.api.Api(api_name='v1')
@@ -33,6 +34,8 @@ v1_api.register(productstatus.core.api.ProjectionResource())
 v1_api.register(productstatus.core.api.LicenseResource())
 
 urlpatterns = [
+    url(r'^$', productstatus.core.views.root),
+    url(r'^datainstance/', productstatus.core.views.DataInstanceView.as_view()),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(v1_api.urls)),
 ]

@@ -19,6 +19,16 @@ table td, table th {
     padding: 0.2em 0;
 }
 
+table table {
+    color: #777;
+    width: auto;
+    margin: 0 0 2em 1em;
+}
+
+table table td, table table th {
+    padding-right: 2em;
+}
+
 a {
     color: crimson;
 }

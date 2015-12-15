@@ -21,8 +21,9 @@ class Product(models.Model):
     variables = models.ManyToManyField('Variable', blank=True)
     projection = models.ForeignKey('Projection', null=True, blank=True)
     contact = models.ForeignKey('Person')
-    institution = models.ForeignKey('Institution')
+    institution = models.ForeignKey('Institution', related_name='institution_for')
     license = models.ForeignKey('License')
+    source = models.ForeignKey('Institution', related_name='source_for', null=True, blank=True)
     name = models.CharField(max_length=255, unique=True)
     grid_resolution = models.DecimalField(max_digits=10, decimal_places=5, null=True, blank=True)
     grid_resolution_unit = models.CharField(max_length=16, choices=LENGTH_UNITS, null=True, blank=True)
@@ -30,9 +31,12 @@ class Product(models.Model):
     time_steps = models.IntegerField(null=True, blank=True)
     bounding_box = models.CharField(max_length=255, null=True, blank=True)
     wdb_data_provider = models.CharField(max_length=255, null=True, blank=True)
-    ecmwf_stream_name = models.CharField(max_length=255, null=True, blank=True)
+    source_key = models.CharField(max_length=255, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
+
+    class Meta:
+        unique_together = ('source', 'source_key',)
 
     def __unicode__(self):
         return self.name
@@ -42,17 +46,7 @@ class ProductInstance(models.Model):
     """
     A single instance of a data product, typically having one or more data files.
     """
-    PRODUCTION_STATE_INCOMPLETE = 0
-    PRODUCTION_STATE_COMPLETE = 1
-    PRODUCTION_STATE_ERROR = 2
-    PRODUCTION_STATES = (
-        (PRODUCTION_STATE_INCOMPLETE, 'incomplete'),
-        (PRODUCTION_STATE_COMPLETE, 'complete'),
-        (PRODUCTION_STATE_ERROR, 'error'),
-    )
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    state = models.IntegerField(choices=PRODUCTION_STATES)
     product = models.ForeignKey('Product')
     reference_time = models.DateTimeField()
     version = models.IntegerField()

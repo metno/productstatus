@@ -8,18 +8,10 @@ from .models import Product, ProductInstance, Data, DataInstance, DataFormat, Se
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'id',
-        'projection',
         'contact',
         'institution',
         'license',
         'name',
-        'grid_resolution',
-        'grid_resolution_unit',
-        'prognosis_length',
-        'time_steps',
-        'bounding_box',
-        'wdb_data_provider',
-        'ecmwf_stream_name',
         'created',
         'modified',
     )
@@ -39,7 +31,6 @@ admin.site.register(Product, ProductAdmin)
 class ProductInstanceAdmin(admin.ModelAdmin):
     list_display = (
         'id',
-        'state',
         'product',
         'reference_time',
         'version',

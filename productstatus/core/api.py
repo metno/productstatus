@@ -54,12 +54,11 @@ class ProductResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.Product.objects.all()
         filtering = {
+            'parents': resources.ALL,
             'name': ['exact'],
             'wdb_data_provider': ['exact'],
-            'grib_center': ['exact'],
-            'grib_generating_process_id': ['exact'],
-            'lft': resources.ALL,
-            'rght': resources.ALL,
+            'source': ['exact'],
+            'source_key': ['exact'],
         }
 
 
@@ -105,8 +104,6 @@ class DataInstanceResource(BaseResource):
             'servicebackend': ['exact'],
             'format': ['exact'],
             'expires': resources.ALL,
-            'lft': resources.ALL,
-            'rght': resources.ALL,
         }
 
 

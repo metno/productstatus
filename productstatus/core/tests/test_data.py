@@ -8,7 +8,7 @@ class DataCollectionTest(BaseTestCases.ProductstatusCollectionTest):
         super(DataCollectionTest, self).setUp()
 
         self.base_url = "%s%s" % (self.url_prefix, "/data/")
-        self.collection_size = 1
+        self.collection_size = 2
         self.post_data = {
             "variables": [
                 "/api/v1/variable/72a56a36-0567-41f0-bcbe-5ff90c3d79ac/"

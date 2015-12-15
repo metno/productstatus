@@ -13,6 +13,7 @@
         ],
         "source_key": "",
         "modified": "2015-12-08T09:20:42.977Z",
+        "operational": false,
         "source": null,
         "bounding_box": "0,0,0,0",
         "contact": "b407e09d-b0c4-4289-95fe-75a2497f6eaa",
@@ -24,6 +25,17 @@
     },
     "model": "core.product",
     "pk": "7d3fe736-5902-44d5-a34c-86f877190523"
+},
+{
+    "fields": {
+        "product": "7d3fe736-5902-44d5-a34c-86f877190523",
+        "reference_time": "2015-10-01T00:00:00Z",
+        "version": 1,
+        "modified": "2015-12-15T09:17:11.745Z",
+        "created": "2015-12-15T09:17:11.745Z"
+    },
+    "model": "core.productinstance",
+    "pk": "7c6c09f9-a737-4504-82d4-35cdabc7018f"
 },
 {
     "fields": {
@@ -46,6 +58,18 @@
     },
     "model": "core.productinstance",
     "pk": "c29bc2af-f989-4dc9-a17d-de774f93f187"
+},
+{
+    "fields": {
+        "created": "2015-12-15T09:17:11.886Z",
+        "variables": [],
+        "time_period_end": "2015-10-01T00:00:00Z",
+        "modified": "2015-12-15T09:17:11.886Z",
+        "time_period_begin": "2015-10-01T00:00:00Z",
+        "product_instance": "7c6c09f9-a737-4504-82d4-35cdabc7018f"
+    },
+    "model": "core.data",
+    "pk": "17420edd-213a-4558-8332-683d15b6cebc"
 },
 {
     "fields": {
@@ -335,6 +359,14 @@
     },
     "model": "sessions.session",
     "pk": "d1ozjzqy4eravje9dw166c2iiu2hi4bg"
+},
+{
+    "fields": {
+        "expire_date": "2015-12-29T09:08:56.486Z",
+        "session_data": "ODg0ZjlmZWE4ZmYyNTllNmFjMzBhNmEyNjU5M2Y5ZDJlZDkyNzJkODp7Il9hdXRoX3VzZXJfaGFzaCI6ImRiNzI4YmE1ZjIyZmM5ZGM2ZGViYTU2OTI4ZWY3OGUyZDhlYjc2NTUiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "f1qgu6y60rj8m0pts98r7hg30bc58z8m"
 },
 {
     "fields": {
@@ -857,7 +889,7 @@
         "is_active": true,
         "is_superuser": true,
         "is_staff": true,
-        "last_login": "2015-12-08T09:14:59Z",
+        "last_login": "2015-12-15T09:08:56.393Z",
         "groups": [],
         "user_permissions": [],
         "password": "pbkdf2_sha256$20000$cyUtxiEnCONS$mHZBzHQJ6s/eTDXN0dEg0CcagBBzotzvN7ti9jsiM88=",

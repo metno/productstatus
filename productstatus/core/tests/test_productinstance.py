@@ -9,7 +9,7 @@ class ProductInstanceCollectionTest(BaseTestCases.ProductstatusCollectionTest):
 
         self.base_url = "%s%s" % (self.url_prefix, '/productinstance/')
         self.detail_url = "%s%s/" % (self.base_url, "88d28ffd-d448-4319-a94e-16889955f94a")
-        self.collection_size = 2
+        self.collection_size = 3
         self.post_data = {
             'product': '/api/v1/product/7d3fe736-5902-44d5-a34c-86f877190523/',
             'state': 0,
@@ -18,17 +18,16 @@ class ProductInstanceCollectionTest(BaseTestCases.ProductstatusCollectionTest):
 
         self.__model_class__ = ProductInstance
 
-    def test_post_fails_on_id(self):
+    def test_post_own_id_overridden(self):
         """
         Test that the API does not store productinstance with 'id' parameter specified
         in a POST request.
         """
         self.post_data['id'] = '683ec0f1-1843-43e1-b0be-52c0b6a03741'
-        self.assertEqual(ProductInstance.objects.count(), 2)
         resp = self.api_client.post(self.base_url, format='json', data=self.post_data,
                                     authentication=self.api_key_header)
 
-        self.assertEqual(ProductInstance.objects.count(), 3)
+        self.assertEqual(ProductInstance.objects.count(), self.collection_size + 1)
         self.assertEqual(resp.status_code, 201)
         with self.assertRaises(ProductInstance.DoesNotExist):
             ProductInstance.objects.get(id='683ec0f1-1843-43e1-b0be-52c0b6a03741')
@@ -54,7 +53,7 @@ class ProductInstanceCollectionTest(BaseTestCases.ProductstatusCollectionTest):
         self.assertValidJSONResponse(resp)
 
         decoded_content = self.unserialize(resp)
-        self.assertEqual(decoded_content['objects'][0]['reference_time'], '2015-12-07T00:00:00Z')
+        self.assertEqual(decoded_content['objects'][0]['reference_time'], '2015-10-01T00:00:00Z')
 
     def test_order_by_desc(self):
         """

@@ -18,6 +18,7 @@ class ProductCollectionTest(BaseTestCases.ProductstatusCollectionTest):
             "bounding_box": "0,0,0,0",
             "contact": "/api/v1/person/b407e09d-b0c4-4289-95fe-75a2497f6eaa/",
             "prognosis_length": 10,
+            "operational": False,
             "institution": "/api/v1/institution/b3528b13-84aa-49a2-8895-77c1b3fce9d8/",
             "projection": "/api/v1/projection/d454efcc-d822-4d60-a65c-e94680953768/",
             "license": "/api/v1/license/92a5a153-53a4-4170-a0bc-cbd4ed14a05c/",

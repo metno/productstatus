@@ -47,6 +47,7 @@ class BaseMeta:
 class ProductResource(BaseResource):
     parents = fields.ManyToManyField('productstatus.core.api.ProductResource', 'parents', null=True)
     projection = fields.ForeignKey('productstatus.core.api.ProjectionResource', 'projection', null=True)
+    source = fields.ForeignKey('productstatus.core.api.InstitutionResource', 'source', null=True)
     contact = fields.ForeignKey('productstatus.core.api.PersonResource', 'contact')
     institution = fields.ForeignKey('productstatus.core.api.InstitutionResource', 'institution')
     license = fields.ForeignKey('productstatus.core.api.LicenseResource', 'license')

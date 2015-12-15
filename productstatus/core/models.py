@@ -25,6 +25,7 @@ class Product(models.Model):
     license = models.ForeignKey('License')
     source = models.ForeignKey('Institution', related_name='source_for', null=True, blank=True)
     name = models.CharField(max_length=255, unique=True)
+    operational = models.BooleanField()
     grid_resolution = models.DecimalField(max_digits=10, decimal_places=5, null=True, blank=True)
     grid_resolution_unit = models.CharField(max_length=16, choices=LENGTH_UNITS, null=True, blank=True)
     prognosis_length = models.IntegerField(null=True, blank=True)

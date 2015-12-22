@@ -15,10 +15,11 @@ class DataInstanceView(django.views.generic.ListView):
 
     def get_queryset(self):
         qs = productstatus.core.models.DataInstance.objects.all()
-        qs.select_related('data__time_period_begin')
-        qs.select_related('data__time_period_end')
-        qs.select_related('data__productinstance__product__name')
-        qs.select_related('data__productinstance__version')
-        qs.select_related('format__name')
-        qs.order_by('-modified')
+        qs = qs.order_by('-created')
+        qs = qs.select_related('data__time_period_begin')
+        qs = qs.select_related('data__time_period_end')
+        qs = qs.select_related('data__product_instance__product__name')
+        qs = qs.select_related('data__product_instance__version')
+        qs = qs.select_related('format__name')
+        qs = qs.select_related('service_backend__name')
         return qs[:100]

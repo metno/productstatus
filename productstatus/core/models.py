@@ -57,8 +57,8 @@ class ProductInstance(models.Model):
     def save(self, *args, **kwargs):
         """
         Ensure that the 'version' field remains untouched when saving an
-        existing model run, and auto-increment that field when creating a model
-        run with a reference time and model combination that already exists.
+        existing product instance, and auto-increment that field when creating
+        a model run with a reference time and model combination that already exists.
         """
         existing = ProductInstance.objects.filter(id=self.id)
         if existing.count() == 1:
@@ -86,7 +86,7 @@ class ProductInstance(models.Model):
 
 class Data(models.Model):
     """
-    A set of variables for a specific time period within a single model run.
+    A set of variables for a specific time period within a single product instance.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     product_instance = models.ForeignKey('ProductInstance')
@@ -97,9 +97,7 @@ class Data(models.Model):
     modified = models.DateTimeField(auto_now=True, editable=False)
 
     def __unicode__(self):
-        return u'Data from %(begin)s to %(end)s for model run %(product_instance)s' % {
-            'begin': unicode(self.time_period_begin),
-            'end': unicode(self.time_period_end),
+        return u'Data for product instance: %(product_instance)s' % {
             'product_instance': unicode(self.product_instance),
         }
 

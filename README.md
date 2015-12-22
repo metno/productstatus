@@ -139,7 +139,7 @@ How do we know which //Product// resource to reference? In a lot of cases, this 
 
 Now that we have a resource URI for the product, we can go ahead and POST our product instance:
 
-    $ http --json POST http://localhost:8000/api/v1/productinstance/ \
+    $ http --json POST http://localhost:8000/api/v1/productinstance/?username=foo\&api_key=bar \
         product=/api/v1/product/66340f0b-2c2c-436d-a077-3d939f4f7283/ \
         reference_time=2015-10-29T00:00:00Z \
         version=1

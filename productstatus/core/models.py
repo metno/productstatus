@@ -58,12 +58,12 @@ class ProductInstance(models.Model):
         """
         Ensure that the 'version' field remains untouched when saving an
         existing product instance, and auto-increment that field when creating
-        a model run with a reference time and model combination that already exists.
+        a product instance with a reference time and product combination that already exists.
         """
         existing = ProductInstance.objects.filter(id=self.id)
         if existing.count() == 1:
             self.version = existing[0].version
-        else:
+        elif not self.version:
             qs = ProductInstance.objects.filter(product=self.product,
                                                 reference_time=self.reference_time,
                                                 ).order_by('-version')

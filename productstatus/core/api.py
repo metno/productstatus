@@ -65,7 +65,7 @@ class ProductResource(BaseResource):
 
 class ProductInstanceResource(BaseResource):
     product = fields.ForeignKey('productstatus.core.api.ProductResource', 'product')
-    version = fields.IntegerField(attribute='version', readonly=True)
+    version = fields.IntegerField(attribute='version')
 
     class Meta(BaseMeta):
         queryset = productstatus.core.models.ProductInstance.objects.all()

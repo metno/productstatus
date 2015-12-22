@@ -81,6 +81,19 @@ class ProductInstanceCollectionTest(BaseTestCases.ProductstatusCollectionTest):
 
         self.assertTrue(first_version < second_version)
 
+    def test_set_version(self):
+        """
+        Store version field instead of autoincrement when version is specified in the json payload.
+        """
+        test_version = 13
+        self.post_data['version'] = test_version
+        resp = self.api_client.post(self.base_url, format='json', data=self.post_data,
+                                    authentication=self.api_key_header)
+
+        version_in_response = self._get_version_from_resource(resp['Location'])
+
+        self.assertEqual(test_version, version_in_response)
+
     def test_fail_on_bogus_post(self):
         """
         Tests that a POST fails when the uri to product is erroneous

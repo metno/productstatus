@@ -5,7 +5,7 @@ import logging
 import zmq
 
 
-MESSAGE_PROTOCOL_VERSION = [1, 2, 0]
+MESSAGE_PROTOCOL_VERSION = [1, 3, 0]
 
 
 class ZMQPublisher(object):
@@ -69,6 +69,9 @@ class ZMQPublisher(object):
                                          settings.PRODUCTSTATUS_BASE_PATH,
                                          resource_name,
                                          model_instance.id),
+            'uri': '%s/%s/%s/' % (settings.PRODUCTSTATUS_BASE_PATH,
+                                  resource_name,
+                                  model_instance.id),
             'version': MESSAGE_PROTOCOL_VERSION,
             'resource': resource_name,
             'type': 'resource',

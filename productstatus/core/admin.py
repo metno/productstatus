@@ -51,13 +51,12 @@ class DataAdmin(admin.ModelAdmin):
         'modified',
     )
     list_filter = (
-        'product_instance',
         'time_period_begin',
         'time_period_end',
         'created',
         'modified',
     )
-    raw_id_fields = ('variables',)
+    raw_id_fields = ('variables', 'product_instance',)
 admin.site.register(Data, DataAdmin)
 
 
@@ -73,13 +72,14 @@ class DataInstanceAdmin(admin.ModelAdmin):
         'modified',
     )
     list_filter = (
-        'data',
         'format',
         'service_backend',
         'expires',
         'created',
         'modified',
     )
+    raw_id_fields = ('data',)
+    search_fields = ('url',)
 admin.site.register(DataInstance, DataInstanceAdmin)
 
 

@@ -58,7 +58,7 @@ class ProductResource(BaseResource):
             'parents': resources.ALL,
             'name': ['exact'],
             'wdb_data_provider': ['exact'],
-            'source': ['exact'],
+            'source': resources.ALL_WITH_RELATIONS,
             'source_key': ['exact'],
         }
 
@@ -70,7 +70,7 @@ class ProductInstanceResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.ProductInstance.objects.all()
         filtering = {
-            'product': ['exact'],
+            'product': resources.ALL_WITH_RELATIONS,
             'reference_time': resources.ALL,
             'version': resources.ALL,
         }
@@ -87,7 +87,7 @@ class DataResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.Data.objects.all()
         filtering = {
-            'productinstance': ['exact'],
+            'productinstance': resources.ALL_WITH_RELATIONS,
             'time_period_begin': resources.ALL,
             'time_period_end': resources.ALL,
         }
@@ -101,9 +101,9 @@ class DataInstanceResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.DataInstance.objects.all()
         filtering = {
-            'data': ['exact'],
-            'servicebackend': ['exact'],
-            'format': ['exact'],
+            'data': resources.ALL_WITH_RELATIONS,
+            'servicebackend': resources.ALL_WITH_RELATIONS,
+            'format': resources.ALL_WITH_RELATIONS,
             'expires': resources.ALL,
         }
 

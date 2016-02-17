@@ -106,6 +106,10 @@ class DataInstanceResource(BaseResource):
             'format': resources.ALL_WITH_RELATIONS,
             'expires': resources.ALL,
         }
+        ordering = [
+            'created',
+            'modified',
+        ]
 
 
 class DataFormatResource(BaseResource):

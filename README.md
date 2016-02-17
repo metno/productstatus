@@ -17,9 +17,9 @@ Productstatus is a persistent storage for weather product metadata and run-time 
     $ virtualenv deps
     $ . deps/bin/activate
 
-3. Install ZeroMQ dev libraries. You need at least version 3.0:
+3. Install  Zookeeper daemon and Kafka:
 
-    $ sudo apt-get install libzmq-dev build-essential python-dev libpq-dev
+   https://www.digitalocean.com/community/tutorials/how-to-install-apache-kafka-on-ubuntu-14-04
 
 4. Install the Productstatus dependencies:
 

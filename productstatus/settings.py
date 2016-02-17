@@ -14,9 +14,9 @@ import logging
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import socket
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -28,7 +28,6 @@ SECRET_KEY = 'wa^sp+--!2+t8xlb4g__%uu2oow=)#s#-fonk6ttuu^abw2wbv'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -160,6 +159,11 @@ LOGGING = {
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Kafka settings
+KAFKA_BROKERS = ['localhost:9092']
+KAFKA_CLIENT_ID = 'productstatus-%s-pid%s' % (socket.getfqdn(), os.getpid())
+KAFKA_TOPIC = 'productstatus'
 
 # ZeroMQ socket settings
 

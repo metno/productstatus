@@ -49,6 +49,10 @@ You can create a superuser by running:
 
     ./manage.py test productstatus.core.tests
 
+You can create a test database by running (Credentials will be: admin/admin): 
+
+    ./manage.py loaddata productstatus/core/fixtures/core.json
+
 ## Setting up API user permissions
 
 You must grant write access to the certain models required for your API user. This can be done by editing users through the Django administration interface.

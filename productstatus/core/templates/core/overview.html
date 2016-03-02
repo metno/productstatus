@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Status of all products</h2>
+
+    <ul class="toc">
+        {% for product in products %}
+            <li><a href="#{{ product.name|slugify }}">{{ product.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    {% for product in products %}
+        <li>
+
+            {% spaceless %}
+                <h3 id="{{ product.name|slugify }}">
+                    {{ product.name }}
+                    {% if product.operational %}
+                        (<span class="operational">Operational</span>)
+                    {% else %}
+                        (<span class="non-operational">Non-operational</span>)
+                    {% endif %}
+                </h3>
+            {% endspaceless %}
+
+            <ul>
+                <li>Contact: {{ product.contact }}</li>
+                <li>Source: {{ product.source }}</li>
+                {% if product.source_key %}
+                    <li>Source key: {{ product.source_key }}</li>
+                {% endif %}
+                {% if product.grid_resolution %}
+                    <li>Grid resolution: {{ product.grid_resolution }} {{ product.grid_resolution_unit }}</li>
+                {% endif %}
+                {% if product.prognosis_length %}
+                    <li>Prognosis length: {{ product.prognosis_length }} hours</li>
+                {% endif %}
+                {% if product.time_steps %}
+                    <li>Number of time steps: {{ product.time_steps }}</li>
+                {% endif %}
+                {% if product.wdb_data_provider %}
+                    <li>WDB data provider: {{ product.wdb_data_provider }}</li>
+                {% endif %}
+            </ul>
+
+            {% with instance=product.latest_product_instance %}
+                <h4>Latest instance: {{ instance.reference_time }} (version {{ instance.version }})</h4>
+                <ul>
+                {% for data in instance.data %}
+                    <li>
+                        [{{ forloop.counter }}/{{ instance.data.count }}]
+                        From {{ data.time_period_begin }} to {{ data.time_period_end }}
+                        <ul>
+                            {% for data_instance in data.instances %}
+                                <li><a href="{{ data_instance.url }}">{{ data_instance.url }}</a> on <strong>{{ data_instance.service_backend }}</strong></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endwith %}
+
+        </li>
+    {% endfor %}
+{% endblock %}
+
+{# vi: se ft=htmldjango: #}

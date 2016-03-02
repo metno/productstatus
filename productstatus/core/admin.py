@@ -30,6 +30,7 @@ admin.site.register(Product, ProductAdmin)
 
 
 class DataInline(admin.TabularInline):
+    ordering = ['time_period_begin', 'time_period_end']
     model = Data
 
 

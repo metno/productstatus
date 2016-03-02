@@ -24,35 +24,42 @@
             {% endspaceless %}
 
             <ul>
-                <li>Contact: {{ product.contact }}</li>
-                <li>Source: {{ product.source }}</li>
+                <li>UUID: <strong>{{ product.id }}</strong></li>
+                <li>Contact: <strong>{{ product.contact }}</strong></li>
+                <li>Source: <strong>{{ product.source }}</strong></li>
                 {% if product.source_key %}
-                    <li>Source key: {{ product.source_key }}</li>
+                    <li>Source key: <strong>{{ product.source_key }}</strong></li>
                 {% endif %}
                 {% if product.grid_resolution %}
-                    <li>Grid resolution: {{ product.grid_resolution }} {{ product.grid_resolution_unit }}</li>
+                    <li>Grid resolution: <strong>{{ product.grid_resolution }} {{ product.grid_resolution_unit }}</strong></li>
                 {% endif %}
                 {% if product.prognosis_length %}
-                    <li>Prognosis length: {{ product.prognosis_length }} hours</li>
+                    <li>Prognosis length: <strong>{{ product.prognosis_length }}</strong> hours</li>
                 {% endif %}
                 {% if product.time_steps %}
-                    <li>Number of time steps: {{ product.time_steps }}</li>
+                    <li>Number of time steps: <strong>{{ product.time_steps }}</strong></li>
                 {% endif %}
                 {% if product.wdb_data_provider %}
-                    <li>WDB data provider: {{ product.wdb_data_provider }}</li>
+                    <li>WDB data provider: <strong>{{ product.wdb_data_provider }}</strong></li>
                 {% endif %}
             </ul>
 
             {% with instance=product.latest_product_instance %}
                 <h4>Latest instance: {{ instance.reference_time }} (version {{ instance.version }})</h4>
+                <p>UUID: <strong>{{ instance.id }}</strong></p>
                 <ul>
                 {% for data in instance.data %}
-                    <li>
-                        [{{ forloop.counter }}/{{ instance.data.count }}]
-                        From {{ data.time_period_begin }} to {{ data.time_period_end }}
+                    <li class="data">
+                        [<strong>{{ forloop.counter }}/{{ instance.data.count }}</strong>]
+                        From <strong>{{ data.time_period_begin }}</strong> to <strong>{{ data.time_period_end }}</strong>
                         <ul>
                             {% for data_instance in data.instances %}
-                                <li><a href="{{ data_instance.url }}">{{ data_instance.url }}</a> on <strong>{{ data_instance.service_backend }}</strong></li>
+                                <li>
+                                    <a href="{{ data_instance.url }}">{{ data_instance.url }}</a>: <strong>{{ data_instance.format }}</strong> on <strong>{{ data_instance.service_backend }}</strong>
+                                    <ul>
+                                        <li>Added to database: <strong>{{ data_instance.created }}</strong></li>
+                                    </ul>
+                                </li>
                             {% endfor %}
                         </ul>
                     </li>

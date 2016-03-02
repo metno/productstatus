@@ -39,6 +39,9 @@ class Product(models.Model):
     class Meta:
         unique_together = ('source', 'source_key',)
 
+    def latest_product_instance(self):
+        return self.productinstance_set.all().order_by('-reference_time', '-version')[0]
+
     def __unicode__(self):
         return self.name
 
@@ -76,6 +79,9 @@ class ProductInstance(models.Model):
     class Meta:
         unique_together = ('reference_time', 'product', 'version',)
 
+    def data(self):
+        return self.data_set.all().order_by('-time_period_begin', '-time_period_end')
+
     def __unicode__(self):
         return u'%(product)s at %(rtime)s version %(version)s' % {
             'product': unicode(self.product),
@@ -95,6 +101,9 @@ class Data(models.Model):
     time_period_end = models.DateTimeField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
+
+    def instances(self):
+        return self.datainstance_set.all().order_by('url')
 
     def __unicode__(self):
         return u'Data for product instance: %(product_instance)s' % {

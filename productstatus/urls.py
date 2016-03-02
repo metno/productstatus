@@ -36,6 +36,7 @@ v1_api.register(productstatus.core.api.LicenseResource())
 urlpatterns = [
     url(r'^$', productstatus.core.views.root),
     url(r'^datainstance/', productstatus.core.views.DataInstanceView.as_view()),
+    url(r'^overview/', productstatus.core.views.overview),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(v1_api.urls)),
 ]

@@ -36,3 +36,13 @@ a {
 p {
     margin: 0.5em 0;
 }
+
+.operational {
+    color: green;
+    text-transform: uppercase;
+}
+
+.non-operational {
+    color: crimson;
+    text-transform: uppercase;
+}

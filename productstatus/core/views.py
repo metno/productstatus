@@ -1,12 +1,23 @@
 import django.http
 import django.shortcuts
+import django.template
 import django.views.generic
 
 import productstatus.core.models
 
 
 def root(request):
-    return django.http.HttpResponseRedirect('/datainstance/')
+    return django.http.HttpResponseRedirect('/overview/')
+
+
+def overview(request):
+    qs = productstatus.core.models.Product.objects.all().order_by('name')
+    return django.shortcuts.render_to_response(
+        'core/overview.html',
+        {
+            'products': qs,
+        },
+        context_instance=django.template.RequestContext(request))
 
 
 class DataInstanceView(django.views.generic.ListView):

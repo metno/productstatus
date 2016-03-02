@@ -29,6 +29,10 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 
 
+class DataInline(admin.TabularInline):
+    model = Data
+
+
 class ProductInstanceAdmin(admin.ModelAdmin):
     list_display = (
         'id',
@@ -40,6 +44,9 @@ class ProductInstanceAdmin(admin.ModelAdmin):
     )
     ordering = ['-created']
     list_filter = ('product', 'reference_time', 'created', 'modified')
+    inlines = [
+        DataInline,
+    ]
 admin.site.register(ProductInstance, ProductInstanceAdmin)
 
 

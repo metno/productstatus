@@ -23,9 +23,15 @@ class ProductAdmin(admin.ModelAdmin):
         'created',
         'modified',
     )
+    ordering = ['-created']
     raw_id_fields = ('parents', 'variables')
     search_fields = ('name',)
 admin.site.register(Product, ProductAdmin)
+
+
+class DataInline(admin.TabularInline):
+    ordering = ['time_period_begin', 'time_period_end']
+    model = Data
 
 
 class ProductInstanceAdmin(admin.ModelAdmin):
@@ -37,8 +43,16 @@ class ProductInstanceAdmin(admin.ModelAdmin):
         'created',
         'modified',
     )
+    ordering = ['-created']
     list_filter = ('product', 'reference_time', 'created', 'modified')
+    inlines = [
+        DataInline,
+    ]
 admin.site.register(ProductInstance, ProductInstanceAdmin)
+
+
+class DataInstanceInline(admin.TabularInline):
+    model = DataInstance
 
 
 class DataAdmin(admin.ModelAdmin):
@@ -56,6 +70,10 @@ class DataAdmin(admin.ModelAdmin):
         'created',
         'modified',
     )
+    ordering = ['-created']
+    inlines = [
+        DataInstanceInline,
+    ]
     raw_id_fields = ('variables', 'product_instance',)
 admin.site.register(Data, DataAdmin)
 
@@ -78,6 +96,7 @@ class DataInstanceAdmin(admin.ModelAdmin):
         'created',
         'modified',
     )
+    ordering = ['-created']
     raw_id_fields = ('data',)
     search_fields = ('url',)
 admin.site.register(DataInstance, DataInstanceAdmin)

@@ -36,3 +36,23 @@ a {
 p {
     margin: 0.5em 0;
 }
+
+strong {
+    color: #888;
+    font-size: 85%;
+    font-weight: bold;
+}
+
+.operational {
+    color: green;
+    text-transform: uppercase;
+}
+
+.non-operational {
+    color: crimson;
+    text-transform: uppercase;
+}
+
+li.data {
+    margin: 1em 0 0;
+}

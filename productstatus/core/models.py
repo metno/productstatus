@@ -32,6 +32,7 @@ class Product(models.Model):
     time_steps = models.IntegerField(null=True, blank=True)
     bounding_box = models.CharField(max_length=255, null=True, blank=True)
     wdb_data_provider = models.CharField(max_length=255, null=True, blank=True)
+    file_count = models.IntegerField(null=True, blank=True)
     source_key = models.CharField(max_length=255, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)

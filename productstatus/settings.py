@@ -14,6 +14,7 @@ import logging
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
 import socket
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -162,16 +163,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DATETIME_FORMAT = 'Y-m-d H:i:s\Z'
 
+# Detect test mode
+TESTING = sys.argv[1:2] == ['test']
+
 # Kafka settings
 KAFKA_BROKERS = ['localhost:9092']
 KAFKA_CLIENT_ID = 'productstatus-%s-pid%s' % (socket.getfqdn(), os.getpid())
 KAFKA_TOPIC = 'productstatus'
 
-# ZeroMQ socket settings
-
-ZEROMQ_PUBLISH_SOCKET = 'tcp://0.0.0.0:9797'
-ZEROMQ_SUBSCRIBE_SOCKET = 'tcp://127.0.0.1:9796'
-
+# Reflection when generating resource URLs
 PRODUCTSTATUS_HOST = 'localhost:8000'
 PRODUCTSTATUS_BASE_PATH = '/api/v1'
 PRODUCTSTATUS_PROTOCOL = 'http'

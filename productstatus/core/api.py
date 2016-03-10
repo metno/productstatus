@@ -105,6 +105,7 @@ class DataInstanceResource(BaseResource):
             'servicebackend': resources.ALL_WITH_RELATIONS,
             'format': resources.ALL_WITH_RELATIONS,
             'expires': resources.ALL,
+            'url': resources.ALL,
         }
         ordering = [
             'created',

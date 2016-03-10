@@ -1,8 +1,11 @@
 from tastypie import fields, resources, authentication, authorization, serializers
+from django.conf import settings
 
 import dateutil.tz
+import tastypie.exceptions
 
 import productstatus.core.models
+
 
 
 class Serializer(serializers.Serializer):
@@ -149,3 +152,64 @@ class ProjectionResource(BaseResource):
 class LicenseResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.License.objects.all()
+
+
+class KafkaConfiguration(object):
+    def __init__(self, initial=None):
+        self.__dict__['_data'] = {}
+
+        if hasattr(initial, 'items'):
+            self.__dict__['_data'] = initial
+
+    def __getattr__(self, name):
+        return self._data.get(name, None)
+
+    def __setattr__(self, name, value):
+        self.__dict__['_data'][name] = value
+
+    def to_dict(self):
+        return self._data
+
+
+class KafkaObject(object):
+    """!
+    @brief A representation of Kafka broker settings.
+    """
+    topic = settings.KAFKA_TOPIC
+    brokers = settings.KAFKA_BROKERS
+
+
+class KafkaResource(resources.Resource):
+    """!
+    @brief A read-only, singleton resource that will return connection details
+    to this Productstatus server's Kafka brokers and topic.
+    """
+
+    SINGLETON_PK = 'default'
+
+    brokers = fields.ListField(attribute='brokers', readonly=True)
+    topic = fields.CharField(attribute='topic', readonly=True)
+
+    class Meta:
+        allowed_methods = ['get']
+        resource_name = 'kafka'
+        object_class = KafkaConfiguration
+        authentication = authentication.Authentication()
+        serializer = Serializer()
+
+    def detail_uri_kwargs(self, bundle_or_obj):
+        return {'pk': self.SINGLETON_PK}
+
+    def get_object_list(self, *args, **kwargs):
+        return [self.obj_get(pk=self.SINGLETON_PK)]
+
+    def obj_get_list(self, bundle, **kwargs):
+        return self.get_object_list()
+
+    def obj_get(self, *args, **kwargs):
+        if kwargs['pk'] != self.SINGLETON_PK:
+            raise tastypie.exceptions.NotFound('The Kafka resource is only available as "%s"' % self.SINGLETON_PK)
+        return KafkaObject()
+
+    def rollback(self, *args, **kwargs):
+        pass

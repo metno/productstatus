@@ -32,6 +32,7 @@ v1_api.register(productstatus.core.api.PersonResource())
 v1_api.register(productstatus.core.api.InstitutionResource())
 v1_api.register(productstatus.core.api.ProjectionResource())
 v1_api.register(productstatus.core.api.LicenseResource())
+v1_api.register(productstatus.core.api.KafkaResource())
 
 urlpatterns = [
     url(r'^$', productstatus.core.views.root),

@@ -168,6 +168,7 @@ TESTING = sys.argv[1:2] == ['test']
 KAFKA_BROKERS = ['localhost:9092']
 KAFKA_CLIENT_ID = 'productstatus-%s-pid%s' % (socket.getfqdn(), os.getpid())
 KAFKA_TOPIC = 'productstatus'
+KAFKA_REQUEST_TIMEOUT = 2000  # milliseconds
 
 # Frontend date/time format
 DATETIME_FORMAT = 'Y-m-d H:i:s\Z'

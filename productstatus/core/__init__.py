@@ -1,2 +1,1 @@
-
-default_app_config = 'productstatus.core.apps.ProductstatusConfig'
+default_app_config = 'productstatus.core.apps.EventPublisher'

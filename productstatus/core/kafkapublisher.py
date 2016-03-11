@@ -9,25 +9,24 @@ MESSAGE_PROTOCOL_VERSION = [1, 3, 0]
 
 
 class KafkaPublisher(object):
-    """
+    """!
     KafkaPublisher is responsible for sending out messages about new
     or updated resources.
-
-    The method publish_resource should be connected
-    as a callback function to a signal for models we wish to send out
-    messages about. Do this in productstatus.core.apps.
     """
 
-    def __init__(self):
-        self.json_producer = kafka.KafkaProducer(bootstrap_servers=settings.KAFKA_BROKERS,
-                                                 client_id=settings.KAFKA_CLIENT_ID,
+    def __init__(self, brokers, client_id, topic, timeout):
+        self.brokers = brokers
+        self.client_id = client_id
+        self.topic = topic
+        self.timeout = timeout
+        self.json_producer = kafka.KafkaProducer(bootstrap_servers=self.brokers,
+                                                 client_id=self.client_id,
+                                                 acks=1,
                                                  value_serializer=lambda m: json.dumps(m).encode('utf-8'))
 
-    def publish_resource(self, sender, instance, **kwargs):
-        """
-        This method is used as a hook for django signals.
-        Creates json messages based on the parameters from the signal
-        and publishes then via Kafka.
+    def publish_resource(self, instance):
+        """!
+        @brief Publish a model instance to the configured Kafka topic.
         """
 
         msg = KafkaPublisher.resource_message(instance)
@@ -38,15 +37,16 @@ class KafkaPublisher(object):
         Send a json message to Kafka.
         """
 
-        future = self.json_producer.send(settings.KAFKA_TOPIC, msg)
+        future = self.json_producer.send(self.topic, msg)
 
         try:
-            record_metadata = future.get(timeout=10)
+            # make sure messages are sent immediately and throws an exception on failure
+            record_metadata = future.get(timeout=self.timeout)
         except kafka.common.KafkaError:
             logging.critical("Failed to send json message to Kafka")
             raise
 
-        logging.info("Published message to Kafka (topic: %s, partition: %s, offset:%s): %s"
+        logging.info("Published message to Kafka (topic: %s, partition: %s, offset: %s): %s"
                      % (record_metadata.topic, record_metadata.partition, record_metadata.offset, msg))
 
     @staticmethod
@@ -57,29 +57,13 @@ class KafkaPublisher(object):
         about each resource.
         """
 
-        resource_name = KafkaPublisher.get_resource_name(model_instance)
         msg = {
-            'url': "%s://%s%s/%s/%s/" % (settings.PRODUCTSTATUS_PROTOCOL,
-                                         settings.PRODUCTSTATUS_HOST,
-                                         settings.PRODUCTSTATUS_BASE_PATH,
-                                         resource_name,
-                                         model_instance.id),
-            'uri': '%s/%s/%s/' % (settings.PRODUCTSTATUS_BASE_PATH,
-                                  resource_name,
-                                  model_instance.id),
+            'url': model_instance.full_url(),
+            'uri': model_instance.full_uri(),
             'version': MESSAGE_PROTOCOL_VERSION,
-            'resource': resource_name,
+            'resource': model_instance.resource_name(),
             'type': 'resource',
             'id': str(model_instance.id)
             }
 
         return msg
-
-    @staticmethod
-    def get_resource_name(model_instance):
-        """
-        Return the name of the resource that represents the collection
-        model_instance is in.
-        """
-
-        return model_instance.__class__.__name__.lower()

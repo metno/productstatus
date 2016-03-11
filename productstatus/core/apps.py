@@ -1,24 +1,30 @@
-from django.db.models.signals import post_save
 from django.apps import AppConfig
 from django.conf import settings
 
 import productstatus.core.kafkapublisher
 
 
-class ProductstatusConfig(AppConfig):
+class EventPublisher(AppConfig):
     name = 'productstatus.core'
 
     def ready(self):
+        """!
+        @brief Instantiate Kafka publisher object unless in test mode.
         """
-        Set signal hook for sending Kafka messages for specific Productstatus models/resources.
-        """
-
-        # Do not publish events using Kafka in unit test mode
         if settings.TESTING:
+            self.publisher = None
+        else:
+            self.publisher = productstatus.core.kafkapublisher.KafkaPublisher(
+                settings.KAFKA_BROKERS,
+                settings.KAFKA_CLIENT_ID,
+                settings.KAFKA_TOPIC,
+                settings.KAFKA_REQUEST_TIMEOUT,
+            )
+
+    def send_message(self, instance):
+        """!
+        @brief Publish a message about a model instance.
+        """
+        if not self.publisher:
             return
-
-        self.kafkapublisher = productstatus.core.kafkapublisher.KafkaPublisher()
-
-        publish_resources = ['ProductInstance', 'DataInstance', 'Data']
-        for resource in publish_resources:
-            post_save.connect(self.kafkapublisher.publish_resource, sender=self.get_model(resource))
+        self.publisher.publish_resource(instance)

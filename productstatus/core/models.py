@@ -6,11 +6,61 @@
 #
 
 from django.db import models
+from django.conf import settings
+from django.apps import apps as django_apps
+
+import django.db
 
 import uuid
 
 
-class Product(models.Model):
+class BaseModel(models.Model):
+    """!
+    @brief The BaseModel class provides message emitting functionality in the
+    database save transaction, and URL generation.
+    """
+
+    class Meta:
+        # Setting abstract to True ensures that Django will not alter the
+        # database schema based on this base class.
+        abstract = True
+
+    def save(self, *args, **kwargs):
+        """!
+        @brief Wrap the model's save() method in a transaction that ensures
+        that the record will only be saved if a message was successfully
+        emitted to Kafka.
+        """
+        with django.db.transaction.atomic():
+            super(BaseModel, self).save(*args, **kwargs)
+            app = django_apps.get_app_config('core')
+            app.send_message(self)
+
+    def resource_name(self):
+        """!
+        @returns The lowercase class name of the instance.
+        """
+
+        return self.__class__.__name__.lower()
+
+    def full_url(self):
+        """!
+        @returns The full publicly accessible URL to this model instance's resource.
+        """
+        return "%s://%s%s" % (settings.PRODUCTSTATUS_PROTOCOL,
+                              settings.PRODUCTSTATUS_HOST,
+                              self.full_uri())
+
+    def full_uri(self):
+        """!
+        @returns The URI to this model instance's resource.
+        """
+        return '%s/%s/%s/' % (settings.PRODUCTSTATUS_BASE_PATH,
+                              self.resource_name(),
+                              self.id)
+
+
+class Product(BaseModel):
     """
     A unique data product created from one or more weather models.
     """
@@ -50,7 +100,7 @@ class Product(models.Model):
         return self.name
 
 
-class ProductInstance(models.Model):
+class ProductInstance(BaseModel):
     """
     A single instance of a data product, typically having one or more data files.
     """
@@ -94,7 +144,7 @@ class ProductInstance(models.Model):
         }
 
 
-class Data(models.Model):
+class Data(BaseModel):
     """
     A set of variables for a specific time period within a single product instance.
     """
@@ -115,7 +165,7 @@ class Data(models.Model):
         }
 
 
-class DataInstance(models.Model):
+class DataInstance(BaseModel):
     """
     A data file or service containing specific data dictated by the Data class.
     """
@@ -135,7 +185,7 @@ class DataInstance(models.Model):
         }
 
 
-class DataFormat(models.Model):
+class DataFormat(BaseModel):
     """
     A data format, e.g. NetCDF, GRIB, web service, etc.
     """
@@ -148,7 +198,7 @@ class DataFormat(models.Model):
         return self.name
 
 
-class ServiceBackend(models.Model):
+class ServiceBackend(BaseModel):
     """
     A service providing a data file.
     """
@@ -162,7 +212,7 @@ class ServiceBackend(models.Model):
         return self.name
 
 
-class Variable(models.Model):
+class Variable(BaseModel):
     """
     A standardized CF variable name.
     """
@@ -175,7 +225,7 @@ class Variable(models.Model):
         return self.name
 
 
-class Person(models.Model):
+class Person(BaseModel):
     """
     A single human being.
     """
@@ -192,7 +242,7 @@ class Person(models.Model):
         }
 
 
-class Institution(models.Model):
+class Institution(BaseModel):
     """
     A single institution.
     """
@@ -205,7 +255,7 @@ class Institution(models.Model):
         return self.name
 
 
-class Projection(models.Model):
+class Projection(BaseModel):
     """
     A geographic projection, as defined by proj.
     """
@@ -219,7 +269,7 @@ class Projection(models.Model):
         return self.name
 
 
-class License(models.Model):
+class License(BaseModel):
     """
     A data usage license.
     """

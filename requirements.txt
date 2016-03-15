@@ -1,6 +1,6 @@
 Django==1.8.5
 argparse==1.2.1
-kafka-python==1.0.0
+kafka-python==1.0.2
 distribute==0.6.24
 django-extensions==1.5.9
 django-mptt==0.7.4

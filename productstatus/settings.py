@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import logging
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import uuid
 import os
 import sys
 import socket
@@ -168,7 +169,7 @@ TESTING = sys.argv[1:2] == ['test']
 
 # Kafka settings
 KAFKA_BROKERS = ['localhost:9092']
-KAFKA_CLIENT_ID = 'productstatus-%s-pid%s' % (socket.getfqdn(), os.getpid())
+KAFKA_CLIENT_ID = 'productstatus-' + unicode(uuid.uuid4())
 KAFKA_TOPIC = 'productstatus'
 KAFKA_REQUEST_TIMEOUT = 2000  # milliseconds
 

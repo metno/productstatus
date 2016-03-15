@@ -162,8 +162,6 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-DATETIME_FORMAT = 'Y-m-d H:i:s\Z'
-
 # Detect test mode
 TESTING = sys.argv[1:2] == ['test']
 
@@ -172,6 +170,9 @@ KAFKA_BROKERS = ['localhost:9092']
 KAFKA_CLIENT_ID = 'productstatus-' + unicode(uuid.uuid4())
 KAFKA_TOPIC = 'productstatus'
 KAFKA_REQUEST_TIMEOUT = 2000  # milliseconds
+
+# Frontend date/time format
+DATETIME_FORMAT = 'Y-m-d H:i:s\Z'
 
 # Reflection when generating resource URLs
 PRODUCTSTATUS_HOST = 'localhost:8000'

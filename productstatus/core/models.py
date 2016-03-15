@@ -41,7 +41,10 @@ class Product(models.Model):
         unique_together = ('source', 'source_key',)
 
     def latest_product_instance(self):
-        return self.productinstance_set.all().order_by('-reference_time', '-version')[0]
+        qs = self.productinstance_set.all().order_by('-reference_time', '-version')
+        if qs.count() > 0:
+            return qs[0]
+        return None
 
     def __unicode__(self):
         return self.name

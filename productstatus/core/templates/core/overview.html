@@ -44,28 +44,32 @@
                 {% endif %}
             </ul>
 
-            {% with instance=product.latest_product_instance %}
-                <h4>Latest instance: {{ instance.reference_time }} (version {{ instance.version }})</h4>
-                <p>UUID: <strong>{{ instance.id }}</strong></p>
-                <ul>
-                {% for data in instance.data %}
-                    <li class="data">
-                        [<strong>{{ forloop.counter }}/{{ instance.data.count }}</strong>]
-                        From <strong>{{ data.time_period_begin }}</strong> to <strong>{{ data.time_period_end }}</strong>
-                        <ul>
-                            {% for data_instance in data.instances %}
-                                <li>
-                                    <a href="{{ data_instance.url }}">{{ data_instance.url }}</a>: <strong>{{ data_instance.format }}</strong> on <strong>{{ data_instance.service_backend }}</strong>
-                                    <ul>
-                                        <li>Added to database: <strong>{{ data_instance.created }}</strong></li>
-                                    </ul>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% endfor %}
-                </ul>
-            {% endwith %}
+            {% if product.latest_product_instance %}
+                {% with instance=product.latest_product_instance %}
+                    <h4>Latest instance: {{ instance.reference_time }} (version {{ instance.version }})</h4>
+                    <p>UUID: <strong>{{ instance.id }}</strong></p>
+                    <ul>
+                    {% for data in instance.data %}
+                        <li class="data">
+                            [<strong>{{ forloop.counter }}/{{ instance.data.count }}</strong>]
+                            From <strong>{{ data.time_period_begin }}</strong> to <strong>{{ data.time_period_end }}</strong>
+                            <ul>
+                                {% for data_instance in data.instances %}
+                                    <li>
+                                        <a href="{{ data_instance.url }}">{{ data_instance.url }}</a>: <strong>{{ data_instance.format }}</strong> on <strong>{{ data_instance.service_backend }}</strong>
+                                        <ul>
+                                            <li>Added to database: <strong>{{ data_instance.created }}</strong></li>
+                                        </ul>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% endwith %}
+            {% else %}
+                <h4>No instances of this product yet</h4>
+            {% endif %}
 
         </li>
     {% endfor %}

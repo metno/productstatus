@@ -9,22 +9,21 @@ class EventPublisher(AppConfig):
 
     def ready(self):
         """!
-        @brief Instantiate Kafka publisher object unless in test mode.
+        @brief Ensure Kafka publisher will be instantiated later.
+        """
+        self.publisher = None
+
+    def send_message(self, instance):
+        """!
+        @brief Instantiate Kafka publisher if needed, then publish a message about a model instance.
         """
         if settings.TESTING:
-            self.publisher = None
-        else:
+            return
+        if not self.publisher:
             self.publisher = productstatus.core.kafkapublisher.KafkaPublisher(
                 settings.KAFKA_BROKERS,
                 settings.KAFKA_CLIENT_ID,
                 settings.KAFKA_TOPIC,
                 settings.KAFKA_REQUEST_TIMEOUT,
             )
-
-    def send_message(self, instance):
-        """!
-        @brief Publish a message about a model instance.
-        """
-        if not self.publisher:
-            return
         self.publisher.publish_resource(instance)

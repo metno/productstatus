@@ -134,7 +134,7 @@ class ProductInstance(BaseModel):
         unique_together = ('reference_time', 'product', 'version',)
 
     def data(self):
-        return self.data_set.all().order_by('-time_period_begin', '-time_period_end')
+        return self.data_set.all().order_by('time_period_begin', 'time_period_end')
 
     def __unicode__(self):
         return u'%(product)s at %(rtime)s version %(version)s' % {

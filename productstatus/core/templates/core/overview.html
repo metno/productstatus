@@ -54,10 +54,12 @@
                             [<strong>{{ forloop.counter }}/{{ instance.data.count }}</strong>]
                             From <strong>{{ data.time_period_begin }}</strong> to <strong>{{ data.time_period_end }}</strong>
                             <ul>
+                                <li>UUID: <strong>{{ data.id }}</li>
                                 {% for data_instance in data.instances %}
                                     <li>
                                         <a href="{{ data_instance.url }}">{{ data_instance.url }}</a>: <strong>{{ data_instance.format }}</strong> on <strong>{{ data_instance.service_backend }}</strong>
                                         <ul>
+                                            <li>UUID: <strong>{{ data_instance.id }}</li>
                                             <li>Added to database: <strong>{{ data_instance.created }}</strong></li>
                                         </ul>
                                     </li>

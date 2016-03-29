@@ -113,6 +113,7 @@ class DataInstanceResource(BaseResource):
         ordering = [
             'created',
             'modified',
+            'expires',
         ]
 
 

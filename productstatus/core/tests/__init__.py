@@ -1,4 +1,6 @@
 import json
+import copy
+
 from tastypie.test import ResourceTestCase
 
 
@@ -53,6 +55,18 @@ class BaseTestCases:
             self.assertEqual(self.__model_class__.objects.count(), self.collection_size)
             self.api_client.post(self.base_url, format='json', data=self.post_data,
                                  authentication=self.api_key_header)
+            self.assertEqual(self.__model_class__.objects.count(), self.collection_size + 1)
+
+        def test_put_object_with_correct_size(self):
+            """
+            Test that data saved using a PUT does not create a new entry.
+            """
+            self.api_client.post(self.base_url, format='json', data=self.post_data,
+                                 authentication=self.api_key_header)
+            object_ = self.__model_class__.objects.all()[0]
+            data = copy.copy(self.post_data)
+            data['id'] = unicode(object_.id)
+            self.api_client.put(self.base_url, format='json', data=data, authentication=self.api_key_header)
             self.assertEqual(self.__model_class__.objects.count(), self.collection_size + 1)
 
         def test_get_collection(self):

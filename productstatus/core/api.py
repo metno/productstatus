@@ -58,6 +58,7 @@ class ProductResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.Product.objects.all()
         filtering = {
+            'id': resources.ALL,
             'parents': resources.ALL,
             'name': ['exact'],
             'wdb_data_provider': ['exact'],
@@ -73,6 +74,7 @@ class ProductInstanceResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.ProductInstance.objects.all()
         filtering = {
+            'id': resources.ALL,
             'product': resources.ALL_WITH_RELATIONS,
             'reference_time': resources.ALL,
             'version': resources.ALL,
@@ -90,6 +92,7 @@ class DataResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.Data.objects.all()
         filtering = {
+            'id': resources.ALL,
             'productinstance': resources.ALL_WITH_RELATIONS,
             'time_period_begin': resources.ALL,
             'time_period_end': resources.ALL,
@@ -104,6 +107,7 @@ class DataInstanceResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.DataInstance.objects.all()
         filtering = {
+            'id': resources.ALL,
             'data': resources.ALL_WITH_RELATIONS,
             'servicebackend': resources.ALL_WITH_RELATIONS,
             'format': resources.ALL_WITH_RELATIONS,
@@ -122,6 +126,7 @@ class DataFormatResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.DataFormat.objects.all()
         filtering = {
+            'id': resources.ALL,
             'name': resources.ALL,
         }
 
@@ -129,31 +134,49 @@ class DataFormatResource(BaseResource):
 class ServiceBackendResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.ServiceBackend.objects.all()
+        filtering = {
+            'id': resources.ALL,
+        }
 
 
 class VariableResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.Variable.objects.all()
+        filtering = {
+            'id': resources.ALL,
+        }
 
 
 class PersonResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.Person.objects.all()
+        filtering = {
+            'id': resources.ALL,
+        }
 
 
 class InstitutionResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.Institution.objects.all()
+        filtering = {
+            'id': resources.ALL,
+        }
 
 
 class ProjectionResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.Projection.objects.all()
+        filtering = {
+            'id': resources.ALL,
+        }
 
 
 class LicenseResource(BaseResource):
     class Meta(BaseMeta):
         queryset = productstatus.core.models.License.objects.all()
+        filtering = {
+            'id': resources.ALL,
+        }
 
 
 class KafkaConfiguration(object):

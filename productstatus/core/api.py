@@ -21,18 +21,9 @@ class Serializer(serializers.Serializer):
 
 class BaseResource(resources.ModelResource):
     """
-    All resource classes should inherit this base class, which ensures that the
-    `id` property can never be set manually.
+    All resource classes should inherit this base class.
     """
-
-    def hydrate(self, bundle):
-        """
-        Only copy the supplied ID into the destination object if it already
-        exists in the database. Otherwise, use an auto-generated UUID.
-        """
-        if 'id' in bundle.data:
-            bundle.data['id'] = bundle.obj.id
-        return bundle
+    pass
 
 
 class BaseMeta:

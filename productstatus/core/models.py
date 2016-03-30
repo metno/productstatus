@@ -175,6 +175,7 @@ class DataInstance(BaseModel):
     service_backend = models.ForeignKey('ServiceBackend')
     url = models.CharField(max_length=1024)
     expires = models.DateTimeField(null=True, blank=True)
+    deleted = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 

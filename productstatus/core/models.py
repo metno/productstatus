@@ -173,6 +173,9 @@ class DataInstance(BaseModel):
     data = models.ForeignKey('Data')
     format = models.ForeignKey('DataFormat')
     service_backend = models.ForeignKey('ServiceBackend')
+    # the `partial` field denotes whether or not this data instance is a data
+    # segment in a file which also contains more data.
+    partial = models.BooleanField(default=False)
     url = models.CharField(max_length=1024)
     expires = models.DateTimeField(null=True, blank=True)
     deleted = models.BooleanField(default=False)

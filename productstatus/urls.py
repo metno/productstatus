@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^$', productstatus.core.views.root),
     url(r'^datainstance/', productstatus.core.views.DataInstanceView.as_view()),
     url(r'^overview/', productstatus.core.views.overview),
+    url(r'^uuid/', productstatus.core.views.uuid),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(v1_api.urls)),
 ]

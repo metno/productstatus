@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>List of common UUIDs</h2>
+
+    <h3>Products</h3>
+
+    <table cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <th>Product</th>
+            <th>Operational</th>
+            <th>UUID</th>
+        </tr>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>
+                    {% if product.operational %}
+                        <span class="operational">Operational</span>
+                    {% else %}
+                        <span class="non-operational">Non-operational</span>
+                    {% endif %}
+                </td>
+                <td><strong>{{ product.id }}</strong></li>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Data formats</h3>
+
+    <table cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <th>Data format</th>
+            <th>UUID</th>
+        </tr>
+        {% for format in dataformats %}
+            <tr>
+                <td>{{ format.name }}</td>
+                <td><strong>{{ format.id }}</strong></li>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Service backends</h3>
+
+    <table cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <th>Service backend</th>
+            <th>UUID</th>
+        </tr>
+        {% for backend in servicebackends %}
+            <tr>
+                <td>{{ backend.name }}</td>
+                <td><strong>{{ backend.id }}</strong></li>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
+
+{# vi: se ft=htmldjango: #}

@@ -20,6 +20,17 @@ def overview(request):
         context_instance=django.template.RequestContext(request))
 
 
+def uuid(request):
+    return django.shortcuts.render_to_response(
+        'core/uuid.html',
+        {
+            'products': productstatus.core.models.Product.objects.all().order_by('name'),
+            'dataformats': productstatus.core.models.DataFormat.objects.all().order_by('name'),
+            'servicebackends': productstatus.core.models.ServiceBackend.objects.all().order_by('name'),
+        },
+        context_instance=django.template.RequestContext(request))
+
+
 class DataInstanceView(django.views.generic.ListView):
     model = productstatus.core.models.DataInstance
     context_object_name = 'datainstances'

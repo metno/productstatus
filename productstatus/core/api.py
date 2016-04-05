@@ -105,11 +105,13 @@ class DataInstanceResource(BaseResource):
             'expires': resources.ALL,
             'deleted': resources.ALL,
             'url': resources.ALL,
+            'partial': resources.ALL,
         }
         ordering = [
             'created',
             'modified',
             'expires',
+            'partial',
         ]
 
 

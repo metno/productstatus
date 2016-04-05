@@ -1,11 +1,14 @@
 from django.conf import settings
 
+import datetime
+import dateutil.tz
+import uuid
 import logging
 import json
 import kafka
 
 
-MESSAGE_PROTOCOL_VERSION = [1, 3, 0]
+MESSAGE_PROTOCOL_VERSION = [1, 4, 0]
 
 
 class KafkaPublisher(object):
@@ -58,12 +61,14 @@ class KafkaPublisher(object):
         """
 
         msg = {
+            'message_id': unicode(uuid.uuid4()),
+            'message_timestamp': datetime.datetime.utcnow().replace(tzinfo=dateutil.tz.tzutc()).strftime('%Y-%m-%dT%H:%M:%SZ'),
             'url': model_instance.full_url(),
             'uri': model_instance.full_uri(),
             'version': MESSAGE_PROTOCOL_VERSION,
             'resource': model_instance.resource_name(),
             'type': 'resource',
-            'id': str(model_instance.id)
+            'id': str(model_instance.id),
             }
 
         return msg

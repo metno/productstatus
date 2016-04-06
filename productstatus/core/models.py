@@ -177,6 +177,8 @@ class DataInstance(BaseModel):
     # segment in a file which also contains more data.
     partial = models.BooleanField(default=False)
     url = models.CharField(max_length=1024)
+    hash_type = models.CharField(max_length=32, null=True, blank=True)
+    hash = models.CharField(max_length=512, null=True, blank=True)
     expires = models.DateTimeField(null=True, blank=True)
     deleted = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True, editable=False)

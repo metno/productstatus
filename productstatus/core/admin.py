@@ -85,6 +85,8 @@ class DataInstanceAdmin(admin.ModelAdmin):
         'format',
         'service_backend',
         'url',
+        'hash_type',
+        'hash',
         'expires',
         'created',
         'modified',

@@ -899,6 +899,21 @@
     }
 },
 {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+        "name": "Basic RW usage",
+        "permissions": [
+            7,
+            8,
+            10,
+            11,
+            4,
+            5
+        ]
+    }
+},
+{
     "model": "auth.user",
     "pk": 1,
     "fields": {
@@ -917,11 +932,40 @@
     }
 },
 {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$24000$myzkKaKZXq48$7UR4U2XHPiHMZWEIc2bA2YI1p98ThhTOmOn7qRXFZFs=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "foo",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2016-04-11T15:42:55Z",
+        "groups": [
+            1
+        ],
+        "user_permissions": []
+    }
+},
+{
     "model": "tastypie.apikey",
     "pk": 1,
     "fields": {
         "user": 1,
         "key": "5bcf851f09bc65043d987910e1448781fcf4ea12",
+        "created": "2015-12-08T09:16:01.183Z"
+    }
+},
+{
+    "model": "tastypie.apikey",
+    "pk": 2,
+    "fields": {
+        "user": 2,
+        "key": "d54f9200b680ff11eb1ffcb01a99bde2abcdefab",
         "created": "2015-12-08T09:16:01.183Z"
     }
 }

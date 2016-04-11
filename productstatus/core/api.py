@@ -7,6 +7,22 @@ import tastypie.exceptions
 import productstatus.core.models
 
 
+class DjangoAuthorization(authorization.DjangoAuthorization):
+    """
+    Authorizes every authenticated user to perform GET, for all others
+    performs DjangoAuthorization.
+    """
+
+    def read_detail(self, object_list, bundle):
+        if bundle.request.method == 'GET':
+            return True
+        return super(DjangoAuthorization, self).read_detail(object_list, bundle)
+
+    def read_list(self, object_list, bundle):
+        if bundle.request.method == 'GET':
+            return object_list
+        return super(DjangoAuthorization, self).read_list(object_list, bundle)
+
 
 class Serializer(serializers.Serializer):
     formats = ['json']
@@ -34,7 +50,7 @@ class BaseMeta:
         authentication.ApiKeyAuthentication(),
         authentication.Authentication(),
     )
-    authorization = authorization.DjangoAuthorization()
+    authorization = DjangoAuthorization()
     serializer = Serializer()
 
 

@@ -102,7 +102,8 @@ class ProductInstanceCollectionTest(BaseTestCases.ProductstatusCollectionTest):
             'model': '/api/v1/product/d0c6ffbe-f4ee-48e3-8005-1df56ad67076/',
             'reference_time': '2015-10-29T00:00:00Z',
             }
-        response = self.api_client.post(self.base_url, format='json', data=bogus_data)
+        response = self.api_client.post(self.base_url, format='json', data=bogus_data,
+                                        authentication=self.api_key_header)
 
         self.assertEqual(response.status_code, 400)
 

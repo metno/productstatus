@@ -1,10 +1,11 @@
 import json
 import copy
+import django.test
 
-from tastypie.test import ResourceTestCase
+from tastypie.test import ResourceTestCaseMixin
 
 
-class ProductstatusResourceTest(ResourceTestCase):
+class ProductstatusResourceTest(ResourceTestCaseMixin, django.test.TestCase):
     """
     Base test resource that setup attributes and methods common to all
     test classes. This class will be inherited by the BaseTestCases.* classes.
@@ -16,14 +17,15 @@ class ProductstatusResourceTest(ResourceTestCase):
         super(ProductstatusResourceTest, self).setUp()
 
         self.url_prefix = '/api/v1'
-        self.username = 'admin'
-        self.password = 'admin'
 
-        # create_apikey generates Authorization http header. The key itself is already in the fixture.
-        self.api_key_header = self.create_apikey(self.username, "5bcf851f09bc65043d987910e1448781fcf4ea12")
+        # create_apikey generates an Authorization HTTP header. The key itself
+        # is already in the fixture.
+        self.api_key_header = self.create_apikey(
+            'admin',
+            '5bcf851f09bc65043d987910e1448781fcf4ea12',
+        )
 
     def unserialize(self, response):
-
         return json.loads(response.content)
 
 
@@ -53,8 +55,11 @@ class BaseTestCases:
             is correct.
             """
             self.assertEqual(self.__model_class__.objects.count(), self.collection_size)
-            self.api_client.post(self.base_url, format='json', data=self.post_data,
-                                 authentication=self.api_key_header)
+            response = self.api_client.post(self.base_url,
+                                            format='json',
+                                            data=self.post_data,
+                                            authentication=self.api_key_header)
+            self.assertHttpCreated(response)
             self.assertEqual(self.__model_class__.objects.count(), self.collection_size + 1)
 
         def test_put_object_with_correct_size(self):

@@ -165,6 +165,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Detect test mode
 TESTING = sys.argv[1:2] == ['test']
 
+# TastyPie settings
+TASTYPIE_DEFAULT_FORMATS = ['json']
+
 # Kafka settings
 KAFKA_BROKERS = ['localhost:9092']
 KAFKA_CLIENT_ID = 'productstatus-' + unicode(uuid.uuid4())

@@ -21,8 +21,8 @@ class ProductstatusResourceTest(ResourceTestCaseMixin, django.test.TestCase):
         # create_apikey generates an Authorization HTTP header. The key itself
         # is already in the fixture.
         self.api_key_header = self.create_apikey(
-            'admin',
-            '5bcf851f09bc65043d987910e1448781fcf4ea12',
+            'foo',
+            'd54f9200b680ff11eb1ffcb01a99bde2abcdefab',
         )
 
     def unserialize(self, response):

@@ -62,7 +62,7 @@ For `add` access, it is neccessary to define `change` access as well. This is re
 ## Generating the data model graph
 
 ```
-$ ./manage.py graph_models core -x created,modified | dot -Tpng > doc/model_graph.png
+$ ./manage.py graph_models core -x created,modified -X BaseModel | dot -Tpng > doc/model_graph.png
 ```
 
 ## Required parameters for a product instance

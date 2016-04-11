@@ -10,10 +10,10 @@ def root(request):
     return django.http.HttpResponseRedirect('/overview/')
 
 
-def overview(request):
+def detailed(request):
     qs = productstatus.core.models.Product.objects.all().order_by('name')
     return django.shortcuts.render_to_response(
-        'core/overview.html',
+        'core/detailed.html',
         {
             'products': qs,
         },
@@ -27,6 +27,15 @@ def uuid(request):
             'products': productstatus.core.models.Product.objects.all().order_by('name'),
             'dataformats': productstatus.core.models.DataFormat.objects.all().order_by('name'),
             'servicebackends': productstatus.core.models.ServiceBackend.objects.all().order_by('name'),
+        },
+        context_instance=django.template.RequestContext(request))
+
+
+def overview(request):
+    return django.shortcuts.render_to_response(
+        'core/overview.html',
+        {
+            'products': productstatus.core.models.Product.objects.all().order_by('name'),
         },
         context_instance=django.template.RequestContext(request))
 

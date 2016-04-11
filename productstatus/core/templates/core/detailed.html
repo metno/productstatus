@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% load productstatus %}
+
+{% block content %}
+
+    <h2 class="ui centered header">Detailed status of all products</h2>
+
+    <div class="ui vertical fluid menu">
+        {% for product in products %}
+            <a class="item" href="#{{ product.name|slugify }}">{{ product.name }}</a>
+        {% endfor %}
+    </div>
+
+    {% for product in products %}
+
+        <h3 id="{{ product.name|slugify }}" class="ui block header">
+            {{ product.name }} {% operational product %} {% uuid product.id %}
+        </h3>
+
+        <table class="ui celled table">
+            <tbody>
+                <tr>
+                    <th>Contact</th>
+                    <td>{{ product.contact }}</td>
+                </tr>
+                <tr>
+                    <th>Source</th>
+                    <td>
+                        {{ product.source }}
+                        {% if product.source_key %}
+                            <em>with source key</em> <strong>{{ product.source_key }}</strong>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% if product.grid_resolution %}
+                    <tr>
+                        <th>Grid resolution</th>
+                        <td>{{ product.grid_resolution }} {{ product.grid_resolution_unit }}</strong></td>
+                    </tr>
+                {% endif %}
+                {% if product.prognosis_length %}
+                    <tr>
+                        <th>Prognosis length</th>
+                        <td>{{ product.prognosis_length }} hours</td>
+                    </tr>
+                {% endif %}
+                {% if product.time_steps %}
+                    <tr>
+                        <th>Number of time steps</th>
+                        <td>{{ product.time_steps }}</td>
+                    </tr>
+                {% endif %}
+                {% if product.wdb_data_provider %}
+                    <tr>
+                        <th>WDB data provider</th>
+                        <td>{{ product.wdb_data_provider }}</td>
+                    </tr>
+                {% endif %}
+                {% if product.latest_product_instance %}
+                    {% with instance=product.latest_product_instance %}
+                        <tr>
+                            <th>Latest instance</th>
+                            <td>{{ instance.reference_time }} {% uuid instance.id %}</td>
+                        </tr>
+                        <tr>
+                            <th>Latest instance version</th>
+                            <td>{{ instance.version }}</td>
+                        </tr>
+                    {% endwith %}
+                {% endif %}
+            </tbody>
+        </table>
+
+        {% if product.latest_product_instance %}
+            {% with instance=product.latest_product_instance %}
+                <table class="ui celled table">
+                    {% for data in instance.data %}
+                        <thead>
+                            <tr>
+                                <th colspan="4">
+                                    <span>
+                                        From <strong>{{ data.time_period_begin }}</strong>
+                                        to <strong>{{ data.time_period_end }}</strong>
+                                    </span>
+                                    <div class="ui label gray">
+                                        {{ forloop.counter }}/{{ instance.data.count }}
+                                    </div>
+                                    {% uuid data.id %}
+                                </th>
+                            <tr>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th>URL</th>
+                                <th>Service backend</th>
+                                <th>Added to database</th>
+                                <th>UUID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for data_instance in data.instances %}
+                                <tr>
+                                    <td><a href="{{ data_instance.url }}">{{ data_instance.url }}</a></td>
+                                    <td>{{ data_instance.service_backend }}</td>
+                                    <td>{{ data_instance.created }}</td>
+                                    <td>{% uuid data_instance.id %}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    {% endfor %}
+                </table>
+            {% endwith %}
+        {% else %}
+            <h4>No instances of this product yet</h4>
+        {% endif %}
+
+    {% endfor %}
+
+{% endblock %}
+
+{# vi: se ft=htmldjango: #}

@@ -1,3 +1,5 @@
+{% load productstatus %}
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -6,26 +8,36 @@
         <meta charset="utf-8" />
         <title>Productstatus</title>
         <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" type="text/css" href="/static/style.css" />
+        <link rel="stylesheet" type="text/css" href="/static/semantic-ui/semantic.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <script src="/static/semantic-ui/semantic.min.js"></script>
     </head>
 
     <body>
 
-        <h1>Productstatus</h1>
+        <div class="ui container">
 
-        <p>This web page makes queries against the <em>Productstatus</em>
-        metadata service. The index is updated each time a data product based
-        on any numerical model run is generated. For a complete view of the
-        data set, use <a href="/admin/">the administration interface</a>.</p>
+            <h1 class="ui center aligned icon header" style="margin-top: 1em">
+                <i class="circular tasks icon"></i>
+                <div class="content">
+                    Productstatus
+                </div>
+            </h1>
 
-        <p>To see a list of all products and their instances, go to the <a
-            href="/overview/">Product overview page</a>.</p>
+            <div class="ui four item menu">
+                <a class="item {% active 'overview' %}"
+                   href="{% url 'overview' %}">Overview</a>
+                <a class="item {% active 'detailed' %}"
+                   href="{% url 'detailed' %}">Products</a>
+                <a class="item {% active 'uuid' %}"
+                   href="{% url 'uuid' %}">UUIDs</a>
+                <a class="item" href="/admin/">Administration</a>
+            </div>
 
-        <p>For an overview of all UUIDs you might use for your jobs, check out
-        the <a href="/uuid/">UUID overview page</a>.</p>
+            {% block content %}
+            {% endblock %}
 
-        {% block content %}
-        {% endblock %}
+        </div>
 
     </body>
 

@@ -111,6 +111,9 @@ class ProductInstance(BaseModel):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
+    class Meta:
+        unique_together = ('reference_time', 'product', 'version',)
+
     def save(self, *args, **kwargs):
         """
         Ensure that the 'version' field remains untouched when saving an
@@ -130,8 +133,20 @@ class ProductInstance(BaseModel):
                 self.version = qs[0].version + 1
         return super(ProductInstance, self).save(*args, **kwargs)
 
-    class Meta:
-        unique_together = ('reference_time', 'product', 'version',)
+    def service_backends(self):
+        """!
+        @brief Return a list of service backends that has data related to this
+        ProductInstance.
+        """
+        qs = DataInstance.objects.filter(data__product_instance=self)
+        qs = qs.values('service_backend').distinct()
+        return ServiceBackend.objects.filter(id__in=qs).order_by('name')
+
+    def data_instances_on_service_backend(self, service_backend):
+        qs = DataInstance.objects.filter(data__product_instance=self,
+                                         service_backend=service_backend)
+        qs = qs.order_by('version', 'data__time_period_begin', 'data__time_period_end')
+        return qs
 
     def data(self):
         return self.data_set.all().order_by('time_period_begin', 'time_period_end')

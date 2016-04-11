@@ -1,59 +1,78 @@
 {% extends "base.html" %}
 
+{% load productstatus %}
+
 {% block content %}
-    <h2>List of common UUIDs</h2>
 
-    <h3>Products</h3>
+    <h2 class="ui centered header">List of common UUIDs</h2>
 
-    <table cellspacing="0" cellpadding="0" border="0">
-        <tr>
-            <th>Product</th>
-            <th>Operational</th>
-            <th>UUID</th>
-        </tr>
-        {% for product in products %}
+    <h3 class="ui header">
+        <i class="shop icon"></i>
+        <div class="content">Products</div>
+    </h3>
+
+    <table class="ui celled table">
+        <thead>
             <tr>
-                <td>{{ product.name }}</td>
-                <td>
-                    {% if product.operational %}
-                        <span class="operational">Operational</span>
-                    {% else %}
-                        <span class="non-operational">Non-operational</span>
-                    {% endif %}
-                </td>
-                <td><strong>{{ product.id }}</strong></li>
+                <th>Product</th>
+                <th>Operational</th>
+                <th>UUID</th>
             </tr>
-        {% endfor %}
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{% operational product %}</td>
+                    <td><strong>{{ product.id }}</strong></li>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
 
-    <h3>Data formats</h3>
+    <h3 class="ui header">
+        <i class="cube icon"></i>
+        <div class="content">Products</div>
+    </h3>
 
-    <table cellspacing="0" cellpadding="0" border="0">
-        <tr>
-            <th>Data format</th>
-            <th>UUID</th>
-        </tr>
-        {% for format in dataformats %}
+    <table class="ui celled table">
+        <thead>
             <tr>
-                <td>{{ format.name }}</td>
-                <td><strong>{{ format.id }}</strong></li>
+                <th>Data format</th>
+                <th>UUID</th>
             </tr>
-        {% endfor %}
+        </thead>
+        <tbody>
+            {% for format in dataformats %}
+                <tr>
+                    <td>{{ format.name }}</td>
+                    <td><strong>{{ format.id }}</strong></li>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
 
-    <h3>Service backends</h3>
+    <h3 class="ui header">
+        <i class="database icon"></i>
+        <div class="content">Service backends</div>
+    </h3>
 
-    <table cellspacing="0" cellpadding="0" border="0">
-        <tr>
-            <th>Service backend</th>
-            <th>UUID</th>
-        </tr>
-        {% for backend in servicebackends %}
+
+    <table class="ui celled table">
+        <thead>
             <tr>
-                <td>{{ backend.name }}</td>
-                <td><strong>{{ backend.id }}</strong></li>
+                <th>Service backend</th>
+                <th>UUID</th>
             </tr>
-        {% endfor %}
+        </thead>
+        <tbody>
+            {% for backend in servicebackends %}
+                <tr>
+                    <td>{{ backend.name }}</td>
+                    <td><strong>{{ backend.id }}</strong></li>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
 
 {% endblock %}

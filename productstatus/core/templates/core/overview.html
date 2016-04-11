@@ -1,80 +1,49 @@
 {% extends "base.html" %}
 
+{% load productstatus %}
+
 {% block content %}
-    <h2>Status of all products</h2>
 
-    <ul class="toc">
+    <script>
+        $(document).ready(function() {
+            $('.ui.progress').progress();
+        });
+    </script>
+
+    <h2 class="ui centered header">Latest status of all registered products</h2>
+
+    <div class="ui two column doubling stackable grid container">
         {% for product in products %}
-            <li><a href="#{{ product.name|slugify }}">{{ product.name }}</a></li>
+            <div class="column">
+                <h3 class="ui block header">{{ product.name }} {% operational product %}</h3>
+                {% if product.latest_product_instance %}
+                    {% with instance=product.latest_product_instance %}
+                    <div>
+                        <p>Reference time: <strong>{{ instance.reference_time }}</strong></p>
+                        {% for backend in instance.service_backends %}
+                            {% data_instances_on_service_backend instance backend as instances %}
+                            {% widthratio instances.count product.file_count 100 as percent %}
+                            <div
+                                class="ui indicating progress"
+                                data-value="{{ instances.count }}"
+                                data-total="{{ product.file_count }}"
+                                data-percent="{{ percent }}"
+                            >
+                                <div class="bar">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="label">
+                                    Files on {{ backend.name }}: {{ instances.count }} of {{ product.file_count }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% endwith %}
+                {% endif %}
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 
-    {% for product in products %}
-        <li>
-
-            {% spaceless %}
-                <h3 id="{{ product.name|slugify }}">
-                    {{ product.name }}
-                    {% if product.operational %}
-                        (<span class="operational">Operational</span>)
-                    {% else %}
-                        (<span class="non-operational">Non-operational</span>)
-                    {% endif %}
-                </h3>
-            {% endspaceless %}
-
-            <ul>
-                <li>UUID: <strong>{{ product.id }}</strong></li>
-                <li>Contact: <strong>{{ product.contact }}</strong></li>
-                <li>Source: <strong>{{ product.source }}</strong></li>
-                {% if product.source_key %}
-                    <li>Source key: <strong>{{ product.source_key }}</strong></li>
-                {% endif %}
-                {% if product.grid_resolution %}
-                    <li>Grid resolution: <strong>{{ product.grid_resolution }} {{ product.grid_resolution_unit }}</strong></li>
-                {% endif %}
-                {% if product.prognosis_length %}
-                    <li>Prognosis length: <strong>{{ product.prognosis_length }}</strong> hours</li>
-                {% endif %}
-                {% if product.time_steps %}
-                    <li>Number of time steps: <strong>{{ product.time_steps }}</strong></li>
-                {% endif %}
-                {% if product.wdb_data_provider %}
-                    <li>WDB data provider: <strong>{{ product.wdb_data_provider }}</strong></li>
-                {% endif %}
-            </ul>
-
-            {% if product.latest_product_instance %}
-                {% with instance=product.latest_product_instance %}
-                    <h4>Latest instance: {{ instance.reference_time }} (version {{ instance.version }})</h4>
-                    <p>UUID: <strong>{{ instance.id }}</strong></p>
-                    <ul>
-                    {% for data in instance.data %}
-                        <li class="data">
-                            [<strong>{{ forloop.counter }}/{{ instance.data.count }}</strong>]
-                            From <strong>{{ data.time_period_begin }}</strong> to <strong>{{ data.time_period_end }}</strong>
-                            <ul>
-                                <li>UUID: <strong>{{ data.id }}</strong></li>
-                                {% for data_instance in data.instances %}
-                                    <li>
-                                        <a href="{{ data_instance.url }}">{{ data_instance.url }}</a>: <strong>{{ data_instance.format }}</strong> on <strong>{{ data_instance.service_backend }}</strong>
-                                        <ul>
-                                            <li>UUID: <strong>{{ data_instance.id }}</strong></li>
-                                            <li>Added to database: <strong>{{ data_instance.created }}</strong></li>
-                                        </ul>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    {% endfor %}
-                    </ul>
-                {% endwith %}
-            {% else %}
-                <h4>No instances of this product yet</h4>
-            {% endif %}
-
-        </li>
-    {% endfor %}
 {% endblock %}
 
 {# vi: se ft=htmldjango: #}

@@ -37,8 +37,9 @@ v1_api.register(productstatus.core.api.KafkaResource())
 urlpatterns = [
     url(r'^$', productstatus.core.views.root),
     url(r'^datainstance/', productstatus.core.views.DataInstanceView.as_view()),
-    url(r'^overview/', productstatus.core.views.overview),
-    url(r'^uuid/', productstatus.core.views.uuid),
+    url(r'^detailed/', productstatus.core.views.detailed, name='detailed'),
+    url(r'^uuid/', productstatus.core.views.uuid, name='uuid'),
+    url(r'^overview/', productstatus.core.views.overview, name='overview'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(v1_api.urls)),
 ]

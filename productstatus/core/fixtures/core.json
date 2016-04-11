@@ -1,1145 +1,928 @@
 [
 {
+    "model": "core.product",
+    "pk": "7d3fe736-5902-44d5-a34c-86f877190523",
     "fields": {
-        "wdb_data_provider": "",
-        "grid_resolution": "1000.00000",
-        "name": "This is a test product",
+        "projection": null,
+        "contact": "b407e09d-b0c4-4289-95fe-75a2497f6eaa",
+        "institution": "b3528b13-84aa-49a2-8895-77c1b3fce9d8",
         "license": "92a5a153-53a4-4170-a0bc-cbd4ed14a05c",
-        "created": "2015-12-08T09:19:21.176Z",
+        "source": null,
+        "name": "This is a test product",
+        "operational": false,
+        "grid_resolution": "1000.00000",
+        "grid_resolution_unit": "m",
+        "prognosis_length": 240,
         "time_steps": 120,
+        "bounding_box": "0,0,0,0",
+        "wdb_data_provider": "",
+        "file_count": null,
+        "source_key": "",
+        "created": "2015-12-08T09:19:21.176Z",
+        "modified": "2015-12-08T09:20:42.977Z",
+        "parents": [],
         "variables": [
             "0305bccf-0775-4707-9aef-e26aa0f377af",
             "72a56a36-0567-41f0-bcbe-5ff90c3d79ac"
-        ],
-        "source_key": "",
-        "modified": "2015-12-08T09:20:42.977Z",
-        "operational": false,
-        "source": null,
-        "bounding_box": "0,0,0,0",
-        "contact": "b407e09d-b0c4-4289-95fe-75a2497f6eaa",
-        "parents": [],
-        "grid_resolution_unit": "m",
-        "prognosis_length": 240,
-        "institution": "b3528b13-84aa-49a2-8895-77c1b3fce9d8",
-        "projection": null
-    },
-    "model": "core.product",
-    "pk": "7d3fe736-5902-44d5-a34c-86f877190523"
+        ]
+    }
 },
 {
+    "model": "core.productinstance",
+    "pk": "7c6c09f9-a737-4504-82d4-35cdabc7018f",
     "fields": {
         "product": "7d3fe736-5902-44d5-a34c-86f877190523",
         "reference_time": "2015-10-01T00:00:00Z",
         "version": 1,
-        "modified": "2015-12-15T09:17:11.745Z",
-        "created": "2015-12-15T09:17:11.745Z"
-    },
-    "model": "core.productinstance",
-    "pk": "7c6c09f9-a737-4504-82d4-35cdabc7018f"
+        "created": "2015-12-15T09:17:11.745Z",
+        "modified": "2015-12-15T09:17:11.745Z"
+    }
 },
 {
+    "model": "core.productinstance",
+    "pk": "88d28ffd-d448-4319-a94e-16889955f94a",
     "fields": {
         "product": "7d3fe736-5902-44d5-a34c-86f877190523",
         "reference_time": "2015-12-08T00:00:00Z",
         "version": 1,
-        "modified": "2015-12-08T09:24:51.836Z",
-        "created": "2015-12-08T09:24:51.836Z"
-    },
-    "model": "core.productinstance",
-    "pk": "88d28ffd-d448-4319-a94e-16889955f94a"
+        "created": "2015-12-08T09:24:51.836Z",
+        "modified": "2015-12-08T09:24:51.836Z"
+    }
 },
 {
+    "model": "core.productinstance",
+    "pk": "c29bc2af-f989-4dc9-a17d-de774f93f187",
     "fields": {
         "product": "7d3fe736-5902-44d5-a34c-86f877190523",
         "reference_time": "2015-12-07T00:00:00Z",
         "version": 1,
-        "modified": "2015-12-08T11:33:19.810Z",
-        "created": "2015-12-08T11:33:19.810Z"
-    },
-    "model": "core.productinstance",
-    "pk": "c29bc2af-f989-4dc9-a17d-de774f93f187"
+        "created": "2015-12-08T11:33:19.810Z",
+        "modified": "2015-12-08T11:33:19.810Z"
+    }
 },
 {
-    "fields": {
-        "created": "2015-12-15T09:17:11.886Z",
-        "variables": [],
-        "time_period_end": "2015-10-01T00:00:00Z",
-        "modified": "2015-12-15T09:17:11.886Z",
-        "time_period_begin": "2015-10-01T00:00:00Z",
-        "product_instance": "7c6c09f9-a737-4504-82d4-35cdabc7018f"
-    },
     "model": "core.data",
-    "pk": "17420edd-213a-4558-8332-683d15b6cebc"
+    "pk": "17420edd-213a-4558-8332-683d15b6cebc",
+    "fields": {
+        "product_instance": "7c6c09f9-a737-4504-82d4-35cdabc7018f",
+        "time_period_begin": "2015-10-01T00:00:00Z",
+        "time_period_end": "2015-10-01T00:00:00Z",
+        "created": "2015-12-15T09:17:11.886Z",
+        "modified": "2015-12-15T09:17:11.886Z",
+        "variables": []
+    }
 },
 {
+    "model": "core.data",
+    "pk": "434405fa-b3ca-42b1-b764-959d06370b32",
     "fields": {
+        "product_instance": "88d28ffd-d448-4319-a94e-16889955f94a",
+        "time_period_begin": "2015-12-08T00:00:00Z",
+        "time_period_end": "2015-12-19T00:00:00Z",
         "created": "2015-12-08T09:28:08.783Z",
+        "modified": "2015-12-08T09:28:08.783Z",
         "variables": [
             "0305bccf-0775-4707-9aef-e26aa0f377af",
             "72a56a36-0567-41f0-bcbe-5ff90c3d79ac"
-        ],
-        "time_period_end": "2015-12-19T00:00:00Z",
-        "modified": "2015-12-08T09:28:08.783Z",
-        "time_period_begin": "2015-12-08T00:00:00Z",
-        "product_instance": "88d28ffd-d448-4319-a94e-16889955f94a"
-    },
-    "model": "core.data",
-    "pk": "434405fa-b3ca-42b1-b764-959d06370b32"
+        ]
+    }
 },
 {
+    "model": "core.datainstance",
+    "pk": "8e52633f-04bc-40d5-99e1-6b1c9b9010f4",
     "fields": {
-        "expires": null,
-        "created": "2015-12-08T09:28:53.360Z",
-        "url": "https://datastore2.example.com/test.nc",
+        "data": "434405fa-b3ca-42b1-b764-959d06370b32",
         "format": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc",
         "service_backend": "7f287791-b10f-41c5-ada8-327783573e29",
-        "modified": "2015-12-08T09:28:53.360Z",
-        "data": "434405fa-b3ca-42b1-b764-959d06370b32"
-    },
-    "model": "core.datainstance",
-    "pk": "8e52633f-04bc-40d5-99e1-6b1c9b9010f4"
+        "partial": false,
+        "url": "https://datastore2.example.com/test.nc",
+        "hash_type": null,
+        "hash": null,
+        "expires": null,
+        "deleted": false,
+        "created": "2015-12-08T09:28:53.360Z",
+        "modified": "2015-12-08T09:28:53.360Z"
+    }
 },
 {
+    "model": "core.datainstance",
+    "pk": "ae443952-7990-4cee-9913-41dfd0092dc1",
     "fields": {
-        "expires": null,
-        "created": "2015-12-08T09:28:40.997Z",
-        "url": "https://datastore1.example.com/test.nc",
+        "data": "434405fa-b3ca-42b1-b764-959d06370b32",
         "format": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc",
         "service_backend": "495bb3be-e327-4840-accf-afefcd411e06",
-        "modified": "2015-12-08T09:28:40.997Z",
-        "data": "434405fa-b3ca-42b1-b764-959d06370b32"
-    },
-    "model": "core.datainstance",
-    "pk": "ae443952-7990-4cee-9913-41dfd0092dc1"
+        "partial": false,
+        "url": "https://datastore1.example.com/test.nc",
+        "hash_type": null,
+        "hash": null,
+        "expires": null,
+        "deleted": false,
+        "created": "2015-12-08T09:28:40.997Z",
+        "modified": "2015-12-08T09:28:40.997Z"
+    }
 },
 {
+    "model": "core.dataformat",
+    "pk": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc",
     "fields": {
         "name": "netcdf",
-        "modified": "2015-12-08T09:16:10.639Z",
-        "created": "2015-12-08T09:16:10.639Z"
-    },
-    "model": "core.dataformat",
-    "pk": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc"
+        "created": "2015-12-08T09:16:10.639Z",
+        "modified": "2015-12-08T09:16:10.639Z"
+    }
 },
 {
+    "model": "core.servicebackend",
+    "pk": "495bb3be-e327-4840-accf-afefcd411e06",
     "fields": {
-        "documentation_url": "http://example.com",
         "name": "Datastore1",
-        "modified": "2015-12-08T09:21:16.617Z",
-        "created": "2015-12-08T09:21:16.617Z"
-    },
-    "model": "core.servicebackend",
-    "pk": "495bb3be-e327-4840-accf-afefcd411e06"
-},
-{
-    "fields": {
         "documentation_url": "http://example.com",
-        "name": "Datastore2",
-        "modified": "2015-12-08T09:21:24.593Z",
-        "created": "2015-12-08T09:21:24.593Z"
-    },
-    "model": "core.servicebackend",
-    "pk": "7f287791-b10f-41c5-ada8-327783573e29"
+        "created": "2015-12-08T09:21:16.617Z",
+        "modified": "2015-12-08T09:21:16.617Z"
+    }
 },
 {
+    "model": "core.servicebackend",
+    "pk": "7f287791-b10f-41c5-ada8-327783573e29",
+    "fields": {
+        "name": "Datastore2",
+        "documentation_url": "http://example.com",
+        "created": "2015-12-08T09:21:24.593Z",
+        "modified": "2015-12-08T09:21:24.593Z"
+    }
+},
+{
+    "model": "core.variable",
+    "pk": "0305bccf-0775-4707-9aef-e26aa0f377af",
     "fields": {
         "name": "TestVar1",
-        "modified": "2015-12-08T09:19:46.972Z",
-        "created": "2015-12-08T09:19:46.972Z"
-    },
-    "model": "core.variable",
-    "pk": "0305bccf-0775-4707-9aef-e26aa0f377af"
+        "created": "2015-12-08T09:19:46.972Z",
+        "modified": "2015-12-08T09:19:46.972Z"
+    }
 },
 {
+    "model": "core.variable",
+    "pk": "72a56a36-0567-41f0-bcbe-5ff90c3d79ac",
     "fields": {
         "name": "TestVar2",
-        "modified": "2015-12-08T09:19:51.232Z",
-        "created": "2015-12-08T09:19:51.232Z"
-    },
-    "model": "core.variable",
-    "pk": "72a56a36-0567-41f0-bcbe-5ff90c3d79ac"
+        "created": "2015-12-08T09:19:51.232Z",
+        "modified": "2015-12-08T09:19:51.232Z"
+    }
 },
 {
-    "fields": {
-        "created": "2015-12-08T09:17:35.283Z",
-        "name": "Foo Bar",
-        "modified": "2015-12-08T09:17:35.283Z",
-        "email": "foo.bar@example.com"
-    },
     "model": "core.person",
-    "pk": "b407e09d-b0c4-4289-95fe-75a2497f6eaa"
+    "pk": "b407e09d-b0c4-4289-95fe-75a2497f6eaa",
+    "fields": {
+        "name": "Foo Bar",
+        "email": "foo.bar@example.com",
+        "created": "2015-12-08T09:17:35.283Z",
+        "modified": "2015-12-08T09:17:35.283Z"
+    }
 },
 {
+    "model": "core.institution",
+    "pk": "b3528b13-84aa-49a2-8895-77c1b3fce9d8",
     "fields": {
         "name": "MET Norway",
-        "modified": "2015-12-08T09:16:29.438Z",
-        "created": "2015-12-08T09:16:29.438Z"
-    },
-    "model": "core.institution",
-    "pk": "b3528b13-84aa-49a2-8895-77c1b3fce9d8"
+        "created": "2015-12-08T09:16:29.438Z",
+        "modified": "2015-12-08T09:16:29.438Z"
+    }
 },
 {
-    "fields": {
-        "definition": " +proj=cea +lon_0=Central Meridian +lat_ts=Standard Parallel +x_0=False Easting +y_0=False Northing",
-        "name": "Cylindrical Equal Area",
-        "modified": "2015-12-08T11:38:24.731Z",
-        "created": "2015-12-08T11:38:24.731Z"
-    },
     "model": "core.projection",
-    "pk": "d454efcc-d822-4d60-a65c-e94680953768"
+    "pk": "d454efcc-d822-4d60-a65c-e94680953768",
+    "fields": {
+        "name": "Cylindrical Equal Area",
+        "definition": " +proj=cea +lon_0=Central Meridian +lat_ts=Standard Parallel +x_0=False Easting +y_0=False Northing",
+        "created": "2015-12-08T11:38:24.731Z",
+        "modified": "2015-12-08T11:38:24.731Z"
+    }
 },
 {
+    "model": "core.license",
+    "pk": "92a5a153-53a4-4170-a0bc-cbd4ed14a05c",
     "fields": {
         "name": "Public domain",
-        "created": "2015-12-08T09:18:58.598Z",
+        "description": "",
         "url": "",
-        "modified": "2015-12-08T09:18:58.598Z",
         "public": true,
-        "description": ""
-    },
-    "model": "core.license",
-    "pk": "92a5a153-53a4-4170-a0bc-cbd4ed14a05c"
+        "created": "2015-12-08T09:18:58.598Z",
+        "modified": "2015-12-08T09:18:58.598Z"
+    }
 },
 {
-    "fields": {
-        "model": "product",
-        "app_label": "core"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 1
+    "pk": 1,
+    "fields": {
+        "app_label": "core",
+        "model": "product"
+    }
 },
 {
-    "fields": {
-        "model": "productinstance",
-        "app_label": "core"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 2
+    "pk": 2,
+    "fields": {
+        "app_label": "core",
+        "model": "productinstance"
+    }
 },
 {
-    "fields": {
-        "model": "data",
-        "app_label": "core"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 3
+    "pk": 3,
+    "fields": {
+        "app_label": "core",
+        "model": "data"
+    }
 },
 {
-    "fields": {
-        "model": "datainstance",
-        "app_label": "core"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 4
+    "pk": 4,
+    "fields": {
+        "app_label": "core",
+        "model": "datainstance"
+    }
 },
 {
-    "fields": {
-        "model": "dataformat",
-        "app_label": "core"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 5
+    "pk": 5,
+    "fields": {
+        "app_label": "core",
+        "model": "dataformat"
+    }
 },
 {
-    "fields": {
-        "model": "servicebackend",
-        "app_label": "core"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 6
+    "pk": 6,
+    "fields": {
+        "app_label": "core",
+        "model": "servicebackend"
+    }
 },
 {
-    "fields": {
-        "model": "variable",
-        "app_label": "core"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 7
+    "pk": 7,
+    "fields": {
+        "app_label": "core",
+        "model": "variable"
+    }
 },
 {
-    "fields": {
-        "model": "person",
-        "app_label": "core"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 8
+    "pk": 8,
+    "fields": {
+        "app_label": "core",
+        "model": "person"
+    }
 },
 {
-    "fields": {
-        "model": "institution",
-        "app_label": "core"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 9
+    "pk": 9,
+    "fields": {
+        "app_label": "core",
+        "model": "institution"
+    }
 },
 {
-    "fields": {
-        "model": "projection",
-        "app_label": "core"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 10
+    "pk": 10,
+    "fields": {
+        "app_label": "core",
+        "model": "projection"
+    }
 },
 {
-    "fields": {
-        "model": "license",
-        "app_label": "core"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 11
+    "pk": 11,
+    "fields": {
+        "app_label": "core",
+        "model": "license"
+    }
 },
 {
-    "fields": {
-        "model": "apiaccess",
-        "app_label": "tastypie"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 12
+    "pk": 12,
+    "fields": {
+        "app_label": "tastypie",
+        "model": "apiaccess"
+    }
 },
 {
-    "fields": {
-        "model": "apikey",
-        "app_label": "tastypie"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 13
+    "pk": 13,
+    "fields": {
+        "app_label": "tastypie",
+        "model": "apikey"
+    }
 },
 {
-    "fields": {
-        "model": "logentry",
-        "app_label": "admin"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 14
+    "pk": 14,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
 },
 {
-    "fields": {
-        "model": "permission",
-        "app_label": "auth"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 15
+    "pk": 15,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
 },
 {
-    "fields": {
-        "model": "group",
-        "app_label": "auth"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 16
+    "pk": 16,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
 },
 {
-    "fields": {
-        "model": "user",
-        "app_label": "auth"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 17
+    "pk": 17,
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
 },
 {
-    "fields": {
-        "model": "contenttype",
-        "app_label": "contenttypes"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 18
+    "pk": 18,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
 },
 {
-    "fields": {
-        "model": "session",
-        "app_label": "sessions"
-    },
     "model": "contenttypes.contenttype",
-    "pk": 19
+    "pk": 19,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
 },
 {
-    "fields": {
-        "expire_date": "2015-12-22T09:15:40.518Z",
-        "session_data": "ZjYwNzJhNjA0NjM0ZTE4ZjRiMDcyMTZiMjg2MDViYjc3YjFlMDhkYjp7Il9hdXRoX3VzZXJfaGFzaCI6ImRiNzI4YmE1ZjIyZmM5ZGM2ZGViYTU2OTI4ZWY3OGUyZDhlYjc2NTUiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0="
-    },
     "model": "sessions.session",
-    "pk": "d1ozjzqy4eravje9dw166c2iiu2hi4bg"
+    "pk": "4wdw89m48oq1r485srjz6rptib16ovcr",
+    "fields": {
+        "session_data": "NTFmZDAxZTI2ZTgxMzUzOGE4MjQwMWUxN2Y1OTg0NWI5MTBiNjUyOTp7Il9hdXRoX3VzZXJfaGFzaCI6ImYzNTQzOWY4MGI1MTdmM2FiYmFlOGYwY2RmMDRiZmU0ZjBmOWMyNWYiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=",
+        "expire_date": "2016-04-25T13:13:50.316Z"
+    }
 },
 {
-    "fields": {
-        "expire_date": "2015-12-29T09:08:56.486Z",
-        "session_data": "ODg0ZjlmZWE4ZmYyNTllNmFjMzBhNmEyNjU5M2Y5ZDJlZDkyNzJkODp7Il9hdXRoX3VzZXJfaGFzaCI6ImRiNzI4YmE1ZjIyZmM5ZGM2ZGViYTU2OTI4ZWY3OGUyZDhlYjc2NTUiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
-    },
     "model": "sessions.session",
-    "pk": "f1qgu6y60rj8m0pts98r7hg30bc58z8m"
+    "pk": "d1ozjzqy4eravje9dw166c2iiu2hi4bg",
+    "fields": {
+        "session_data": "ZjYwNzJhNjA0NjM0ZTE4ZjRiMDcyMTZiMjg2MDViYjc3YjFlMDhkYjp7Il9hdXRoX3VzZXJfaGFzaCI6ImRiNzI4YmE1ZjIyZmM5ZGM2ZGViYTU2OTI4ZWY3OGUyZDhlYjc2NTUiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+        "expire_date": "2015-12-22T09:15:40.518Z"
+    }
 },
 {
+    "model": "sessions.session",
+    "pk": "f1qgu6y60rj8m0pts98r7hg30bc58z8m",
     "fields": {
-        "codename": "add_product",
+        "session_data": "ODg0ZjlmZWE4ZmYyNTllNmFjMzBhNmEyNjU5M2Y5ZDJlZDkyNzJkODp7Il9hdXRoX3VzZXJfaGFzaCI6ImRiNzI4YmE1ZjIyZmM5ZGM2ZGViYTU2OTI4ZWY3OGUyZDhlYjc2NTUiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=",
+        "expire_date": "2015-12-29T09:08:56.486Z"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
         "name": "Can add product",
-        "content_type": 1
-    },
-    "model": "auth.permission",
-    "pk": 1
+        "content_type": 1,
+        "codename": "add_product"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 2,
     "fields": {
-        "codename": "change_product",
         "name": "Can change product",
-        "content_type": 1
-    },
-    "model": "auth.permission",
-    "pk": 2
+        "content_type": 1,
+        "codename": "change_product"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 3,
     "fields": {
-        "codename": "delete_product",
         "name": "Can delete product",
-        "content_type": 1
-    },
-    "model": "auth.permission",
-    "pk": 3
+        "content_type": 1,
+        "codename": "delete_product"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 4,
     "fields": {
-        "codename": "add_productinstance",
         "name": "Can add product instance",
-        "content_type": 2
-    },
-    "model": "auth.permission",
-    "pk": 4
+        "content_type": 2,
+        "codename": "add_productinstance"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 5,
     "fields": {
-        "codename": "change_productinstance",
         "name": "Can change product instance",
-        "content_type": 2
-    },
-    "model": "auth.permission",
-    "pk": 5
+        "content_type": 2,
+        "codename": "change_productinstance"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 6,
     "fields": {
-        "codename": "delete_productinstance",
         "name": "Can delete product instance",
-        "content_type": 2
-    },
-    "model": "auth.permission",
-    "pk": 6
+        "content_type": 2,
+        "codename": "delete_productinstance"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 7,
     "fields": {
-        "codename": "add_data",
         "name": "Can add data",
-        "content_type": 3
-    },
-    "model": "auth.permission",
-    "pk": 7
+        "content_type": 3,
+        "codename": "add_data"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 8,
     "fields": {
-        "codename": "change_data",
         "name": "Can change data",
-        "content_type": 3
-    },
-    "model": "auth.permission",
-    "pk": 8
+        "content_type": 3,
+        "codename": "change_data"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 9,
     "fields": {
-        "codename": "delete_data",
         "name": "Can delete data",
-        "content_type": 3
-    },
-    "model": "auth.permission",
-    "pk": 9
+        "content_type": 3,
+        "codename": "delete_data"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 10,
     "fields": {
-        "codename": "add_datainstance",
         "name": "Can add data instance",
-        "content_type": 4
-    },
-    "model": "auth.permission",
-    "pk": 10
+        "content_type": 4,
+        "codename": "add_datainstance"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 11,
     "fields": {
-        "codename": "change_datainstance",
         "name": "Can change data instance",
-        "content_type": 4
-    },
-    "model": "auth.permission",
-    "pk": 11
+        "content_type": 4,
+        "codename": "change_datainstance"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 12,
     "fields": {
-        "codename": "delete_datainstance",
         "name": "Can delete data instance",
-        "content_type": 4
-    },
-    "model": "auth.permission",
-    "pk": 12
+        "content_type": 4,
+        "codename": "delete_datainstance"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 13,
     "fields": {
-        "codename": "add_dataformat",
         "name": "Can add data format",
-        "content_type": 5
-    },
-    "model": "auth.permission",
-    "pk": 13
+        "content_type": 5,
+        "codename": "add_dataformat"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 14,
     "fields": {
-        "codename": "change_dataformat",
         "name": "Can change data format",
-        "content_type": 5
-    },
-    "model": "auth.permission",
-    "pk": 14
+        "content_type": 5,
+        "codename": "change_dataformat"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 15,
     "fields": {
-        "codename": "delete_dataformat",
         "name": "Can delete data format",
-        "content_type": 5
-    },
-    "model": "auth.permission",
-    "pk": 15
+        "content_type": 5,
+        "codename": "delete_dataformat"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 16,
     "fields": {
-        "codename": "add_servicebackend",
         "name": "Can add service backend",
-        "content_type": 6
-    },
-    "model": "auth.permission",
-    "pk": 16
+        "content_type": 6,
+        "codename": "add_servicebackend"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 17,
     "fields": {
-        "codename": "change_servicebackend",
         "name": "Can change service backend",
-        "content_type": 6
-    },
-    "model": "auth.permission",
-    "pk": 17
+        "content_type": 6,
+        "codename": "change_servicebackend"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 18,
     "fields": {
-        "codename": "delete_servicebackend",
         "name": "Can delete service backend",
-        "content_type": 6
-    },
-    "model": "auth.permission",
-    "pk": 18
+        "content_type": 6,
+        "codename": "delete_servicebackend"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 19,
     "fields": {
-        "codename": "add_variable",
         "name": "Can add variable",
-        "content_type": 7
-    },
-    "model": "auth.permission",
-    "pk": 19
+        "content_type": 7,
+        "codename": "add_variable"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 20,
     "fields": {
-        "codename": "change_variable",
         "name": "Can change variable",
-        "content_type": 7
-    },
-    "model": "auth.permission",
-    "pk": 20
+        "content_type": 7,
+        "codename": "change_variable"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 21,
     "fields": {
-        "codename": "delete_variable",
         "name": "Can delete variable",
-        "content_type": 7
-    },
-    "model": "auth.permission",
-    "pk": 21
+        "content_type": 7,
+        "codename": "delete_variable"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 22,
     "fields": {
-        "codename": "add_person",
         "name": "Can add person",
-        "content_type": 8
-    },
-    "model": "auth.permission",
-    "pk": 22
+        "content_type": 8,
+        "codename": "add_person"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 23,
     "fields": {
-        "codename": "change_person",
         "name": "Can change person",
-        "content_type": 8
-    },
-    "model": "auth.permission",
-    "pk": 23
+        "content_type": 8,
+        "codename": "change_person"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 24,
     "fields": {
-        "codename": "delete_person",
         "name": "Can delete person",
-        "content_type": 8
-    },
-    "model": "auth.permission",
-    "pk": 24
+        "content_type": 8,
+        "codename": "delete_person"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 25,
     "fields": {
-        "codename": "add_institution",
         "name": "Can add institution",
-        "content_type": 9
-    },
-    "model": "auth.permission",
-    "pk": 25
+        "content_type": 9,
+        "codename": "add_institution"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 26,
     "fields": {
-        "codename": "change_institution",
         "name": "Can change institution",
-        "content_type": 9
-    },
-    "model": "auth.permission",
-    "pk": 26
+        "content_type": 9,
+        "codename": "change_institution"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 27,
     "fields": {
-        "codename": "delete_institution",
         "name": "Can delete institution",
-        "content_type": 9
-    },
-    "model": "auth.permission",
-    "pk": 27
+        "content_type": 9,
+        "codename": "delete_institution"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 28,
     "fields": {
-        "codename": "add_projection",
         "name": "Can add projection",
-        "content_type": 10
-    },
-    "model": "auth.permission",
-    "pk": 28
+        "content_type": 10,
+        "codename": "add_projection"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 29,
     "fields": {
-        "codename": "change_projection",
         "name": "Can change projection",
-        "content_type": 10
-    },
-    "model": "auth.permission",
-    "pk": 29
+        "content_type": 10,
+        "codename": "change_projection"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 30,
     "fields": {
-        "codename": "delete_projection",
         "name": "Can delete projection",
-        "content_type": 10
-    },
-    "model": "auth.permission",
-    "pk": 30
+        "content_type": 10,
+        "codename": "delete_projection"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 31,
     "fields": {
-        "codename": "add_license",
         "name": "Can add license",
-        "content_type": 11
-    },
-    "model": "auth.permission",
-    "pk": 31
+        "content_type": 11,
+        "codename": "add_license"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 32,
     "fields": {
-        "codename": "change_license",
         "name": "Can change license",
-        "content_type": 11
-    },
-    "model": "auth.permission",
-    "pk": 32
+        "content_type": 11,
+        "codename": "change_license"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 33,
     "fields": {
-        "codename": "delete_license",
         "name": "Can delete license",
-        "content_type": 11
-    },
-    "model": "auth.permission",
-    "pk": 33
+        "content_type": 11,
+        "codename": "delete_license"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 34,
     "fields": {
-        "codename": "add_apiaccess",
         "name": "Can add api access",
-        "content_type": 12
-    },
-    "model": "auth.permission",
-    "pk": 34
+        "content_type": 12,
+        "codename": "add_apiaccess"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 35,
     "fields": {
-        "codename": "change_apiaccess",
         "name": "Can change api access",
-        "content_type": 12
-    },
-    "model": "auth.permission",
-    "pk": 35
+        "content_type": 12,
+        "codename": "change_apiaccess"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 36,
     "fields": {
-        "codename": "delete_apiaccess",
         "name": "Can delete api access",
-        "content_type": 12
-    },
-    "model": "auth.permission",
-    "pk": 36
+        "content_type": 12,
+        "codename": "delete_apiaccess"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 37,
     "fields": {
-        "codename": "add_apikey",
         "name": "Can add api key",
-        "content_type": 13
-    },
-    "model": "auth.permission",
-    "pk": 37
+        "content_type": 13,
+        "codename": "add_apikey"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 38,
     "fields": {
-        "codename": "change_apikey",
         "name": "Can change api key",
-        "content_type": 13
-    },
-    "model": "auth.permission",
-    "pk": 38
+        "content_type": 13,
+        "codename": "change_apikey"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 39,
     "fields": {
-        "codename": "delete_apikey",
         "name": "Can delete api key",
-        "content_type": 13
-    },
-    "model": "auth.permission",
-    "pk": 39
+        "content_type": 13,
+        "codename": "delete_apikey"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 40,
     "fields": {
-        "codename": "add_logentry",
         "name": "Can add log entry",
-        "content_type": 14
-    },
-    "model": "auth.permission",
-    "pk": 40
+        "content_type": 14,
+        "codename": "add_logentry"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 41,
     "fields": {
-        "codename": "change_logentry",
         "name": "Can change log entry",
-        "content_type": 14
-    },
-    "model": "auth.permission",
-    "pk": 41
+        "content_type": 14,
+        "codename": "change_logentry"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 42,
     "fields": {
-        "codename": "delete_logentry",
         "name": "Can delete log entry",
-        "content_type": 14
-    },
-    "model": "auth.permission",
-    "pk": 42
+        "content_type": 14,
+        "codename": "delete_logentry"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 43,
     "fields": {
-        "codename": "add_permission",
         "name": "Can add permission",
-        "content_type": 15
-    },
-    "model": "auth.permission",
-    "pk": 43
+        "content_type": 15,
+        "codename": "add_permission"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 44,
     "fields": {
-        "codename": "change_permission",
         "name": "Can change permission",
-        "content_type": 15
-    },
-    "model": "auth.permission",
-    "pk": 44
+        "content_type": 15,
+        "codename": "change_permission"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 45,
     "fields": {
-        "codename": "delete_permission",
         "name": "Can delete permission",
-        "content_type": 15
-    },
-    "model": "auth.permission",
-    "pk": 45
+        "content_type": 15,
+        "codename": "delete_permission"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 46,
     "fields": {
-        "codename": "add_group",
         "name": "Can add group",
-        "content_type": 16
-    },
-    "model": "auth.permission",
-    "pk": 46
+        "content_type": 16,
+        "codename": "add_group"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 47,
     "fields": {
-        "codename": "change_group",
         "name": "Can change group",
-        "content_type": 16
-    },
-    "model": "auth.permission",
-    "pk": 47
+        "content_type": 16,
+        "codename": "change_group"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 48,
     "fields": {
-        "codename": "delete_group",
         "name": "Can delete group",
-        "content_type": 16
-    },
-    "model": "auth.permission",
-    "pk": 48
+        "content_type": 16,
+        "codename": "delete_group"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 49,
     "fields": {
-        "codename": "add_user",
         "name": "Can add user",
-        "content_type": 17
-    },
-    "model": "auth.permission",
-    "pk": 49
+        "content_type": 17,
+        "codename": "add_user"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 50,
     "fields": {
-        "codename": "change_user",
         "name": "Can change user",
-        "content_type": 17
-    },
-    "model": "auth.permission",
-    "pk": 50
+        "content_type": 17,
+        "codename": "change_user"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 51,
     "fields": {
-        "codename": "delete_user",
         "name": "Can delete user",
-        "content_type": 17
-    },
-    "model": "auth.permission",
-    "pk": 51
+        "content_type": 17,
+        "codename": "delete_user"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 52,
     "fields": {
-        "codename": "add_contenttype",
         "name": "Can add content type",
-        "content_type": 18
-    },
-    "model": "auth.permission",
-    "pk": 52
+        "content_type": 18,
+        "codename": "add_contenttype"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 53,
     "fields": {
-        "codename": "change_contenttype",
         "name": "Can change content type",
-        "content_type": 18
-    },
-    "model": "auth.permission",
-    "pk": 53
+        "content_type": 18,
+        "codename": "change_contenttype"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 54,
     "fields": {
-        "codename": "delete_contenttype",
         "name": "Can delete content type",
-        "content_type": 18
-    },
-    "model": "auth.permission",
-    "pk": 54
+        "content_type": 18,
+        "codename": "delete_contenttype"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 55,
     "fields": {
-        "codename": "add_session",
         "name": "Can add session",
-        "content_type": 19
-    },
-    "model": "auth.permission",
-    "pk": 55
+        "content_type": 19,
+        "codename": "add_session"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 56,
     "fields": {
-        "codename": "change_session",
         "name": "Can change session",
-        "content_type": 19
-    },
-    "model": "auth.permission",
-    "pk": 56
+        "content_type": 19,
+        "codename": "change_session"
+    }
 },
 {
+    "model": "auth.permission",
+    "pk": 57,
     "fields": {
-        "codename": "delete_session",
         "name": "Can delete session",
-        "content_type": 19
-    },
-    "model": "auth.permission",
-    "pk": 57
+        "content_type": 19,
+        "codename": "delete_session"
+    }
 },
 {
+    "model": "auth.user",
+    "pk": 1,
     "fields": {
+        "password": "pbkdf2_sha256$24000$zaSyKjb8Zqpr$d88HJ5SUfkqFNAvhw54hSzSLg/+nxrZu5vexLmBzIJI=",
+        "last_login": "2016-04-11T13:13:50.309Z",
+        "is_superuser": true,
         "username": "admin",
         "first_name": "",
         "last_name": "",
-        "is_active": true,
-        "is_superuser": true,
-        "is_staff": true,
-        "last_login": "2015-12-15T09:08:56.393Z",
-        "groups": [],
-        "user_permissions": [],
-        "password": "pbkdf2_sha256$20000$cyUtxiEnCONS$mHZBzHQJ6s/eTDXN0dEg0CcagBBzotzvN7ti9jsiM88=",
         "email": "",
-        "date_joined": "2015-12-08T09:14:56Z"
-    },
-    "model": "auth.user",
-    "pk": 1
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2015-12-08T09:14:56Z",
+        "groups": [],
+        "user_permissions": []
+    }
 },
 {
-    "fields": {
-        "action_flag": 2,
-        "action_time": "2015-12-08T09:15:28.895Z",
-        "object_repr": "admin",
-        "object_id": "1",
-        "change_message": "Changed username.",
-        "user": 1,
-        "content_type": 17
-    },
-    "model": "admin.logentry",
-    "pk": 1
-},
-{
-    "fields": {
-        "action_flag": 2,
-        "action_time": "2015-12-08T09:15:40.433Z",
-        "object_repr": "admin",
-        "object_id": "1",
-        "change_message": "Changed password.",
-        "user": 1,
-        "content_type": 17
-    },
-    "model": "admin.logentry",
-    "pk": 2
-},
-{
-    "fields": {
-        "action_flag": 1,
-        "action_time": "2015-12-08T09:16:10.639Z",
-        "object_repr": "netcdf",
-        "object_id": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc",
-        "change_message": "",
-        "user": 1,
-        "content_type": 5
-    },
-    "model": "admin.logentry",
-    "pk": 3
-},
-{
-    "fields": {
-        "action_flag": 1,
-        "action_time": "2015-12-08T09:16:29.438Z",
-        "object_repr": "MET Norway",
-        "object_id": "b3528b13-84aa-49a2-8895-77c1b3fce9d8",
-        "change_message": "",
-        "user": 1,
-        "content_type": 9
-    },
-    "model": "admin.logentry",
-    "pk": 4
-},
-{
-    "fields": {
-        "action_flag": 1,
-        "action_time": "2015-12-08T09:17:35.283Z",
-        "object_repr": "Foo Bar <foo.bar@example.com>",
-        "object_id": "b407e09d-b0c4-4289-95fe-75a2497f6eaa",
-        "change_message": "",
-        "user": 1,
-        "content_type": 8
-    },
-    "model": "admin.logentry",
-    "pk": 5
-},
-{
-    "fields": {
-        "action_flag": 1,
-        "action_time": "2015-12-08T09:18:58.599Z",
-        "object_repr": "Public domain",
-        "object_id": "92a5a153-53a4-4170-a0bc-cbd4ed14a05c",
-        "change_message": "",
-        "user": 1,
-        "content_type": 11
-    },
-    "model": "admin.logentry",
-    "pk": 6
-},
-{
-    "fields": {
-        "action_flag": 1,
-        "action_time": "2015-12-08T09:19:21.180Z",
-        "object_repr": "This is a test product",
-        "object_id": "7d3fe736-5902-44d5-a34c-86f877190523",
-        "change_message": "",
-        "user": 1,
-        "content_type": 1
-    },
-    "model": "admin.logentry",
-    "pk": 7
-},
-{
-    "fields": {
-        "action_flag": 1,
-        "action_time": "2015-12-08T09:19:46.973Z",
-        "object_repr": "TestVar1",
-        "object_id": "0305bccf-0775-4707-9aef-e26aa0f377af",
-        "change_message": "",
-        "user": 1,
-        "content_type": 7
-    },
-    "model": "admin.logentry",
-    "pk": 8
-},
-{
-    "fields": {
-        "action_flag": 1,
-        "action_time": "2015-12-08T09:19:51.232Z",
-        "object_repr": "TestVar2",
-        "object_id": "72a56a36-0567-41f0-bcbe-5ff90c3d79ac",
-        "change_message": "",
-        "user": 1,
-        "content_type": 7
-    },
-    "model": "admin.logentry",
-    "pk": 9
-},
-{
-    "fields": {
-        "action_flag": 2,
-        "action_time": "2015-12-08T09:20:42.980Z",
-        "object_repr": "This is a test product",
-        "object_id": "7d3fe736-5902-44d5-a34c-86f877190523",
-        "change_message": "Changed variables, grid_resolution, grid_resolution_unit, prognosis_length, time_steps and bounding_box.",
-        "user": 1,
-        "content_type": 1
-    },
-    "model": "admin.logentry",
-    "pk": 10
-},
-{
-    "fields": {
-        "action_flag": 1,
-        "action_time": "2015-12-08T09:21:16.617Z",
-        "object_repr": "Datastore1",
-        "object_id": "495bb3be-e327-4840-accf-afefcd411e06",
-        "change_message": "",
-        "user": 1,
-        "content_type": 6
-    },
-    "model": "admin.logentry",
-    "pk": 11
-},
-{
-    "fields": {
-        "action_flag": 1,
-        "action_time": "2015-12-08T09:21:24.593Z",
-        "object_repr": "Datastore2",
-        "object_id": "7f287791-b10f-41c5-ada8-327783573e29",
-        "change_message": "",
-        "user": 1,
-        "content_type": 6
-    },
-    "model": "admin.logentry",
-    "pk": 12
-},
-{
-    "fields": {
-        "action_flag": 1,
-        "action_time": "2015-12-08T09:24:51.837Z",
-        "object_repr": "This is a test product at 2015-12-08 00:00:00+00:00 version 1",
-        "object_id": "88d28ffd-d448-4319-a94e-16889955f94a",
-        "change_message": "",
-        "user": 1,
-        "content_type": 2
-    },
-    "model": "admin.logentry",
-    "pk": 13
-},
-{
-    "fields": {
-        "action_flag": 1,
-        "action_time": "2015-12-08T09:28:08.786Z",
-        "object_repr": "Data from 2015-12-08 00:00:00+00:00 to 2015-12-19 00:00:00+00:00 for model run This is a test product at 2015-12-08 00:00:00+00:00 version 1",
-        "object_id": "434405fa-b3ca-42b1-b764-959d06370b32",
-        "change_message": "",
-        "user": 1,
-        "content_type": 3
-    },
-    "model": "admin.logentry",
-    "pk": 14
-},
-{
-    "fields": {
-        "action_flag": 1,
-        "action_time": "2015-12-08T09:28:40.998Z",
-        "object_repr": "https://datastore1.example.com/test.nc: netcdf data file",
-        "object_id": "ae443952-7990-4cee-9913-41dfd0092dc1",
-        "change_message": "",
-        "user": 1,
-        "content_type": 4
-    },
-    "model": "admin.logentry",
-    "pk": 15
-},
-{
-    "fields": {
-        "action_flag": 1,
-        "action_time": "2015-12-08T09:28:53.360Z",
-        "object_repr": "https://datastore2.example.com/test.nc: netcdf data file",
-        "object_id": "8e52633f-04bc-40d5-99e1-6b1c9b9010f4",
-        "change_message": "",
-        "user": 1,
-        "content_type": 4
-    },
-    "model": "admin.logentry",
-    "pk": 16
-},
-{
-    "fields": {
-        "action_flag": 1,
-        "action_time": "2015-12-08T11:33:19.810Z",
-        "object_repr": "This is a test product at 2015-12-07 00:00:00+00:00 version 1",
-        "object_id": "c29bc2af-f989-4dc9-a17d-de774f93f187",
-        "change_message": "",
-        "user": 1,
-        "content_type": 2
-    },
-    "model": "admin.logentry",
-    "pk": 17
-},
-{
-    "fields": {
-        "action_flag": 1,
-        "action_time": "2015-12-08T11:38:24.731Z",
-        "object_repr": "Cylindrical Equal Area",
-        "object_id": "d454efcc-d822-4d60-a65c-e94680953768",
-        "change_message": "",
-        "user": 1,
-        "content_type": 10
-    },
-    "model": "admin.logentry",
-    "pk": 18
-},
-{
+    "model": "tastypie.apikey",
+    "pk": 1,
     "fields": {
         "user": 1,
         "key": "5bcf851f09bc65043d987910e1448781fcf4ea12",
         "created": "2015-12-08T09:16:01.183Z"
-    },
-    "model": "tastypie.apikey",
-    "pk": 1
+    }
 }
 ]

@@ -24,7 +24,7 @@
                 <tr>
                     <td>{{ product.name }}</td>
                     <td>{% operational product %}</td>
-                    <td><strong>{{ product.id }}</strong></li>
+                    <td>{% uuid product.id %}</li>
                 </tr>
             {% endfor %}
         </tbody>
@@ -46,7 +46,7 @@
             {% for format in dataformats %}
                 <tr>
                     <td>{{ format.name }}</td>
-                    <td><strong>{{ format.id }}</strong></li>
+                    <td>{% uuid format.id %}</li>
                 </tr>
             {% endfor %}
         </tbody>
@@ -69,7 +69,7 @@
             {% for backend in servicebackends %}
                 <tr>
                     <td>{{ backend.name }}</td>
-                    <td><strong>{{ backend.id }}</strong></li>
+                    <td>{% uuid backend.id %}</li>
                 </tr>
             {% endfor %}
         </tbody>

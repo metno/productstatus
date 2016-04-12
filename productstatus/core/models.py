@@ -142,9 +142,23 @@ class ProductInstance(BaseModel):
         qs = qs.values('service_backend').distinct()
         return ServiceBackend.objects.filter(id__in=qs).order_by('name')
 
-    def data_instances_on_service_backend(self, service_backend):
+    def data_formats_on_service_backend(self, service_backend):
+        """!
+        @brief Return a queryset with data formats having the specified service
+        backend and ultimately connected to this ProductInstance.
+        """
+        qs = DataInstance.objects.filter(data__product_instance=self)
+        qs = qs.values('format').distinct()
+        return DataFormat.objects.filter(id__in=qs).order_by('name')
+
+    def data_instances_with_data_format_on_service_backend(self, format, service_backend):
+        """!
+        @brief Return a queryset with data instances connected to this
+        ProductInstance, having the specified service backend and data format.
+        """
         qs = DataInstance.objects.filter(data__product_instance=self,
-                                         service_backend=service_backend)
+                                         service_backend=service_backend,
+                                         format=format)
         qs = qs.order_by('version', 'data__time_period_begin', 'data__time_period_end')
         return qs
 

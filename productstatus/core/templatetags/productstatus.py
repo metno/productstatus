@@ -20,5 +20,14 @@ def operational(product):
     return mark_safe('<span class="ui %(color)s label">%(text)s</span>' % values)
 
 @register.simple_tag
-def data_instances_on_service_backend(product_instance, service_backend):
-    return product_instance.data_instances_on_service_backend(service_backend)
+def data_instances_with_data_format_on_service_backend(product_instance,
+                                                       format,
+                                                       service_backend):
+    return product_instance.data_instances_with_data_format_on_service_backend(
+        format,
+        service_backend,
+    )
+
+@register.simple_tag
+def data_formats_on_service_backend(product_instance, service_backend):
+    return product_instance.data_formats_on_service_backend(service_backend)

@@ -225,6 +225,9 @@ class Data(BaseModel):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
+    class Meta:
+        unique_together = ('time_period_begin', 'time_period_end', 'product_instance')
+
     def instances(self):
         return self.datainstance_set.all().order_by('url')
 

@@ -133,21 +133,37 @@ class ProductInstance(BaseModel):
                 self.version = qs[0].version + 1
         return super(ProductInstance, self).save(*args, **kwargs)
 
-    def service_backends(self):
+    def data_instances(self):
         """!
-        @brief Return a list of service backends that has data related to this
+        @brief Return a queryset of data instances that are connected to this
         ProductInstance.
         """
-        qs = DataInstance.objects.filter(data__product_instance=self)
+        return DataInstance.objects.filter(data__product_instance=self)
+
+    def service_backends(self):
+        """!
+        @brief Return a queryset of service backends that has data related to
+        this ProductInstance.
+        """
+        qs = self.data_instances()
         qs = qs.values('service_backend').distinct()
         return ServiceBackend.objects.filter(id__in=qs).order_by('name')
+
+    def data_formats(self):
+        """!
+        @brief Return a queryset of data formats connected to this
+        ProductInstance through a DataInstance.
+        """
+        qs = self.data_instances()
+        qs = qs.values('format').distinct()
+        return DataFormat.objects.filter(id__in=qs).order_by('name')
 
     def data_formats_on_service_backend(self, service_backend):
         """!
         @brief Return a queryset with data formats having the specified service
         backend and ultimately connected to this ProductInstance.
         """
-        qs = DataInstance.objects.filter(data__product_instance=self)
+        qs = self.data_instances()
         qs = qs.values('format').distinct()
         return DataFormat.objects.filter(id__in=qs).order_by('name')
 
@@ -161,6 +177,30 @@ class ProductInstance(BaseModel):
                                          format=format)
         qs = qs.order_by('version', 'data__time_period_begin', 'data__time_period_end')
         return qs
+
+    def complete(self):
+        """!
+        @brief Return a list with a nested hash of service backends and data
+        formats, with a boolean flag of whether or not all of the DataInstance
+        resources belonging to this ProductInstance are present there.
+        """
+        list_ = {}
+        backends = self.service_backends()
+        formats = self.data_formats()
+        for backend in backends:
+            backend_uri = backend.full_uri()
+            list_[backend_uri] = {}
+            for format in formats:
+                format_uri = format.full_uri()
+                list_[backend_uri][format_uri] = {}
+                instances = self.data_instances_with_data_format_on_service_backend(
+                    format,
+                    backend,
+                )
+                file_count = instances.count()
+                is_complete = (self.product.file_count == file_count)
+                list_[backend_uri][format_uri]['file_count'] = is_complete
+        return list_
 
     def data(self):
         return self.data_set.all().order_by('time_period_begin', 'time_period_end')

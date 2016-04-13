@@ -163,7 +163,7 @@ class ProductInstance(BaseModel):
         @brief Return a queryset with data formats having the specified service
         backend and ultimately connected to this ProductInstance.
         """
-        qs = self.data_instances()
+        qs = self.data_instances().filter(service_backend=service_backend)
         qs = qs.values('format').distinct()
         return DataFormat.objects.filter(id__in=qs).order_by('name')
 

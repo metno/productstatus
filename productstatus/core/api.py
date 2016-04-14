@@ -102,8 +102,8 @@ class DataResource(BaseResource):
         filtering = {
             'id': resources.ALL,
             'productinstance': resources.ALL_WITH_RELATIONS,
-            'time_period_begin': resources.ALL,
-            'time_period_end': resources.ALL,
+            'time_period_begin': resources.ALL_WITH_RELATIONS,
+            'time_period_end': resources.ALL_WITH_RELATIONS,
         }
 
 

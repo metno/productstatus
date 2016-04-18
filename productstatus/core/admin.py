@@ -26,6 +26,7 @@ class ProductAdmin(admin.ModelAdmin):
     ordering = ['-created']
     raw_id_fields = ('parents', 'variables')
     search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
 admin.site.register(Product, ProductAdmin)
 
 
@@ -108,6 +109,7 @@ class DataFormatAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'created', 'modified')
     list_filter = ('created', 'modified')
     search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
 admin.site.register(DataFormat, DataFormatAdmin)
 
 
@@ -115,6 +117,7 @@ class ServiceBackendAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'documentation_url', 'created', 'modified')
     list_filter = ('created', 'modified')
     search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
 admin.site.register(ServiceBackend, ServiceBackendAdmin)
 
 
@@ -122,6 +125,7 @@ class VariableAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'created', 'modified')
     list_filter = ('created', 'modified')
     search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
 admin.site.register(Variable, VariableAdmin)
 
 
@@ -129,6 +133,7 @@ class PersonAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'email', 'created', 'modified')
     list_filter = ('created', 'modified')
     search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
 admin.site.register(Person, PersonAdmin)
 
 
@@ -136,6 +141,7 @@ class InstitutionAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'created', 'modified')
     list_filter = ('created', 'modified')
     search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
 admin.site.register(Institution, InstitutionAdmin)
 
 
@@ -143,6 +149,7 @@ class ProjectionAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'definition', 'created', 'modified')
     list_filter = ('created', 'modified')
     search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
 admin.site.register(Projection, ProjectionAdmin)
 
 
@@ -158,4 +165,5 @@ class LicenseAdmin(admin.ModelAdmin):
     )
     list_filter = ('public', 'created', 'modified')
     search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
 admin.site.register(License, LicenseAdmin)

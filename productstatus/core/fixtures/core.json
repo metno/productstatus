@@ -3,6 +3,7 @@
     "model": "core.product",
     "pk": "7d3fe736-5902-44d5-a34c-86f877190523",
     "fields": {
+        "slug": "test-product",
         "projection": null,
         "contact": "b407e09d-b0c4-4289-95fe-75a2497f6eaa",
         "institution": "b3528b13-84aa-49a2-8895-77c1b3fce9d8",
@@ -19,7 +20,7 @@
         "file_count": null,
         "source_key": "",
         "created": "2015-12-08T09:19:21.176Z",
-        "modified": "2015-12-08T09:20:42.977Z",
+        "modified": "2016-04-18T10:44:14.107Z",
         "parents": [],
         "variables": [
             "0305bccf-0775-4707-9aef-e26aa0f377af",
@@ -125,15 +126,17 @@
     "model": "core.dataformat",
     "pk": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc",
     "fields": {
+        "slug": "netcdf",
         "name": "netcdf",
         "created": "2015-12-08T09:16:10.639Z",
-        "modified": "2015-12-08T09:16:10.639Z"
+        "modified": "2016-04-18T10:46:03.280Z"
     }
 },
 {
     "model": "core.servicebackend",
     "pk": "495bb3be-e327-4840-accf-afefcd411e06",
     "fields": {
+        "slug": null,
         "name": "Datastore1",
         "documentation_url": "http://example.com",
         "created": "2015-12-08T09:21:16.617Z",
@@ -144,6 +147,7 @@
     "model": "core.servicebackend",
     "pk": "7f287791-b10f-41c5-ada8-327783573e29",
     "fields": {
+        "slug": null,
         "name": "Datastore2",
         "documentation_url": "http://example.com",
         "created": "2015-12-08T09:21:24.593Z",
@@ -154,59 +158,65 @@
     "model": "core.variable",
     "pk": "0305bccf-0775-4707-9aef-e26aa0f377af",
     "fields": {
+        "slug": "testvar1",
         "name": "TestVar1",
         "created": "2015-12-08T09:19:46.972Z",
-        "modified": "2015-12-08T09:19:46.972Z"
+        "modified": "2016-04-18T10:45:00.754Z"
     }
 },
 {
     "model": "core.variable",
     "pk": "72a56a36-0567-41f0-bcbe-5ff90c3d79ac",
     "fields": {
+        "slug": "testvar2",
         "name": "TestVar2",
         "created": "2015-12-08T09:19:51.232Z",
-        "modified": "2015-12-08T09:19:51.232Z"
+        "modified": "2016-04-18T10:44:52.160Z"
     }
 },
 {
     "model": "core.person",
     "pk": "b407e09d-b0c4-4289-95fe-75a2497f6eaa",
     "fields": {
+        "slug": "foo-bar",
         "name": "Foo Bar",
         "email": "foo.bar@example.com",
         "created": "2015-12-08T09:17:35.283Z",
-        "modified": "2015-12-08T09:17:35.283Z"
+        "modified": "2016-04-18T10:45:25.194Z"
     }
 },
 {
     "model": "core.institution",
     "pk": "b3528b13-84aa-49a2-8895-77c1b3fce9d8",
     "fields": {
+        "slug": "met-norway",
         "name": "MET Norway",
         "created": "2015-12-08T09:16:29.438Z",
-        "modified": "2015-12-08T09:16:29.438Z"
+        "modified": "2016-04-18T10:45:51.181Z"
     }
 },
 {
     "model": "core.projection",
     "pk": "d454efcc-d822-4d60-a65c-e94680953768",
     "fields": {
+        "slug": "cylindrical-equal-area",
         "name": "Cylindrical Equal Area",
-        "definition": " +proj=cea +lon_0=Central Meridian +lat_ts=Standard Parallel +x_0=False Easting +y_0=False Northing",
+        "definition": "+proj=cea +lon_0=Central Meridian +lat_ts=Standard Parallel +x_0=False Easting +y_0=False Northing",
         "created": "2015-12-08T11:38:24.731Z",
-        "modified": "2015-12-08T11:38:24.731Z"
+        "modified": "2016-04-18T10:45:11.452Z"
     }
 },
 {
     "model": "core.license",
     "pk": "92a5a153-53a4-4170-a0bc-cbd4ed14a05c",
     "fields": {
+        "slug": "public-domain",
         "name": "Public domain",
         "description": "",
         "url": "",
         "public": true,
         "created": "2015-12-08T09:18:58.598Z",
-        "modified": "2015-12-08T09:18:58.598Z"
+        "modified": "2016-04-18T10:45:32.484Z"
     }
 },
 {
@@ -375,6 +385,14 @@
     "fields": {
         "session_data": "ZjYwNzJhNjA0NjM0ZTE4ZjRiMDcyMTZiMjg2MDViYjc3YjFlMDhkYjp7Il9hdXRoX3VzZXJfaGFzaCI6ImRiNzI4YmE1ZjIyZmM5ZGM2ZGViYTU2OTI4ZWY3OGUyZDhlYjc2NTUiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
         "expire_date": "2015-12-22T09:15:40.518Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "d3rtxd4u3okkwpc6lbummlb9qj7rnztk",
+    "fields": {
+        "session_data": "NTFmZDAxZTI2ZTgxMzUzOGE4MjQwMWUxN2Y1OTg0NWI5MTBiNjUyOTp7Il9hdXRoX3VzZXJfaGFzaCI6ImYzNTQzOWY4MGI1MTdmM2FiYmFlOGYwY2RmMDRiZmU0ZjBmOWMyNWYiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=",
+        "expire_date": "2016-05-02T10:43:25.400Z"
     }
 },
 {
@@ -934,7 +952,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$24000$zaSyKjb8Zqpr$d88HJ5SUfkqFNAvhw54hSzSLg/+nxrZu5vexLmBzIJI=",
-        "last_login": "2016-04-11T13:13:50.309Z",
+        "last_login": "2016-04-18T10:43:25.393Z",
         "is_superuser": true,
         "username": "admin",
         "first_name": "",

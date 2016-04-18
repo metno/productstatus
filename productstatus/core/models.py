@@ -36,11 +36,16 @@ class BaseModel(models.Model):
             app = django_apps.get_app_config('core')
             app.send_message(self)
 
+    def slugify(self):
+        """!
+        @returns an ASCII, spaceless id representation of the model instance name.
+        """
+        return django.utils.text.slugify(self.name)
+
     def resource_name(self):
         """!
         @returns The lowercase class name of the instance.
         """
-
         return self.__class__.__name__.lower()
 
     def full_url(self):
@@ -67,6 +72,7 @@ class Product(BaseModel):
     LENGTH_UNITS = (('m', 'meters'), ('deg', 'degrees'))
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    slug = models.CharField(max_length=255, null=True, blank=True)
     parents = models.ManyToManyField('Product', related_name='children', blank=True)
     variables = models.ManyToManyField('Variable', blank=True)
     projection = models.ForeignKey('Projection', null=True, blank=True)
@@ -268,6 +274,7 @@ class DataFormat(BaseModel):
     A data format, e.g. NetCDF, GRIB, web service, etc.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    slug = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(unique=True, max_length=255)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
@@ -281,6 +288,7 @@ class ServiceBackend(BaseModel):
     A service providing a data file.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    slug = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(unique=True, max_length=255)
     documentation_url = models.URLField(max_length=1024)
     created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -295,6 +303,7 @@ class Variable(BaseModel):
     A standardized CF variable name.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    slug = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(unique=True, max_length=255)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
@@ -308,6 +317,7 @@ class Person(BaseModel):
     A single human being.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    slug = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -325,6 +335,7 @@ class Institution(BaseModel):
     A single institution.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    slug = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(unique=True, max_length=255)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
@@ -338,6 +349,7 @@ class Projection(BaseModel):
     A geographic projection, as defined by proj.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    slug = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(unique=True, max_length=255)
     definition = models.CharField(unique=True, max_length=1024)
     created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -352,6 +364,7 @@ class License(BaseModel):
     A data usage license.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    slug = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(unique=True, max_length=255)
     description = models.CharField(max_length=1024, null=True, blank=True)
     url = models.URLField(max_length=1024, null=True, blank=True)

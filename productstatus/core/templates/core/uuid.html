@@ -16,6 +16,7 @@
             <tr>
                 <th>Product</th>
                 <th>Operational</th>
+                <th>Slug</th>
                 <th>UUID</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <tr>
                     <td>{{ product.name }}</td>
                     <td>{% operational product %}</td>
+                    <td>{% slug product.slug %}</li>
                     <td>{% uuid product.id %}</li>
                 </tr>
             {% endfor %}
@@ -39,6 +41,7 @@
         <thead>
             <tr>
                 <th>Data format</th>
+                <th>Slug</th>
                 <th>UUID</th>
             </tr>
         </thead>
@@ -46,6 +49,7 @@
             {% for format in dataformats %}
                 <tr>
                     <td>{{ format.name }}</td>
+                    <td>{% slug format.slug %}</li>
                     <td>{% uuid format.id %}</li>
                 </tr>
             {% endfor %}
@@ -62,6 +66,7 @@
         <thead>
             <tr>
                 <th>Service backend</th>
+                <th>Slug</th>
                 <th>UUID</th>
             </tr>
         </thead>
@@ -69,6 +74,7 @@
             {% for backend in servicebackends %}
                 <tr>
                     <td>{{ backend.name }}</td>
+                    <td>{% slug backend.slug %}</li>
                     <td>{% uuid backend.id %}</li>
                 </tr>
             {% endfor %}

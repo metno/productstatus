@@ -15,11 +15,11 @@
     <div class="ui two column doubling stackable grid container">
         {% for product in products %}
             <div class="column">
-                <h3 class="ui block header">{{ product.name }} {% operational product %}</h3>
+                <h3 class="ui block header">{{ product.name }} {% operational product %} {% slug product.slug %}</h3>
                 {% if product.latest_product_instance %}
                     {% with instance=product.latest_product_instance %}
                     <div>
-                        <p>Reference time: <strong>{{ instance.reference_time }}</strong></p>
+                        <p>Reference time: <strong>{{ instance.reference_time }}</strong> {% uuid instance.id %}</p>
                         {% for backend in instance.service_backends %}
                             {% data_formats_on_service_backend instance backend as formats %}
                             {% for format in formats %}

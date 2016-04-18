@@ -7,6 +7,10 @@ register = template.Library()
 def uuid(uuid):
     return mark_safe('<div class="ui teal label">%s</div>' % uuid)
 
+@register.simple_tag
+def slug(uuid):
+    return mark_safe('<div class="ui purple label">%s</div>' % uuid)
+
 @register.simple_tag(takes_context=True)
 def active(context, view):
     return 'active' if context.request.resolver_match.url_name == view else ''

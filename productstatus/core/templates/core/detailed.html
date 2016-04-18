@@ -15,7 +15,7 @@
     {% for product in products %}
 
         <h3 id="{{ product.name|slugify }}" class="ui block header">
-            {{ product.name }} {% operational product %} {% uuid product.id %}
+            {{ product.name }} {% operational product %} {% slug product.slug %} {% uuid product.id %}
         </h3>
 
         <table class="ui celled table">

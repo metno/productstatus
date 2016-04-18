@@ -32,6 +32,13 @@ class BaseModel(models.Model):
         that the record will only be saved if a message was successfully
         emitted to Kafka.
         """
+        # Preserve NULL values when writing from the admin interface
+        for var in vars(self):
+            if not var.startswith('_'):
+                if self.__dict__[var] == '':
+                    self.__dict__[var] = None
+
+        # Write data using a DB transaction
         with django.db.transaction.atomic():
             super(BaseModel, self).save(*args, **kwargs)
             app = django_apps.get_app_config('core')
@@ -73,7 +80,7 @@ class Product(BaseModel):
     LENGTH_UNITS = (('m', 'meters'), ('deg', 'degrees'))
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    slug = models.CharField(max_length=255, unique=True)
+    slug = models.CharField(max_length=255, unique=True, default='slugify')
     parents = models.ManyToManyField('Product', related_name='children', blank=True)
     variables = models.ManyToManyField('Variable', blank=True)
     projection = models.ForeignKey('Projection', null=True, blank=True)
@@ -275,7 +282,7 @@ class DataFormat(BaseModel):
     A data format, e.g. NetCDF, GRIB, web service, etc.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    slug = models.CharField(max_length=255, unique=True)
+    slug = models.CharField(max_length=255, unique=True, default='slugify')
     name = models.CharField(unique=True, max_length=255)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
@@ -289,7 +296,7 @@ class ServiceBackend(BaseModel):
     A service providing a data file.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    slug = models.CharField(max_length=255, unique=True)
+    slug = models.CharField(max_length=255, unique=True, default='slugify')
     name = models.CharField(unique=True, max_length=255)
     documentation_url = models.URLField(max_length=1024)
     created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -304,7 +311,7 @@ class Variable(BaseModel):
     A standardized CF variable name.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    slug = models.CharField(max_length=255, unique=True)
+    slug = models.CharField(max_length=255, unique=True, default='slugify')
     name = models.CharField(unique=True, max_length=255)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
@@ -318,7 +325,7 @@ class Person(BaseModel):
     A single human being.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    slug = models.CharField(max_length=255, unique=True)
+    slug = models.CharField(max_length=255, unique=True, default='slugify')
     name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -336,7 +343,7 @@ class Institution(BaseModel):
     A single institution.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    slug = models.CharField(max_length=255, unique=True)
+    slug = models.CharField(max_length=255, unique=True, default='slugify')
     name = models.CharField(unique=True, max_length=255)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
@@ -350,7 +357,7 @@ class Projection(BaseModel):
     A geographic projection, as defined by proj.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    slug = models.CharField(max_length=255, unique=True)
+    slug = models.CharField(max_length=255, unique=True, default='slugify')
     name = models.CharField(unique=True, max_length=255)
     definition = models.CharField(unique=True, max_length=1024)
     created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -365,7 +372,7 @@ class License(BaseModel):
     A data usage license.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    slug = models.CharField(max_length=255, unique=True)
+    slug = models.CharField(max_length=255, unique=True, default='slugify')
     name = models.CharField(unique=True, max_length=255)
     description = models.CharField(max_length=1024, null=True, blank=True)
     url = models.URLField(max_length=1024, null=True, blank=True)

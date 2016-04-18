@@ -224,6 +224,7 @@ class KafkaObject(object):
     """!
     @brief A representation of Kafka broker settings.
     """
+    id = settings.KAFKA_SINGLETON_PK
     topic = settings.KAFKA_TOPIC
     brokers = settings.KAFKA_BROKERS
 
@@ -233,9 +234,7 @@ class KafkaResource(resources.Resource):
     @brief A read-only, singleton resource that will return connection details
     to this Productstatus server's Kafka brokers and topic.
     """
-
-    SINGLETON_PK = 'default'
-
+    id = fields.CharField(attribute='id', readonly=True)
     brokers = fields.ListField(attribute='brokers', readonly=True)
     topic = fields.CharField(attribute='topic', readonly=True)
 
@@ -247,17 +246,17 @@ class KafkaResource(resources.Resource):
         serializer = Serializer()
 
     def detail_uri_kwargs(self, bundle_or_obj):
-        return {'pk': self.SINGLETON_PK}
+        return {'pk': settings.KAFKA_SINGLETON_PK}
 
     def get_object_list(self, *args, **kwargs):
-        return [self.obj_get(pk=self.SINGLETON_PK)]
+        return [self.obj_get(pk=settings.KAFKA_SINGLETON_PK)]
 
     def obj_get_list(self, bundle, **kwargs):
         return self.get_object_list()
 
     def obj_get(self, *args, **kwargs):
-        if kwargs['pk'] != self.SINGLETON_PK:
-            raise tastypie.exceptions.NotFound('The Kafka resource is only available as "%s"' % self.SINGLETON_PK)
+        if kwargs['pk'] != settings.KAFKA_SINGLETON_PK:
+            raise tastypie.exceptions.NotFound('The Kafka resource is only available as "%s"' % settings.KAFKA_SINGLETON_PK)
         return KafkaObject()
 
     def rollback(self, *args, **kwargs):

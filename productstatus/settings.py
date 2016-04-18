@@ -169,6 +169,7 @@ TESTING = sys.argv[1:2] == ['test']
 TASTYPIE_DEFAULT_FORMATS = ['json']
 
 # Kafka settings
+KAFKA_SINGLETON_PK = 'default'
 KAFKA_BROKERS = ['localhost:9092']
 KAFKA_CLIENT_ID = 'productstatus-' + unicode(uuid.uuid4())
 KAFKA_TOPIC = 'productstatus'

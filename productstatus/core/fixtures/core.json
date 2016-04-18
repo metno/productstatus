@@ -136,22 +136,22 @@
     "model": "core.servicebackend",
     "pk": "495bb3be-e327-4840-accf-afefcd411e06",
     "fields": {
-        "slug": null,
+        "slug": "datastore1",
         "name": "Datastore1",
         "documentation_url": "http://example.com",
         "created": "2015-12-08T09:21:16.617Z",
-        "modified": "2015-12-08T09:21:16.617Z"
+        "modified": "2016-04-18T11:01:34.104Z"
     }
 },
 {
     "model": "core.servicebackend",
     "pk": "7f287791-b10f-41c5-ada8-327783573e29",
     "fields": {
-        "slug": null,
+        "slug": "datastore2",
         "name": "Datastore2",
         "documentation_url": "http://example.com",
         "created": "2015-12-08T09:21:24.593Z",
-        "modified": "2015-12-08T09:21:24.593Z"
+        "modified": "2016-04-18T11:01:27.232Z"
     }
 },
 {

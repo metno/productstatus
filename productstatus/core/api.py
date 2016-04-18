@@ -68,6 +68,7 @@ class ProductResource(BaseResource):
             'id': resources.ALL,
             'parents': resources.ALL,
             'name': ['exact'],
+            'slug': ['exact'],
             'wdb_data_provider': ['exact'],
             'source': resources.ALL_WITH_RELATIONS,
             'source_key': ['exact'],
@@ -138,6 +139,7 @@ class DataFormatResource(BaseResource):
         filtering = {
             'id': resources.ALL,
             'name': resources.ALL,
+            'slug': resources.ALL,
         }
 
 
@@ -146,6 +148,8 @@ class ServiceBackendResource(BaseResource):
         queryset = productstatus.core.models.ServiceBackend.objects.all()
         filtering = {
             'id': resources.ALL,
+            'name': resources.ALL,
+            'slug': resources.ALL,
         }
 
 
@@ -154,6 +158,8 @@ class VariableResource(BaseResource):
         queryset = productstatus.core.models.Variable.objects.all()
         filtering = {
             'id': resources.ALL,
+            'name': resources.ALL,
+            'slug': resources.ALL,
         }
 
 
@@ -162,6 +168,8 @@ class PersonResource(BaseResource):
         queryset = productstatus.core.models.Person.objects.all()
         filtering = {
             'id': resources.ALL,
+            'name': resources.ALL,
+            'slug': resources.ALL,
         }
 
 
@@ -170,6 +178,8 @@ class InstitutionResource(BaseResource):
         queryset = productstatus.core.models.Institution.objects.all()
         filtering = {
             'id': resources.ALL,
+            'name': resources.ALL,
+            'slug': resources.ALL,
         }
 
 
@@ -178,6 +188,8 @@ class ProjectionResource(BaseResource):
         queryset = productstatus.core.models.Projection.objects.all()
         filtering = {
             'id': resources.ALL,
+            'name': resources.ALL,
+            'slug': resources.ALL,
         }
 
 
@@ -186,6 +198,8 @@ class LicenseResource(BaseResource):
         queryset = productstatus.core.models.License.objects.all()
         filtering = {
             'id': resources.ALL,
+            'name': resources.ALL,
+            'slug': resources.ALL,
         }
 
 

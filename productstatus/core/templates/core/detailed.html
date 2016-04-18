@@ -24,15 +24,17 @@
                     <th>Contact</th>
                     <td>{{ product.contact }}</td>
                 </tr>
-                <tr>
-                    <th>Source</th>
-                    <td>
-                        {{ product.source }}
-                        {% if product.source_key %}
-                            <em>with source key</em> <strong>{{ product.source_key }}</strong>
-                        {% endif %}
-                    </td>
-                </tr>
+                {% if product.source %}
+                    <tr>
+                        <th>Source</th>
+                        <td>
+                            {{ product.source }}
+                            {% if product.source_key %}
+                                <em>with source key</em> <strong>{{ product.source_key }}</strong>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
                 {% if product.grid_resolution %}
                     <tr>
                         <th>Grid resolution</th>

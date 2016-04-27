@@ -5,3 +5,4 @@ django-tastypie==0.13.3
 ipython==4.0.1
 kafka-python==1.0.2
 python-dateutil==2.4.2
+psycopg2==2.6.1

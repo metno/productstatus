@@ -8,9 +8,10 @@ import tastypie.exceptions
 class KafkaResourceTest(ProductstatusResourceTest):
 
     RESPONSE_OBJECT = {
-        'topic': settings.KAFKA_TOPIC,
-        'brokers': settings.KAFKA_BROKERS,
-        'resource_uri': '/api/v1/kafka/default/',
+        u'id': 'default',
+        u'topic': settings.KAFKA_TOPIC,
+        u'brokers': settings.KAFKA_BROKERS,
+        u'resource_uri': '/api/v1/kafka/default/',
     }
 
     def test_get_collection(self):

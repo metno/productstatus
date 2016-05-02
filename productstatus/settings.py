@@ -175,6 +175,7 @@ KAFKA_CLIENT_ID = 'productstatus-' + str(uuid.uuid4())
 KAFKA_TOPIC = 'productstatus'
 KAFKA_REQUEST_TIMEOUT = 2000  # milliseconds
 KAFKA_SSL = False
+KAFKA_SSL_VERIFY = True
 
 # Frontend date/time format
 DATETIME_FORMAT = 'Y-m-d H:i:s\Z'
@@ -186,6 +187,6 @@ PRODUCTSTATUS_PROTOCOL = 'http'
 
 # Import site-specific (production) settings, overwriting any local default variables
 try:
-    from local_settings import *
+    from .local_settings import *
 except ImportError:
     logging.warning("Failed to import local_settings, continuing with defaults")

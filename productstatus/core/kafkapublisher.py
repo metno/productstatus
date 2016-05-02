@@ -1,5 +1,6 @@
 from django.conf import settings
 
+import ssl
 import datetime
 import dateutil.tz
 import uuid
@@ -22,10 +23,14 @@ class KafkaPublisher(object):
         self.client_id = client_id
         self.topic = topic
         self.timeout = timeout
+        self.ssl_context = ssl.SSLContext(protocol=ssl.PROTOCOL_TLSv1_2)
+        if not settings.KAFKA_SSL_VERIFY:
+            self.ssl_context.verify_mode = ssl.CERT_NONE
         self.json_producer = kafka.KafkaProducer(bootstrap_servers=self.brokers,
                                                  client_id=self.client_id,
                                                  acks=1,
                                                  security_protocol='SSL' if settings.KAFKA_SSL else None,
+                                                 ssl_context = self.ssl_context,
                                                  value_serializer=lambda m: json.dumps(m).encode('utf-8'))
 
     def publish_resource(self, instance):

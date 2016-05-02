@@ -227,6 +227,8 @@ class KafkaObject(object):
     id = settings.KAFKA_SINGLETON_PK
     topic = settings.KAFKA_TOPIC
     brokers = settings.KAFKA_BROKERS
+    ssl = settings.KAFKA_SSL
+    ssl_verify = settings.KAFKA_SSL_VERIFY
 
 
 class KafkaResource(resources.Resource):
@@ -237,6 +239,8 @@ class KafkaResource(resources.Resource):
     id = fields.CharField(attribute='id', readonly=True)
     brokers = fields.ListField(attribute='brokers', readonly=True)
     topic = fields.CharField(attribute='topic', readonly=True)
+    ssl = fields.BooleanField(attribute='ssl', readonly=True)
+    ssl_verify = fields.BooleanField(attribute='ssl_verify', readonly=True)
 
     class Meta:
         allowed_methods = ['get']

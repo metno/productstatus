@@ -25,6 +25,7 @@ class KafkaPublisher(object):
         self.json_producer = kafka.KafkaProducer(bootstrap_servers=self.brokers,
                                                  client_id=self.client_id,
                                                  acks=1,
+                                                 security_protocol='SSL' if settings.KAFKA_SSL else None,
                                                  value_serializer=lambda m: json.dumps(m).encode('utf-8'))
 
     def publish_resource(self, instance):
@@ -61,7 +62,7 @@ class KafkaPublisher(object):
         """
 
         msg = {
-            'message_id': unicode(uuid.uuid4()),
+            'message_id': str(uuid.uuid4()),
             'message_timestamp': datetime.datetime.utcnow().replace(tzinfo=dateutil.tz.tzutc()).strftime('%Y-%m-%dT%H:%M:%SZ'),
             'url': model_instance.full_url(),
             'uri': model_instance.full_uri(),

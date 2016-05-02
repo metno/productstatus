@@ -110,7 +110,7 @@ class Product(BaseModel):
             return qs[0]
         return None
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -219,10 +219,10 @@ class ProductInstance(BaseModel):
     def data(self):
         return self.data_set.all().order_by('time_period_begin', 'time_period_end')
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%(product)s at %(rtime)s version %(version)s' % {
-            'product': unicode(self.product),
-            'rtime': unicode(self.reference_time),
+            'product': str(self.product),
+            'rtime': str(self.reference_time),
             'version': self.version,
         }
 
@@ -245,9 +245,9 @@ class Data(BaseModel):
     def instances(self):
         return self.datainstance_set.all().order_by('url')
 
-    def __unicode__(self):
+    def __str__(self):
         return u'Data for product instance: %(product_instance)s' % {
-            'product_instance': unicode(self.product_instance),
+            'product_instance': str(self.product_instance),
         }
 
 
@@ -270,10 +270,10 @@ class DataInstance(BaseModel):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%(url)s: %(format)s data file' % {
             'url': self.url,
-            'format': unicode(self.format),
+            'format': str(self.format),
         }
 
 
@@ -287,7 +287,7 @@ class DataFormat(BaseModel):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -302,7 +302,7 @@ class ServiceBackend(BaseModel):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -316,7 +316,7 @@ class Variable(BaseModel):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -331,7 +331,7 @@ class Person(BaseModel):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%(name)s <%(email)s>' % {
             'name': self.name,
             'email': self.email,
@@ -348,7 +348,7 @@ class Institution(BaseModel):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -363,7 +363,7 @@ class Projection(BaseModel):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -380,5 +380,5 @@ class License(BaseModel):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name

@@ -26,7 +26,7 @@ class ProductstatusResourceTest(ResourceTestCaseMixin, django.test.TestCase):
         )
 
     def unserialize(self, response):
-        return json.loads(response.content)
+        return json.loads(response.content.decode('UTF-8'))
 
 
 class BaseTestCases:
@@ -70,7 +70,7 @@ class BaseTestCases:
                                  authentication=self.api_key_header)
             object_ = self.__model_class__.objects.all()[0]
             data = copy.copy(self.post_data)
-            data['id'] = unicode(object_.id)
+            data['id'] = str(object_.id)
             self.api_client.put(self.base_url, format='json', data=data, authentication=self.api_key_header)
             self.assertEqual(self.__model_class__.objects.count(), self.collection_size + 1)
 

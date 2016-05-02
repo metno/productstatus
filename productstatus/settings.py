@@ -171,9 +171,10 @@ TASTYPIE_DEFAULT_FORMATS = ['json']
 # Kafka settings
 KAFKA_SINGLETON_PK = 'default'
 KAFKA_BROKERS = ['localhost:9092']
-KAFKA_CLIENT_ID = 'productstatus-' + unicode(uuid.uuid4())
+KAFKA_CLIENT_ID = 'productstatus-' + str(uuid.uuid4())
 KAFKA_TOPIC = 'productstatus'
 KAFKA_REQUEST_TIMEOUT = 2000  # milliseconds
+KAFKA_SSL = False
 
 # Frontend date/time format
 DATETIME_FORMAT = 'Y-m-d H:i:s\Z'

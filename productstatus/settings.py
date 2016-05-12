@@ -11,13 +11,14 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 import logging
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import uuid
 import os
 import sys
 import socket
+import raven
+import os
 
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -36,6 +37,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'productstatus.core',
     'tastypie',
+    'raven.contrib.django.raven_compat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -184,6 +186,9 @@ DATETIME_FORMAT = 'Y-m-d H:i:s\Z'
 PRODUCTSTATUS_HOST = 'localhost:8000'
 PRODUCTSTATUS_BASE_PATH = '/api/v1'
 PRODUCTSTATUS_PROTOCOL = 'http'
+
+# Blank Raven configuration, please configure in local_settings
+RAVEN_CONFIG = {}
 
 # Import site-specific (production) settings, overwriting any local default variables
 try:

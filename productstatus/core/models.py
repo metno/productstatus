@@ -187,6 +187,7 @@ class ProductInstance(BaseModel):
         ProductInstance, having the specified service backend and data format.
         """
         qs = DataInstance.objects.filter(data__product_instance=self,
+                                         deleted=False,
                                          service_backend=service_backend,
                                          format=format)
         qs = qs.order_by('version', 'data__time_period_begin', 'data__time_period_end')

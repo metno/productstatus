@@ -11,6 +11,8 @@ class KafkaResourceTest(ProductstatusResourceTest):
         u'id': 'default',
         u'topic': settings.KAFKA_TOPIC,
         u'brokers': settings.KAFKA_BROKERS,
+        u'ssl': settings.KAFKA_SSL,
+        u'ssl_verify': settings.KAFKA_SSL_VERIFY,
         u'resource_uri': '/api/v1/kafka/default/',
     }
 

@@ -372,6 +372,14 @@
     }
 },
 {
+    "model": "contenttypes.contenttype",
+    "pk": 20,
+    "fields": {
+        "app_label": "core",
+        "model": "pendingmessage"
+    }
+},
+{
     "model": "sessions.session",
     "pk": "4wdw89m48oq1r485srjz6rptib16ovcr",
     "fields": {
@@ -914,6 +922,33 @@
         "name": "Can delete session",
         "content_type": 19,
         "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+        "name": "Can add pending message",
+        "content_type": 20,
+        "codename": "add_pendingmessage"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+        "name": "Can change pending message",
+        "content_type": 20,
+        "codename": "change_pendingmessage"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+        "name": "Can delete pending message",
+        "content_type": 20,
+        "codename": "delete_pendingmessage"
     }
 },
 {

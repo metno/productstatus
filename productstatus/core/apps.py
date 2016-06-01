@@ -13,7 +13,7 @@ class EventPublisher(AppConfig):
         """
         self.publisher = None
 
-    def send_message(self, instance):
+    def send_message(self, message):
         """!
         @brief Instantiate Kafka publisher if needed, then publish a message about a model instance.
         """
@@ -26,4 +26,4 @@ class EventPublisher(AppConfig):
                 settings.KAFKA_TOPIC,
                 settings.KAFKA_REQUEST_TIMEOUT,
             )
-        self.publisher.publish_resource(instance)
+        self.publisher.send_message(message)

@@ -7,12 +7,41 @@
 
 from django.db import models
 from django.conf import settings
-from django.apps import apps as django_apps
 
 import django.db
 import django.utils.text
 
 import uuid
+import json
+
+import productstatus.core.kafkapublisher
+
+
+class PendingMessage(models.Model):
+    """!
+    @brief This database table stores pending messages that should be sent on
+    the Kafka queue.
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    message = models.TextField()
+
+    @staticmethod
+    def all_pending():
+        return PendingMessage.objects.all().order_by('timestamp')
+
+    @staticmethod
+    def factory(instance):
+        """!
+        @brief Generate a PendingMessage object based on a BaseModel instance.
+        """
+        if not isinstance(instance, BaseModel):
+            raise RuntimeError('PendingMessage objects can only be derived from children of BaseModel')
+        p = PendingMessage()
+        msg = productstatus.core.kafkapublisher.KafkaPublisher.resource_message(instance)
+        p.id = uuid.UUID(msg['message_id'])
+        p.message = json.dumps(msg).encode('utf-8')
+        return p
 
 
 class BaseModel(models.Model):
@@ -41,8 +70,8 @@ class BaseModel(models.Model):
         # Write data using a DB transaction
         with django.db.transaction.atomic():
             super(BaseModel, self).save(*args, **kwargs)
-            app = django_apps.get_app_config('core')
-            app.send_message(self)
+            message = PendingMessage.factory(self)
+            message.save()
 
     def slugify(self):
         """!

@@ -33,14 +33,6 @@ class KafkaPublisher(object):
                                                  ssl_context = self.ssl_context,
                                                  value_serializer=lambda m: json.dumps(m).encode('utf-8'))
 
-    def publish_resource(self, instance):
-        """!
-        @brief Publish a model instance to the configured Kafka topic.
-        """
-
-        msg = KafkaPublisher.resource_message(instance)
-        self.send_message(msg)
-
     def send_message(self, msg):
         """
         Send a json message to Kafka.

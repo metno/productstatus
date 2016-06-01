@@ -24,5 +24,5 @@ class Command(BaseCommand):
                     id = message.id
                     message.delete()
                     app.send_message(json.loads(message.message))
-                logging.info('Message %s has been sent and deleted from the message queue', id)
+                logging.info('Message %s has been sent and deleted from the pending message queue', id)
             time.sleep(1)

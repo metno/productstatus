@@ -15,6 +15,7 @@ config = {
         'django-extensions==1.5.9',
         'django-mptt==0.7.4',
         'django-tastypie==0.13.3',
+        'django-cors-headers==1.1.0',
         'ipython==4.2.0',
         'kafka-python==1.1.1',
         'python-dateutil==2.5.3',

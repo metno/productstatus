@@ -37,6 +37,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'productstatus.core',
     'tastypie',
+    'corsheaders',
     'raven.contrib.django.raven_compat',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -49,6 +50,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -163,6 +165,9 @@ LOGGING = {
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Allow Cross-Origin Resource Sharing
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Detect test mode
 TESTING = sys.argv[1:2] == ['test']

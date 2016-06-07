@@ -760,33 +760,60 @@
     }
 },
 {
+    "model": "auth.permission",
+    "pk": 61,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 21,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 62,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 21,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 63,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 21,
+        "codename": "delete_session"
+    }
+},
+{
     "model": "auth.group",
     "pk": 1,
     "fields": {
         "name": "Basic RW usage",
         "permissions": [
-            7,
-            8,
-            13,
-            14,
             10,
             11,
-            25,
-            26,
-            31,
-            32,
-            22,
-            23,
-            1,
-            2,
-            4,
-            5,
-            28,
-            29,
             16,
             17,
+            13,
+            14,
+            28,
+            29,
+            1,
+            2,
+            25,
+            26,
+            4,
+            5,
+            7,
+            8,
+            31,
+            32,
             19,
-            20
+            20,
+            22,
+            23
         ]
     }
 },

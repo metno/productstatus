@@ -53,6 +53,17 @@ You can create a test database by running (Credentials will be: admin/admin):
 
     ./manage.py loaddata productstatus/core/fixtures/core.json
 
+## Creating test fixtures
+
+To create the `core.json` fixture, first restore the database to a pristine state:
+
+    rm -f db.sqlite3
+    ./manage.py migrate
+
+Then, generate a new JSON file:
+
+    ./manage.py dumpdata --indent 4 --exclude corsheaders --exclude contenttypes --output productstatus/core/fixtures/core.json
+
 ## Setting up API user permissions
 
 You must grant write access to the certain models required for your API user. This can be done by editing users through the Django administration interface.

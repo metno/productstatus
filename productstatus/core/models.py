@@ -70,6 +70,8 @@ class BaseModel(models.Model):
         # Write data using a DB transaction
         with django.db.transaction.atomic():
             super(BaseModel, self).save(*args, **kwargs)
+            if hasattr(self, 'deleted') and self.deleted is True:
+                return
             message = PendingMessage.factory(self)
             message.save()
 

@@ -9,7 +9,7 @@ import json
 import kafka
 
 
-MESSAGE_PROTOCOL_VERSION = [1, 4, 0]
+MESSAGE_PROTOCOL_VERSION = [1, 5, 0]
 
 
 class KafkaPublisher(object):
@@ -61,6 +61,7 @@ class KafkaPublisher(object):
         msg = {
             'message_id': str(uuid.uuid4()),
             'message_timestamp': datetime.datetime.utcnow().replace(tzinfo=dateutil.tz.tzutc()).strftime('%Y-%m-%dT%H:%M:%SZ'),
+            'object_version': model_instance.object_version,
             'url': model_instance.full_url(),
             'uri': model_instance.full_uri(),
             'version': MESSAGE_PROTOCOL_VERSION,

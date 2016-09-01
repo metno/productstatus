@@ -69,6 +69,7 @@ class BaseModel(models.Model):
 
         # Write data using a DB transaction
         with django.db.transaction.atomic():
+            self.object_version += 1
             super(BaseModel, self).save(*args, **kwargs)
             if hasattr(self, 'deleted') and self.deleted is True:
                 return
@@ -111,6 +112,7 @@ class Product(BaseModel):
     LENGTH_UNITS = (('m', 'meters'), ('deg', 'degrees'))
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    object_version = models.IntegerField(default=0)
     slug = models.CharField(max_length=255, unique=True, default='slugify')
     parents = models.ManyToManyField('Product', related_name='children', blank=True)
     variables = models.ManyToManyField('Variable', blank=True)
@@ -150,6 +152,7 @@ class ProductInstance(BaseModel):
     A single instance of a data product, typically having one or more data files.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    object_version = models.IntegerField(default=0)
     product = models.ForeignKey('Product')
     reference_time = models.DateTimeField()
     version = models.IntegerField()
@@ -264,6 +267,7 @@ class Data(BaseModel):
     A set of variables for a specific time period within a single product instance.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    object_version = models.IntegerField(default=0)
     product_instance = models.ForeignKey('ProductInstance')
     variables = models.ManyToManyField('Variable', blank=True)
     time_period_begin = models.DateTimeField(null=True, blank=True)
@@ -288,6 +292,7 @@ class DataInstance(BaseModel):
     A data file or service containing specific data dictated by the Data class.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    object_version = models.IntegerField(default=0)
     data = models.ForeignKey('Data')
     format = models.ForeignKey('DataFormat')
     service_backend = models.ForeignKey('ServiceBackend')
@@ -314,6 +319,7 @@ class DataFormat(BaseModel):
     A data format, e.g. NetCDF, GRIB, web service, etc.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    object_version = models.IntegerField(default=0)
     slug = models.CharField(max_length=255, unique=True, default='slugify')
     name = models.CharField(unique=True, max_length=255)
     created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -328,6 +334,7 @@ class ServiceBackend(BaseModel):
     A service providing a data file.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    object_version = models.IntegerField(default=0)
     slug = models.CharField(max_length=255, unique=True, default='slugify')
     name = models.CharField(unique=True, max_length=255)
     documentation_url = models.URLField(max_length=1024)
@@ -343,6 +350,7 @@ class Variable(BaseModel):
     A standardized CF variable name.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    object_version = models.IntegerField(default=0)
     slug = models.CharField(max_length=255, unique=True, default='slugify')
     name = models.CharField(unique=True, max_length=255)
     created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -357,6 +365,7 @@ class Person(BaseModel):
     A single human being.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    object_version = models.IntegerField(default=0)
     slug = models.CharField(max_length=255, unique=True, default='slugify')
     name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
@@ -375,6 +384,7 @@ class Institution(BaseModel):
     A single institution.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    object_version = models.IntegerField(default=0)
     slug = models.CharField(max_length=255, unique=True, default='slugify')
     name = models.CharField(unique=True, max_length=255)
     created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -389,6 +399,7 @@ class Projection(BaseModel):
     A geographic projection, as defined by proj.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    object_version = models.IntegerField(default=0)
     slug = models.CharField(max_length=255, unique=True, default='slugify')
     name = models.CharField(unique=True, max_length=255)
     definition = models.CharField(unique=True, max_length=1024)
@@ -404,6 +415,7 @@ class License(BaseModel):
     A data usage license.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    object_version = models.IntegerField(default=0)
     slug = models.CharField(max_length=255, unique=True, default='slugify')
     name = models.CharField(unique=True, max_length=255)
     description = models.CharField(max_length=1024, null=True, blank=True)

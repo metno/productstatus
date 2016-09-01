@@ -23,7 +23,7 @@ Productstatus is a persistent storage for weather product metadata and run-time 
 
 4. Install the Productstatus dependencies:
 
-    $ pip install -r requirements.txt
+    $ pip install -e .
 
 ## Running
 

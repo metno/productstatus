@@ -11,28 +11,52 @@ class UnknownCheckException(Exception):
     pass
 
 
+class Printer(object):
+    def format(self, result):
+        raise NotImplementedError('Please implement the "print" command.')
+
+    def print(self, result):
+        print(self.format(result))
+
+
+class StdoutPrinter(Printer):
+    def format(self, result):
+        return '%s - %s' % (result.get_code()[1], result.get_failing_message())
+
+
+class MultiStdoutPrinter(StdoutPrinter):
+    def format(self, result):
+        return '%s: %s' % (result.check.name, super(MultiStdoutPrinter, self).format(result))
+
+
 class Command(BaseCommand):
     help = 'Run one or all product checks, verifying that ProductInstances are added to the database according to their schedule'
 
     def add_arguments(self, parser):
         parser.add_argument('check_name', nargs='?', type=str)
-        parser.add_argument('--list', action='store_true', required=True)
+        parser.add_argument('--list', action='store_true', required=False)
+
+    def print_check_list(self):
+        checks = list(productstatus.check.models.Check.objects.all().order_by('name'))
+        for check in checks:
+            print(check.name)
 
     def handle(self, *args, **options):
-        if options['list']:
-            checks = list(productstatus.check.models.Check.objects.all().order_by('name'))
-            for check in checks:
-                print(check.name)
+        if options['list'] is True:
+            self.print_check_list()
             sys.exit(0)
 
         try:
             if options['check_name']:
                 try:
                     objects = [productstatus.check.models.Check.objects.get(name=options['check_name'])]
+                    printer = StdoutPrinter()
                 except:
                     raise UnknownCheckException('UNKNOWN - Check not found: %s' % options['check_name'])
             else:
                 objects = list(productstatus.check.models.Check.objects.all())
+                printer = MultiStdoutPrinter()
+
         except UnknownCheckException as e:
             print(e)
             sys.exit(productstatus.check.UNKNOWN[0])
@@ -41,11 +65,5 @@ class Command(BaseCommand):
         for check in objects:
             result = check.execute()
             max_severity = max(max_severity, result.get_code())
-            self.print_result(result, multi=not bool(options['check_name']))
+            printer.print(result)
         sys.exit(max_severity[0])
-
-    def print_result(self, result, multi=False):
-        if multi:
-            print('%s: %s - %s' % (result.check.name, result.get_code()[1], result.get_failing_message()))
-        else:
-            print('%s - %s' % (result.get_code()[1], result.get_message()))

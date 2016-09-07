@@ -14,9 +14,6 @@ import logging
 import uuid
 import os
 import sys
-import socket
-import raven
-import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -36,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
     'productstatus.core',
+    'productstatus.check',
     'tastypie',
     'corsheaders',
     'raven.contrib.django.raven_compat',

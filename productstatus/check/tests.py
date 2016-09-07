@@ -14,13 +14,21 @@ class CheckTest(django.test.TestCase):
     def setUp(self):
         pass
 
+    def test_simple_check(self):
+        """!
+        @brief Test that SimpleCheckResult works properly.
+        """
+        result = productstatus.check.SimpleCheckResult(productstatus.check.WARNING, 'foo')
+        self.assertEqual(result.get_code(), productstatus.check.WARNING)
+        self.assertEqual(result.get_message(), 'foo')
+
     def test_check_result_worst(self):
         """!
         @brief Test that a check's result code equals the worst severity from
         its CheckResultPart children.
         """
         check = productstatus.check.models.Check.objects.get(pk='8340969c-7f93-4527-8868-a23e3ed80d8b')
-        result = productstatus.check.CheckResult(check)
+        result = productstatus.check.CheckResult()
         ok = productstatus.check.CheckResultPart()
         ok.ok('foo')
         result.add_part(ok)

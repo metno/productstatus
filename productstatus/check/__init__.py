@@ -9,8 +9,7 @@ UNKNOWN = (3, 'UNKNOWN',)
 
 
 class CheckResult(object):
-    def __init__(self, check):
-        self.check = check
+    def __init__(self):
         self.parts = []
 
     def add_part(self, part):
@@ -34,17 +33,13 @@ class CheckResult(object):
             return 'All tests pass'
         return '; '.join([x.message for x in failing_parts])
 
-    def get_dict(self):
-        return {
-            'check': self.check.name,
-            'code': self.get_code(),
-            'message': self.get_message(),
-        }
 
-    def __str__(self):
-        code = self.get_code()
-        message = self.get_message()
-        return '%s: %d - %s: %s' % (self.check.name, code[0], code[1], message)
+class SimpleCheckResult(CheckResult):
+    def __init__(self, code, message):
+        super(SimpleCheckResult, self).__init__()
+        part = CheckResultPart()
+        part.set_result(code, message)
+        self.add_part(part)
 
 
 class CheckResultPart(object):

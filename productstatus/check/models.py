@@ -25,7 +25,7 @@ class Check(models.Model):
         """!
         @brief Run a check and return its results as a CheckResult object.
         """
-        result = productstatus.check.CheckResult(self)
+        result = productstatus.check.CheckResult()
         [result.add_part(x.execute()) for x in self.checks()]
         return result
 

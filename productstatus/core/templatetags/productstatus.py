@@ -1,15 +1,43 @@
 from django import template
 from django.utils.safestring import mark_safe
 
+import productstatus.core.models
+
+
 register = template.Library()
+
 
 @register.simple_tag
 def uuid(uuid):
-    return mark_safe('<div class="ui teal label">%s</div>' % uuid)
+    return mark_safe('<a class="ui teal label" href="/explore/?q=%(text)s">%(text)s</a>' % {'text': uuid})
 
 @register.simple_tag
 def slug(uuid):
     return mark_safe('<div class="ui purple label">%s</div>' % uuid)
+
+@register.simple_tag
+def version(uuid):
+    return mark_safe('<div class="ui label">Version %s</div>' % uuid)
+
+@register.simple_tag
+def hash_type(text):
+    return mark_safe('<div class="ui label">%s</div>' % text)
+
+@register.simple_tag
+def admin(type_, uuid):
+    values = {
+        'type': type_,
+        'uuid': uuid,
+    }
+    return mark_safe('<a class="ui orange label" href="/admin/core/%(type)s/%(uuid)s/change/">Admin</a>' % values)
+
+@register.simple_tag
+def deleted(status):
+    values = {
+        'status': 'Exists' if status else 'Deleted',
+        'color': 'green' if status else 'red',
+    }
+    return mark_safe('<div class="ui %(color)s label">%(status)s</div>' % values)
 
 @register.simple_tag(takes_context=True)
 def active(context, view):
@@ -35,3 +63,30 @@ def data_instances_with_data_format_on_service_backend(product_instance,
 @register.simple_tag
 def data_formats_on_service_backend(product_instance, service_backend):
     return product_instance.data_formats_on_service_backend(service_backend)
+
+@register.inclusion_tag('core/include/empty.html')
+def core_object(object_):
+    template = template_from_class(object_)
+    return {
+        'template': 'core/include/%s.html' % template,
+        'object_class': str(object_.__class__),
+        'object_type': template,
+        template: object_,
+    }
+
+def template_from_class(instance):
+    class_list = [
+        (productstatus.core.models.Data, 'data'),
+        (productstatus.core.models.DataFormat, 'dataformat'),
+        (productstatus.core.models.DataInstance, 'datainstance'),
+        (productstatus.core.models.Institution, 'institution'),
+        (productstatus.core.models.License, 'license'),
+        (productstatus.core.models.Person, 'person'),
+        (productstatus.core.models.Product, 'product'),
+        (productstatus.core.models.ProductInstance, 'productinstance'),
+        (productstatus.core.models.ServiceBackend, 'servicebackend'),
+    ]
+    for class_, template in class_list:
+        if isinstance(instance, class_):
+            return template
+    return 'blank'

@@ -1,0 +1,16 @@
+{# vi: se ft=htmldjango: #}
+
+{% load productstatus %}
+
+<h3 id="{{ person.name|slugify }}" class="ui block header">
+    Person: {{ person.name }} {% slug person.slug %} {% uuid person.id %} {% admin object_type person.id %}
+</h3>
+
+<table class="ui celled table">
+    <tbody>
+        <tr>
+            <th>E-mail</th>
+            <td><a href="mailto:{{ person.email }}">{{ person.email }}</a></td>
+        </tr>
+    </tbody>
+</table>

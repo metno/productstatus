@@ -1,0 +1,7 @@
+{# vi: se ft=htmldjango: #}
+
+{% load productstatus %}
+
+<h3 id="{{ institution.name|slugify }}" class="ui block header">
+    Institution: {{ institution.name }} {% slug institution.slug %} {% uuid institution.id %} {% admin object_type institution.id %}
+</h3>

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load productstatus %}
+
+{% block content %}
+
+    <h2 class="ui centered header">List of all products</h2>
+
+    <div class="ui vertical fluid menu">
+        {% for product in products %}
+            <a class="item" href="#{{ product.name|slugify }}">{{ product.name }}</a>
+        {% endfor %}
+    </div>
+
+{% endblock %}

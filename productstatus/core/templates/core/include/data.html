@@ -1,0 +1,26 @@
+{# vi: se ft=htmldjango: #}
+
+{% load productstatus %}
+
+<h3 id="{{ data.id }}" class="ui block header">
+    Data: from <strong>{{ data.time_period_begin }}</strong> to <strong>{{ data.time_period_end }}</strong> {% uuid data.id %} {% admin object_type data.id %}
+</h3>
+
+<table class="ui celled table">
+    <tbody>
+        <tr>
+            <th>Product</th>
+            <td>{{ data.product_instance.product.name }}</td>
+            <td>{% uuid data.product_instance.product.id %}</td>
+        </tr>
+        <tr>
+            <th>Product instance</th>
+            <td>{{ data.product_instance.reference_time }} {% version data.product_instance.version %}</td>
+            <td>{% uuid data.product_instance.id %}</td>
+        </tr>
+    </tbody>
+</table>
+
+{% for datainstance in data.datainstance_set.all %}
+    {% core_object datainstance %}
+{% endfor %}

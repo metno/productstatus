@@ -1,0 +1,33 @@
+{# vi: se ft=htmldjango: #}
+
+{% load productstatus %}
+
+<h3 id="{{ product.name|slugify }}" class="ui block header">
+    Product instance: {{ productinstance.reference_time }} {% version productinstance.version %} {% uuid productinstance.id %} {% admin object_type productinstance.id %}
+</h3>
+
+<table class="ui celled table">
+    <tbody>
+        <tr>
+            <th>Product</th>
+            <td>{{ productinstance.product }}</td>
+            <td>{% uuid productinstance.product.id %}</td>
+        </tr>
+        <tr>
+            <th>Reference time</th>
+            <td colspan="2">{{ productinstance.reference_time }}</td>
+        </tr>
+        <tr>
+            <th>Version</th>
+            <td colspan="2">{{ productinstance.version }}</td>
+        </tr>
+        <tr>
+            <th>Number of data entries</th>
+            <td colspan="2">{{ productinstance.data_set.count }}</td>
+        </tr>
+    </tbody>
+</table>
+
+{% for data in productinstance.data %}
+    {% core_object data %}
+{% endfor %}

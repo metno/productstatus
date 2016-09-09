@@ -24,13 +24,22 @@
                 </div>
             </h1>
 
-            <div class="ui four item menu">
-                <a class="item {% active 'overview' %}"
-                   href="{% url 'overview' %}">Overview</a>
-                <a class="item {% active 'detailed' %}"
-                   href="{% url 'detailed' %}">Products</a>
+            <div class="ui center aligned">
+                <form method="GET" action="/explore/" class="column">
+                    <div class="ui fluid action input">
+                        <input name="q" value="{{ q }}" type="text" placeholder="Search in all objects" />
+                        <button type="submit" class="ui icon button">
+                            <i class="search icon"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="ui three item menu">
+                <a class="item {% active 'explore' %}"
+                   href="{% url 'explore' %}">Explore</a>
                 <a class="item {% active 'uuid' %}"
-                   href="{% url 'uuid' %}">UUIDs</a>
+                   href="{% url 'categories' %}">Categories</a>
                 <a class="item" href="/admin/">Administration</a>
             </div>
 

@@ -34,8 +34,8 @@ def admin(type_, uuid):
 @register.simple_tag
 def deleted(status):
     values = {
-        'status': 'Exists' if status else 'Deleted',
-        'color': 'green' if status else 'red',
+        'status': 'Exists' if not status else 'Deleted',
+        'color': 'green' if not status else 'red',
     }
     return mark_safe('<div class="ui %(color)s label">%(status)s</div>' % values)
 

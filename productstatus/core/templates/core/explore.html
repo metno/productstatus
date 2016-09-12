@@ -4,7 +4,13 @@
 
 {% block content %}
 
-    <h2 class="ui centered header">Explore {% if q %}query: {{ q }}{% endif %}</h2>
+    <h2 class="ui centered header">
+        {% if q %}
+            {{ objects|length }} result(s) for query: {{ q }}
+        {% else %}
+            Explore
+        {% endif %}
+    </h2>
 
     {% for object in objects %}
         {% core_object object %}

@@ -2,6 +2,7 @@ from django import template
 from django.utils.safestring import mark_safe
 
 import productstatus.core.models
+import productstatus.check.models
 
 
 register = template.Library()
@@ -43,6 +44,20 @@ def deleted(status):
     }
     return mark_safe('<div class="ui %(color)s label">%(status)s</div>' % values)
 
+@register.simple_tag
+def check_result_code(code):
+    if code == productstatus.check.OK:
+        color = 'green'
+    elif code == productstatus.check.WARNING:
+        color = 'yellow'
+    elif code == productstatus.check.CRITICAL:
+        color = 'red'
+    elif code == productstatus.check.UNKNOWN:
+        color = 'orange'
+    else:
+        raise RuntimeError('Invalid check result code: %s' % str(code))
+    return mark_safe('<div class="ui %s label">%s</div>' % (color, code[1]))
+
 @register.simple_tag(takes_context=True)
 def active(context, view):
     return 'active' if context.request.resolver_match.url_name == view else ''
@@ -76,6 +91,14 @@ def core_object(object_):
         'object_class': str(object_.__class__),
         'object_type': template,
         template: object_,
+    }
+
+@register.inclusion_tag('check/include/checks.html')
+def product_checks(product):
+    checks = productstatus.check.models.Check.objects.filter(product=product)
+    return {
+        'product': product,
+        'checks': checks,
     }
 
 def template_from_class(instance):

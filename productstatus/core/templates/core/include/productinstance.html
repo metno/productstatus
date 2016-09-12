@@ -25,6 +25,24 @@
             <th>Number of data entries</th>
             <td colspan="2">{{ productinstance.data_set.count }}</td>
         </tr>
+        <tr>
+            <th>Previous in time and version</th>
+            {% if productinstance.previous %}
+                <td>{{ productinstance.previous.reference_time }} {% version productinstance.previous.version %}</td>
+                <td>{% uuid productinstance.previous.id %}</td>
+            {% else %}
+                <td colspan="2">---</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>Next in time and version</th>
+            {% if productinstance.next %}
+                <td>{{ productinstance.next.reference_time }} {% version productinstance.next.version %}</td>
+                <td>{% uuid productinstance.next.id %}</td>
+            {% else %}
+                <td colspan="2">---</td>
+            {% endif %}
+        </tr>
     </tbody>
 </table>
 

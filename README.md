@@ -55,14 +55,15 @@ You can create a test database by running (Credentials will be: admin/admin):
 
 ## Creating test fixtures
 
-To create the `core.json` fixture, first restore the database to a pristine state:
+To create the `core.json` and `check.json` fixtures, first restore the database to a pristine state:
 
     rm -f db.sqlite3
     ./manage.py migrate
 
-Then, generate a new JSON file:
+Make your changes using the admin interface, then generate new JSON files:
 
-    ./manage.py dumpdata --indent 4 --exclude corsheaders --exclude contenttypes --output productstatus/core/fixtures/core.json
+    ./manage.py dumpdata --indent 4 --exclude corsheaders --exclude contenttypes --exclude check --exclude admin --exclude sessions --output productstatus/core/fixtures/core.json
+    ./manage.py dumpdata --indent 4 --output productstatus/check/fixtures/check.json check
 
 ## Setting up API user permissions
 

@@ -20,8 +20,12 @@ def version(uuid):
     return mark_safe('<div class="ui label">Version %s</div>' % uuid)
 
 @register.simple_tag
+def label(uuid):
+    return mark_safe('<div class="ui label">%s</div>' % uuid)
+
+@register.simple_tag
 def hash_type(text):
-    return mark_safe('<div class="ui label">%s</div>' % text)
+    return mark_safe('<div class="ui label">Type: %s</div>' % text)
 
 @register.simple_tag
 def admin(type_, uuid):

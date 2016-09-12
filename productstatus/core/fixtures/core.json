@@ -3,6 +3,7 @@
     "model": "core.product",
     "pk": "7d3fe736-5902-44d5-a34c-86f877190523",
     "fields": {
+        "object_version": 0,
         "slug": "test-product",
         "projection": null,
         "contact": "b407e09d-b0c4-4289-95fe-75a2497f6eaa",
@@ -30,8 +31,21 @@
 },
 {
     "model": "core.productinstance",
+    "pk": "02b0e5bc-b644-4938-9f5c-6a9d964f5a47",
+    "fields": {
+        "object_version": 1,
+        "product": "7d3fe736-5902-44d5-a34c-86f877190523",
+        "reference_time": "2015-10-01T00:00:00Z",
+        "version": 2,
+        "created": "2016-09-12T13:26:26.229Z",
+        "modified": "2016-09-12T13:26:26.229Z"
+    }
+},
+{
+    "model": "core.productinstance",
     "pk": "7c6c09f9-a737-4504-82d4-35cdabc7018f",
     "fields": {
+        "object_version": 0,
         "product": "7d3fe736-5902-44d5-a34c-86f877190523",
         "reference_time": "2015-10-01T00:00:00Z",
         "version": 1,
@@ -43,6 +57,7 @@
     "model": "core.productinstance",
     "pk": "88d28ffd-d448-4319-a94e-16889955f94a",
     "fields": {
+        "object_version": 0,
         "product": "7d3fe736-5902-44d5-a34c-86f877190523",
         "reference_time": "2015-12-08T00:00:00Z",
         "version": 1,
@@ -52,8 +67,21 @@
 },
 {
     "model": "core.productinstance",
+    "pk": "a7810f96-9b1f-43ac-977f-71f9bfc3e7b3",
+    "fields": {
+        "object_version": 1,
+        "product": "7d3fe736-5902-44d5-a34c-86f877190523",
+        "reference_time": "2015-12-08T00:00:00Z",
+        "version": 2,
+        "created": "2016-09-12T13:26:52.604Z",
+        "modified": "2016-09-12T13:26:52.604Z"
+    }
+},
+{
+    "model": "core.productinstance",
     "pk": "c29bc2af-f989-4dc9-a17d-de774f93f187",
     "fields": {
+        "object_version": 0,
         "product": "7d3fe736-5902-44d5-a34c-86f877190523",
         "reference_time": "2015-12-07T00:00:00Z",
         "version": 1,
@@ -65,6 +93,7 @@
     "model": "core.data",
     "pk": "17420edd-213a-4558-8332-683d15b6cebc",
     "fields": {
+        "object_version": 0,
         "product_instance": "7c6c09f9-a737-4504-82d4-35cdabc7018f",
         "time_period_begin": "2015-10-01T00:00:00Z",
         "time_period_end": "2015-10-01T00:00:00Z",
@@ -77,11 +106,12 @@
     "model": "core.data",
     "pk": "434405fa-b3ca-42b1-b764-959d06370b32",
     "fields": {
-        "product_instance": "88d28ffd-d448-4319-a94e-16889955f94a",
+        "object_version": 1,
+        "product_instance": "a7810f96-9b1f-43ac-977f-71f9bfc3e7b3",
         "time_period_begin": "2015-12-08T00:00:00Z",
         "time_period_end": "2015-12-19T00:00:00Z",
         "created": "2015-12-08T09:28:08.783Z",
-        "modified": "2015-12-08T09:28:08.783Z",
+        "modified": "2016-09-12T13:30:50.457Z",
         "variables": [
             "0305bccf-0775-4707-9aef-e26aa0f377af",
             "72a56a36-0567-41f0-bcbe-5ff90c3d79ac"
@@ -92,6 +122,7 @@
     "model": "core.datainstance",
     "pk": "8e52633f-04bc-40d5-99e1-6b1c9b9010f4",
     "fields": {
+        "object_version": 0,
         "data": "434405fa-b3ca-42b1-b764-959d06370b32",
         "format": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc",
         "service_backend": "7f287791-b10f-41c5-ada8-327783573e29",
@@ -109,6 +140,7 @@
     "model": "core.datainstance",
     "pk": "ae443952-7990-4cee-9913-41dfd0092dc1",
     "fields": {
+        "object_version": 0,
         "data": "434405fa-b3ca-42b1-b764-959d06370b32",
         "format": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc",
         "service_backend": "495bb3be-e327-4840-accf-afefcd411e06",
@@ -126,6 +158,7 @@
     "model": "core.dataformat",
     "pk": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc",
     "fields": {
+        "object_version": 0,
         "slug": "netcdf",
         "name": "netcdf",
         "created": "2015-12-08T09:16:10.639Z",
@@ -136,6 +169,7 @@
     "model": "core.servicebackend",
     "pk": "495bb3be-e327-4840-accf-afefcd411e06",
     "fields": {
+        "object_version": 0,
         "slug": "datastore1",
         "name": "Datastore1",
         "documentation_url": "http://example.com",
@@ -147,6 +181,7 @@
     "model": "core.servicebackend",
     "pk": "7f287791-b10f-41c5-ada8-327783573e29",
     "fields": {
+        "object_version": 0,
         "slug": "datastore2",
         "name": "Datastore2",
         "documentation_url": "http://example.com",
@@ -158,6 +193,7 @@
     "model": "core.variable",
     "pk": "0305bccf-0775-4707-9aef-e26aa0f377af",
     "fields": {
+        "object_version": 0,
         "slug": "testvar1",
         "name": "TestVar1",
         "created": "2015-12-08T09:19:46.972Z",
@@ -168,6 +204,7 @@
     "model": "core.variable",
     "pk": "72a56a36-0567-41f0-bcbe-5ff90c3d79ac",
     "fields": {
+        "object_version": 0,
         "slug": "testvar2",
         "name": "TestVar2",
         "created": "2015-12-08T09:19:51.232Z",
@@ -178,6 +215,7 @@
     "model": "core.person",
     "pk": "b407e09d-b0c4-4289-95fe-75a2497f6eaa",
     "fields": {
+        "object_version": 0,
         "slug": "foo-bar",
         "name": "Foo Bar",
         "email": "foo.bar@example.com",
@@ -189,6 +227,7 @@
     "model": "core.institution",
     "pk": "b3528b13-84aa-49a2-8895-77c1b3fce9d8",
     "fields": {
+        "object_version": 0,
         "slug": "met-norway",
         "name": "MET Norway",
         "created": "2015-12-08T09:16:29.438Z",
@@ -199,6 +238,7 @@
     "model": "core.projection",
     "pk": "d454efcc-d822-4d60-a65c-e94680953768",
     "fields": {
+        "object_version": 0,
         "slug": "cylindrical-equal-area",
         "name": "Cylindrical Equal Area",
         "definition": "+proj=cea +lon_0=Central Meridian +lat_ts=Standard Parallel +x_0=False Easting +y_0=False Northing",
@@ -210,6 +250,7 @@
     "model": "core.license",
     "pk": "92a5a153-53a4-4170-a0bc-cbd4ed14a05c",
     "fields": {
+        "object_version": 0,
         "slug": "public-domain",
         "name": "Public domain",
         "description": "",
@@ -787,6 +828,87 @@
     }
 },
 {
+    "model": "auth.permission",
+    "pk": 64,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 22,
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 65,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 22,
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 66,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 22,
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 67,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 23,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 68,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 23,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 69,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 23,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 70,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 24,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 71,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 24,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 72,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 24,
+        "codename": "delete_session"
+    }
+},
+{
     "model": "auth.group",
     "pk": 1,
     "fields": {
@@ -822,7 +944,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$24000$zaSyKjb8Zqpr$d88HJ5SUfkqFNAvhw54hSzSLg/+nxrZu5vexLmBzIJI=",
-        "last_login": "2016-04-18T10:43:25.393Z",
+        "last_login": "2016-09-12T13:24:24.765Z",
         "is_superuser": true,
         "username": "admin",
         "first_name": "",

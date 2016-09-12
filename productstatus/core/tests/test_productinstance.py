@@ -11,7 +11,7 @@ class ProductInstanceCollectionTest(BaseTestCases.ProductstatusCollectionTest):
 
         self.base_url = "%s%s" % (self.url_prefix, '/productinstance/')
         self.detail_url = "%s%s/" % (self.base_url, "88d28ffd-d448-4319-a94e-16889955f94a")
-        self.collection_size = 3
+        self.collection_size = 5
         self.post_data = {
             'product': '/api/v1/product/7d3fe736-5902-44d5-a34c-86f877190523/',
             'state': 0,
@@ -123,3 +123,27 @@ class ProductInstanceItemTest(BaseTestCases.ProductstatusItemTest):
 
         self.item_uuid = "c491e9c8-0abd-4763-ba50-efcf6e6c2f25"
         self.base_url = "%s%s%s/" % (self.url_prefix, '/productinstance/', self.item_uuid)
+
+    def test_previous(self):
+        """!
+        @brief Test that ProductInstance.previous returns the previous ProductInstance in the set.
+        """
+        qs = ProductInstance.objects.all().order_by('reference_time', 'version')
+        for index, instance in enumerate(qs):
+            previous = instance.previous()
+            if index == 0:
+                self.assertIsNone(previous)
+                continue
+            self.assertEqual(previous, qs[index - 1])
+
+    def test_next(self):
+        """!
+        @brief Test that ProductInstance.next returns the next ProductInstance in the set.
+        """
+        qs = ProductInstance.objects.all().order_by('reference_time', 'version')
+        for index, instance in enumerate(qs):
+            next_ = instance.next()
+            if index + 1 == len(qs):
+                self.assertIsNone(next_)
+                continue
+            self.assertEqual(next_, qs[index + 1])

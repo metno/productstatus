@@ -137,8 +137,19 @@ class Product(BaseModel):
     class Meta:
         unique_together = ('source', 'source_key',)
 
+    def product_instances(self):
+        """!
+        @brief Return a QuerySet with an ordered list of ProductInstance
+        objects belonging to this Product.
+        """
+        return self.productinstance_set.all().order_by('-reference_time', '-version')
+
     def latest_product_instance(self):
-        qs = self.productinstance_set.all().order_by('-reference_time', '-version')
+        """!
+        @brief Return the latest ProductInstance belonging to this Product, or
+        None if there are no ProductInstances found.
+        """
+        qs = self.product_instances()
         if qs.count() > 0:
             return qs[0]
         return None
@@ -172,14 +183,56 @@ class ProductInstance(BaseModel):
         if existing.count() == 1:
             self.version = existing[0].version
         elif not self.version:
-            qs = ProductInstance.objects.filter(product=self.product,
-                                                reference_time=self.reference_time,
-                                                ).order_by('-version')
+            qs = self.similar().order_by('-version')
             if qs.count() == 0:
                 self.version = 1
             else:
                 self.version = qs[0].version + 1
         return super(ProductInstance, self).save(*args, **kwargs)
+
+    def similar(self):
+        """!
+        @brief Return a QuerySet of all ProductInstance objects having the same
+        reference time and Product as this ProductInstance.
+        """
+        return ProductInstance.objects.filter(
+            product=self.product,
+            reference_time=self.reference_time,
+        )
+
+    def previous(self):
+        """!
+        @brief Return the chronologically previous ProductInstance having the
+        same reference time and Product as this ProductInstance, or None if
+        there are no previous instance.
+        """
+        qs = ProductInstance.objects.filter(
+            product=self.product,
+            reference_time__lte=self.reference_time,
+        )
+        qs = qs.order_by('-reference_time', '-version')
+        for instance in qs:
+            if instance.reference_time == self.reference_time and instance.version >= self.version:
+                continue
+            return instance
+        return None
+
+    def next(self):
+        """!
+        @brief Return the chronologically next ProductInstance having the
+        same reference time and Product as this ProductInstance, or None if
+        there are no next instance.
+        """
+        qs = ProductInstance.objects.filter(
+            product=self.product,
+            reference_time__gte=self.reference_time,
+        )
+        qs = qs.order_by('reference_time', 'version')
+        for instance in qs:
+            if instance.reference_time == self.reference_time and instance.version <= self.version:
+                continue
+            return instance
+        return None
 
     def data_instances(self):
         """!

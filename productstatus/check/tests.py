@@ -80,6 +80,59 @@ class CheckTest(django.test.TestCase):
         result = check_part.execute()
         self.assertEqual(result.code, productstatus.check.CRITICAL)
 
+    def test_check_data_instances_terms(self):
+        """!
+        @brief Test that checks only execute on their designated term.
+        """
+        check = productstatus.check.models.Check.objects.get(pk='8340969c-7f93-4527-8868-a23e3ed80d8b')
+        check_part = check.checkconditiondatainstance_set.all()[0]
+
+        # set required number to 2 datainstances, the check should fail from
+        # now on unless skipped by reference time constraints
+        check_part.count = 2
+
+        # productinstance term is 00, should execute and fail
+        check_part.terms = '00'
+        result = check_part.execute()
+        self.assertEqual(result.code, productstatus.check.CRITICAL)
+
+        # test for multiple terms, should still fail
+        check_part.terms = '1,2,03,004,000012,00'
+        result = check_part.execute()
+        self.assertEqual(result.code, productstatus.check.CRITICAL)
+
+        # constrain terms to only hour 12, should succeed
+        check_part.terms = '12'
+        result = check_part.execute()
+        self.assertEqual(result.code, productstatus.check.OK)
+
+    def test_terms_list(self):
+        """!
+        @brief Test that the comma-separated term integers are correctly parsed.
+        """
+        check = productstatus.check.models.Check.objects.get(pk='8340969c-7f93-4527-8868-a23e3ed80d8b')
+        check_part = check.checkconditiondatainstance_set.all()[0]
+
+        # test split on None
+        check_part.terms = None
+        terms = check_part.terms_list()
+        self.assertListEqual(terms, [])
+
+        # test split on empty string
+        check_part.terms = ''
+        terms = check_part.terms_list()
+        self.assertListEqual(terms, [])
+
+        # test split on single integer
+        check_part.terms = '12'
+        terms = check_part.terms_list()
+        self.assertListEqual(terms, [12])
+
+        # test split on complex string
+        check_part.terms = '00,001,0002,3,00009,012'
+        terms = check_part.terms_list()
+        self.assertListEqual(terms, [0,1,2,3,9,12])
+
     def test_check_age(self):
         """!
         @brief Test checking for reference time age.

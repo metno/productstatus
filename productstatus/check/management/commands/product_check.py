@@ -46,7 +46,6 @@ class SensuPrinter(Printer):
     def print(self, result):
         payload = self.format(result)
         self.sock.sendto(payload.encode('ascii'), ('127.0.0.1', 3030))
-        print('%d check results have been submitted to Sensu' % len(result.get_parts()))
 
 
 class Command(BaseCommand):
@@ -74,9 +73,11 @@ class Command(BaseCommand):
                     printer = StdoutPrinter()
                     check = productstatus.check.models.Check.objects.get(name=options['check_name'])
                     results = [check.execute()]
+                    num_checks = 1
                 except:
                     raise UnknownCheckException('Check not found: %s' % options['check_name'])
             else:
+                num_checks = 0
                 printer = MultiStdoutPrinter()
                 objects = list(productstatus.check.models.Check.objects.all())
                 results = []
@@ -84,6 +85,7 @@ class Command(BaseCommand):
                     result = check.execute()
                     result.check = check
                     results += [result]
+                    num_checks += 1
 
         except UnknownCheckException as e:
             results = [productstatus.check.SimpleCheckResult(productstatus.check.UNKNOWN, str(e))]
@@ -101,3 +103,5 @@ class Command(BaseCommand):
 
         if options['sensu'] is not True:
             sys.exit(max_severity[0])
+        else:
+            print('%d check results have been submitted to Sensu' % num_checks)

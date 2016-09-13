@@ -22,6 +22,14 @@
             <td colspan="2">{{ productinstance.version }}</td>
         </tr>
         <tr>
+            <th>Added to database</th>
+            <td colspan="2">{{ productinstance.created }}</td>
+        </tr>
+        <tr>
+            <th>Last modified</th>
+            <td colspan="2">{{ productinstance.modified }}</td>
+        </tr>
+        <tr>
             <th>Number of data entries</th>
             <td colspan="2">{{ productinstance.data_set.count }}</td>
         </tr>

@@ -46,6 +46,7 @@ class SensuPrinter(Printer):
     def print(self, result):
         payload = self.format(result)
         self.sock.sendto(payload.encode('ascii'), ('127.0.0.1', 3030))
+        print('%d check results have been submitted to Sensu' % len(result.get_parts()))
 
 
 class Command(BaseCommand):

@@ -102,7 +102,7 @@ class CheckConditionDataInstance(CheckCondition):
             return result.critical('No product instances found for product %s' % self.check_id.product.name)
         base_text = '%s %s files on %s' % (self.check_id.product.name, self.format.name, self.service_backend.name)
         if not self.reference_time_in_terms(product_instance.reference_time):
-            return result.ok('%s: skipping subcheck only defined for term %02d' % (base_text, product_instance.reference_time.hour))
+            return result.ok('%s: skipping subcheck, not defined for term %02d' % (base_text, product_instance.reference_time.hour))
         time_delta = datetime.timedelta(minutes=self.grace_time)
         now = productstatus.now_with_timezone()
         remaining = (product_instance.reference_time + time_delta) - now

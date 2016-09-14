@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+from django.conf import settings
 
 import sys
 import json
@@ -40,6 +41,7 @@ class SensuPrinter(Printer):
             'name': result.check.name,
             'output': result.get_failing_message(),
             'status': result.get_code()[0],
+            'source': settings.PRODUCTSTATUS_HOST.split(':')[0],
         }
         return json.dumps(data)
 

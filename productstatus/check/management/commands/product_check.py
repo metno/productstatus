@@ -16,7 +16,7 @@ class UnknownCheckException(Exception):
 
 class Printer(object):
     def format(self, result):
-        raise NotImplementedError('Please implement the "print" command.')
+        raise NotImplementedError('Please implement the "format" command.')
 
     def print(self, result):
         print(self.format(result))

@@ -51,6 +51,31 @@ class KafkaPublisher(object):
                      % (record_metadata.topic, record_metadata.partition, record_metadata.offset, msg))
 
     @staticmethod
+    def base_message():
+        """!
+        @brief Generate the basic message structure for Kafka messages.
+        @returns dict
+        """
+        return {
+            'message_id': str(uuid.uuid4()),
+            'message_timestamp': datetime.datetime.utcnow().replace(tzinfo=dateutil.tz.tzutc()).strftime('%Y-%m-%dT%H:%M:%SZ'),
+            'version': MESSAGE_PROTOCOL_VERSION,
+        }
+
+    @staticmethod
+    def heartbeat_message():
+        """!
+        @brief Generate a Productstatus heartbeat message, letting clients know
+        that the producer is alive.
+        @returns dict
+        """
+        msg = KafkaPublisher.base_message()
+        msg.update({
+            'type': 'heartbeat',
+        })
+        return msg
+
+    @staticmethod
     def resource_message(model_instance):
         """
         Kafka collects and distributes messages with information about what
@@ -58,7 +83,8 @@ class KafkaPublisher(object):
         about each resource.
         """
 
-        msg = {
+        msg = KafkaPublisher.base_message()
+        msg.update({
             'message_id': str(uuid.uuid4()),
             'message_timestamp': datetime.datetime.utcnow().replace(tzinfo=dateutil.tz.tzutc()).strftime('%Y-%m-%dT%H:%M:%SZ'),
             'object_version': model_instance.object_version,
@@ -68,6 +94,5 @@ class KafkaPublisher(object):
             'resource': model_instance.resource_name(),
             'type': 'resource',
             'id': str(model_instance.id),
-            }
-
+        })
         return msg

@@ -229,6 +229,7 @@ class KafkaObject(object):
     brokers = settings.KAFKA_BROKERS
     ssl = settings.KAFKA_SSL
     ssl_verify = settings.KAFKA_SSL_VERIFY
+    heartbeat_interval = settings.KAFKA_HEARTBEAT_INTERVAL
 
 
 class KafkaResource(resources.Resource):
@@ -241,6 +242,7 @@ class KafkaResource(resources.Resource):
     topic = fields.CharField(attribute='topic', readonly=True)
     ssl = fields.BooleanField(attribute='ssl', readonly=True)
     ssl_verify = fields.BooleanField(attribute='ssl_verify', readonly=True)
+    heartbeat_interval = fields.IntegerField(attribute='heartbeat_interval', readonly=True)
 
     class Meta:
         allowed_methods = ['get']

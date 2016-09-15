@@ -13,6 +13,7 @@ class KafkaResourceTest(ProductstatusResourceTest):
         u'brokers': settings.KAFKA_BROKERS,
         u'ssl': settings.KAFKA_SSL,
         u'ssl_verify': settings.KAFKA_SSL_VERIFY,
+        u'heartbeat_interval': settings.KAFKA_HEARTBEAT_INTERVAL,
         u'resource_uri': '/api/v1/kafka/default/',
     }
 

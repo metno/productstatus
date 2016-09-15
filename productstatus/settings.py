@@ -181,6 +181,7 @@ KAFKA_TOPIC = 'productstatus'
 KAFKA_REQUEST_TIMEOUT = 2000  # milliseconds
 KAFKA_SSL = False
 KAFKA_SSL_VERIFY = True
+KAFKA_HEARTBEAT_INTERVAL = 60  # seconds
 
 # Frontend date/time format
 DATETIME_FORMAT = 'Y-m-d H:i:s\Z'

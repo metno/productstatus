@@ -23,9 +23,13 @@ class KafkaPublisher(object):
         self.client_id = client_id
         self.topic = topic
         self.timeout = timeout
-        self.ssl_context = ssl.SSLContext(protocol=ssl.PROTOCOL_TLSv1_2)
+
+        self.ssl_context = ssl.create_default_context()
+        self.ssl_context.protocol = ssl.PROTOCOL_TLSv1_2
         if not settings.KAFKA_SSL_VERIFY:
+            self.ssl_context.check_hostname = False
             self.ssl_context.verify_mode = ssl.CERT_NONE
+
         self.json_producer = kafka.KafkaProducer(bootstrap_servers=self.brokers,
                                                  client_id=self.client_id,
                                                  acks=1,

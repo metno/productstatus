@@ -30,6 +30,10 @@ def lookup_slug(query):
     return get_objects_from_field('slug', query)
 
 
+def lookup_source_key(query):
+    return get_objects_from_field('source_key', query)
+
+
 def lookup_name(query):
     return get_objects_from_field('name__icontains', query)
 
@@ -39,7 +43,7 @@ def lookup_url(query):
 
 
 def lookup_any(query):
-    for func in [lookup_uuid, lookup_slug, lookup_name, lookup_url]:
+    for func in [lookup_uuid, lookup_slug, lookup_source_key, lookup_name, lookup_url]:
         o = func(query)
         if not o:
             continue

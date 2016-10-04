@@ -12,7 +12,7 @@ def get_objects_from_field(field, value):
     results = []
     for subclass in productstatus.core.models.BaseModel.__subclasses__():
         try:
-            qs = subclass.objects.filter(**{field: value}).order_by('-modified')
+            qs = subclass.objects.filter(**{field: value}).order_by('-modified').limit(1000)
         except django.core.exceptions.FieldError:
             continue
         results += list(qs)

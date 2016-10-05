@@ -17,7 +17,7 @@ config = {
         'django-tastypie==0.13.3',
         'django-cors-headers==1.1.0',
         'ipython==4.2.0',
-        'kafka-python==1.1.1',
+        'kafka-python==1.3.1',
         'python-dateutil==2.5.3',
         'psycopg2==2.6.1',
         'raven==5.16.0',

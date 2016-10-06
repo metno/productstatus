@@ -1,4 +1,4 @@
-from tastypie import fields, resources, authentication, authorization, serializers
+from tastypie import fields, resources, authentication, authorization, serializers, cache
 from django.conf import settings
 
 import dateutil.tz
@@ -35,6 +35,17 @@ class Serializer(serializers.Serializer):
         return data.astimezone(tz=dateutil.tz.tzutc())
 
 
+class NoHTTPCache(cache.SimpleCache):
+    """
+    Tastypie's SimpleCache, with HTTP caching disabled and invalidate exposed.
+    """
+    def cache_control(self):
+        return {
+            'no_cache': True,
+            'max_age': 0,
+        }
+
+
 class BaseResource(resources.ModelResource):
     """
     All resource classes should inherit this base class.
@@ -52,6 +63,7 @@ class BaseMeta:
     )
     authorization = DjangoAuthorization()
     serializer = Serializer()
+    cache = NoHTTPCache()
 
 
 class ProductResource(BaseResource):

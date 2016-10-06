@@ -19,6 +19,7 @@ config = {
         'ipython==4.2.0',
         'kafka-python==1.3.1',
         'python-dateutil==2.5.3',
+        'python-memcached==1.58',
         'psycopg2==2.6.1',
         'raven==5.16.0',
     ],

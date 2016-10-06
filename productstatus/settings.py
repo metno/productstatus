@@ -199,3 +199,7 @@ try:
     from .local_settings import *
 except ImportError:
     logging.warning("Failed to import local_settings, continuing with defaults")
+
+# Do not use caching when running in test mode
+if TESTING and 'CACHES' in locals():
+    del CACHES

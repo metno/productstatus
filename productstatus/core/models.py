@@ -7,6 +7,7 @@
 
 from django.db import models
 from django.conf import settings
+from django.core.cache import cache
 
 import django.db
 import django.utils.text
@@ -67,6 +68,11 @@ class BaseModel(models.Model):
                 if self.__dict__[var] == '':
                     self.__dict__[var] = None
 
+        key = self.api_cache_key()
+
+        # Invalidate API caches for this object
+        cache.delete(key)
+
         # Write data using a DB transaction
         with django.db.transaction.atomic():
             self.object_version += 1
@@ -76,11 +82,20 @@ class BaseModel(models.Model):
             message = PendingMessage.factory(self)
             message.save()
 
+        # Re-populate API cache for this object
+        cache.set(key, self)
+
     def slugify(self):
         """!
         @returns an ASCII, spaceless id representation of the model instance name.
         """
         return django.utils.text.slugify(self.name)
+
+    def api_cache_key(self):
+        """!
+        @returns The API cache key to this object.
+        """
+        return 'v1:%s:detail:pk=%s' % (self.resource_name(), self.pk)
 
     def resource_name(self):
         """!

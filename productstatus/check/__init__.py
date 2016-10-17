@@ -7,10 +7,28 @@ WARNING = (1, 'WARNING',)
 CRITICAL = (2, 'CRITICAL',)
 UNKNOWN = (3, 'UNKNOWN',)
 
+SEVERITIES = (OK, WARNING, CRITICAL, UNKNOWN)
+
+
+def get_severity_code(severity):
+    return severity[0]
+
+
+def get_severity_text(severity):
+    return severity[1]
+
+
+def get_severity_by_code(severity_code):
+    for severity in SEVERITIES:
+        if get_severity_code(severity) == severity_code:
+            return severity
+    raise RuntimeError('Severity code %d is not a valid severity' % severity_code)
+
 
 class CheckResult(object):
     def __init__(self):
         self.parts = []
+        self.max_severity = UNKNOWN
 
     def add_part(self, part):
         self.parts += [part]
@@ -19,7 +37,10 @@ class CheckResult(object):
         return self.parts
 
     def get_code(self):
-        return max([x.code for x in self.get_parts()])
+        return min([max([x.code for x in self.get_parts()]), self.max_severity])
+
+    def set_max_severity(self, severity):
+        self.max_severity = severity
 
     def get_message(self):
         return '; '.join([x.message for x in self.get_parts()])

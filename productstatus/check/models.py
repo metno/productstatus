@@ -22,12 +22,15 @@ class Check(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(unique=True, max_length=255)
     product = models.ForeignKey(productstatus.core.models.Product)
+    max_severity = models.IntegerField(choices=productstatus.check.SEVERITIES,
+                                       default=productstatus.check.get_severity_code(productstatus.check.UNKNOWN))
 
     def execute(self):
         """!
         @brief Run a check and return its results as a CheckResult object.
         """
         result = productstatus.check.CheckResult()
+        result.set_max_severity(productstatus.check.get_severity_by_code(self.max_severity))
         [result.add_part(x.execute()) for x in self.checks()]
         return result
 

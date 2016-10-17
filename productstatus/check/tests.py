@@ -38,6 +38,23 @@ class CheckTest(django.test.TestCase):
         result.add_part(critical)
         self.assertEqual(result.get_code(), productstatus.check.CRITICAL)
 
+    def test_check_result_worst(self):
+        """!
+        @brief Test that a check's result code equals the minimum value of
+        either worst severity from its CheckResultPart children, or the worst
+        severity limit.
+        """
+        result = productstatus.check.CheckResult()
+        result.set_max_severity(productstatus.check.WARNING)
+        ok = productstatus.check.CheckResultPart()
+        ok.ok('foo')
+        result.add_part(ok)
+        self.assertEqual(result.get_code(), productstatus.check.OK)
+        critical = productstatus.check.CheckResultPart()
+        critical.critical('bar')
+        result.add_part(critical)
+        self.assertEqual(result.get_code(), productstatus.check.WARNING)
+
     def test_check_execute(self):
         """!
         @brief Test that a check executes and gives a correct check structure back.

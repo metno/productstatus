@@ -86,6 +86,11 @@ class CheckTest(django.test.TestCase):
         result = check_part.execute()
         self.assertEqual(result.code, productstatus.check.CRITICAL)
 
+        # test setting another severity, should fail with WARNING
+        check_part.severity = productstatus.check.get_severity_code(productstatus.check.WARNING)
+        result = check_part.execute()
+        self.assertEqual(result.code, productstatus.check.WARNING)
+
         # increase the grace time for the check, it should succeed again
         delta = productstatus.now_with_timezone() - product_instance.reference_time
         check_part.grace_time = (delta.total_seconds() / 60) + 2
@@ -93,6 +98,7 @@ class CheckTest(django.test.TestCase):
         self.assertEqual(result.code, productstatus.check.OK)
 
         # set the grace time to just a little bit below required threshold, it should now fail
+        check_part.severity = productstatus.check.get_severity_code(productstatus.check.CRITICAL)
         check_part.grace_time = (delta.total_seconds() / 60) - 2
         result = check_part.execute()
         self.assertEqual(result.code, productstatus.check.CRITICAL)

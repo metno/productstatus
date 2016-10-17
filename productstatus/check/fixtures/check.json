@@ -13,6 +13,7 @@
     "pk": "032a366f-9bb9-4c98-aa27-97823ca9c7d1",
     "fields": {
         "check_id": "8340969c-7f93-4527-8868-a23e3ed80d8b",
+        "severity": 2,
         "service_backend": "495bb3be-e327-4840-accf-afefcd411e06",
         "format": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc",
         "count": 1,
@@ -25,6 +26,7 @@
     "pk": "c10046dc-18be-429b-b771-ff869b6e2c74",
     "fields": {
         "check_id": "8340969c-7f93-4527-8868-a23e3ed80d8b",
+        "severity": 2,
         "service_backend": "7f287791-b10f-41c5-ada8-327783573e29",
         "format": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc",
         "count": 1,
@@ -37,6 +39,7 @@
     "pk": "deff0392-9dc3-43b6-8441-0969a4b285bb",
     "fields": {
         "check_id": "8340969c-7f93-4527-8868-a23e3ed80d8b",
+        "severity": 2,
         "maximum_age": 600
     }
 }

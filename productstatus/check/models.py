@@ -47,9 +47,16 @@ class Check(models.Model):
 class CheckCondition(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     check_id = models.ForeignKey(Check)
+    severity = models.IntegerField('Minimum severity of check result if sub-check fails',
+                                   choices=productstatus.check.SEVERITIES,
+                                   default=productstatus.check.get_severity_code(productstatus.check.CRITICAL))
 
     class Meta:
         abstract = True
+
+    @property
+    def severity_object(self):
+        return productstatus.check.get_severity_by_code(self.severity)
 
     def execute(self):
         """!
@@ -102,7 +109,7 @@ class CheckConditionDataInstance(CheckCondition):
         """
         product_instance = self.check_id.product.latest_product_instance()
         if not product_instance:
-            return result.critical('No product instances found for product %s' % self.check_id.product.name)
+            return result.set_result(self.severity_object, 'No product instances found for product %s' % self.check_id.product.name)
         base_text = '%s %s files on %s' % (self.check_id.product.name, self.format.name, self.service_backend.name)
         if not self.reference_time_in_terms(product_instance.reference_time):
             return result.ok('%s: skipping subcheck, not defined for term %02d' % (base_text, product_instance.reference_time.hour))
@@ -119,7 +126,7 @@ class CheckConditionDataInstance(CheckCondition):
                 text = '%d extraneous data instances' % -data_instance_delta
             if remaining_seconds > 0:
                 return result.ok('%s: %s, but still %s remaining to fulfill requirements' % (base_text, text, str(remaining)))
-            return result.critical('%s: %s' % (base_text, text))
+            return result.set_result(self.severity_object, '%s: %s' % (base_text, text))
         return result.ok('%s: %d data instances, just as expected' % (base_text, data_instance_count))
 
     def __str__(self):
@@ -136,7 +143,7 @@ class CheckConditionAge(CheckCondition):
         """
         product_instance = self.check_id.product.latest_product_instance()
         if not product_instance:
-            result.critical('No product instances found for product %s' % self.check_id.product.name)
+            result.set_result(self.severity_object, 'No product instances found for product %s' % self.check_id.product.name)
             return
         time_delta = datetime.timedelta(minutes=self.maximum_age)
         now = productstatus.now_with_timezone()
@@ -145,7 +152,7 @@ class CheckConditionAge(CheckCondition):
         if remaining_seconds > 0:
             result.ok('%s latest reference time is %s, still valid for %s' % (self.check_id.product.name, str(product_instance.reference_time), str(remaining)))
             return
-        result.critical('%s latest reference time is %s, expected a new data set at least %s ago' % (self.check_id.product.name, str(product_instance.reference_time), str(-remaining)))
+        result.set_result(self.severity_object, '%s latest reference time is %s, expected a new data set at least %s ago' % (self.check_id.product.name, str(product_instance.reference_time), str(-remaining)))
 
     def __str__(self):
         return 'Check that the current reference time is no older than %d minutes' % self.maximum_age

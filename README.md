@@ -65,6 +65,21 @@ Make your changes using the admin interface, then generate new JSON files:
     ./manage.py dumpdata --indent 4 --exclude corsheaders --exclude contenttypes --exclude check --exclude admin --exclude sessions --output productstatus/core/fixtures/core.json
     ./manage.py dumpdata --indent 4 --output productstatus/check/fixtures/check.json check
 
+## Exporting core data
+
+In order to backup all non-programmatical created data, you may run the following `dumpdata` command:
+
+    ./manage.py dumpdata --indent 4 \
+        core.dataformat \
+        core.institution \
+        core.license \
+        core.person \
+        core.product \
+        core.projection \
+        core.servicebackend \
+        core.variable \
+        ;
+
 ## Setting up API user permissions
 
 You must grant write access to the certain models required for your API user. This can be done by editing users through the Django administration interface.

@@ -93,6 +93,16 @@ def core_object(object_):
         template: object_,
     }
 
+@register.inclusion_tag('core/include/empty.html')
+def core_object_mini(object_):
+    template = template_from_class(object_)
+    return {
+        'template': 'core/include/mini/%s.html' % template,
+        'object_class': str(object_.__class__),
+        'object_type': template,
+        template: object_,
+    }
+
 @register.inclusion_tag('check/include/checks.html')
 def product_checks(product):
     checks = productstatus.check.models.Check.objects.filter(product=product)

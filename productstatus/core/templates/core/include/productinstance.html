@@ -54,6 +54,22 @@
     </tbody>
 </table>
 
-{% for data in productinstance.data %}
-    {% core_object data %}
-{% endfor %}
+<h4 class="ui block header">Contents</h4>
+
+<table class="ui celled table">
+    <thead>
+        <tr>
+            <th>URL</th>
+            <th>Service backend</th>
+            <th>File format</th>
+            <th>Status</th>
+            <th>ID</th>
+            <th>Admin</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in productinstance.data %}
+            {% core_object_mini data %}
+        {% endfor %}
+    </tbody>
+</table>

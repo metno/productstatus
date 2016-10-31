@@ -1,0 +1,12 @@
+{# vi: se ft=htmldjango: #}
+
+{% load productstatus %}
+
+<tr>
+    <td>{{ datainstance.url }}</td>
+    <td>{{ datainstance.service_backend.name }}</td>
+    <td>{{ datainstance.format.name }}</td>
+    <td>{% deleted datainstance.deleted %}</td>
+    <td>{% uuid datainstance.id %}</td>
+    <td>{% admin object_type datainstance.id %}</td>
+</tr>

@@ -1,0 +1,13 @@
+{# vi: se ft=htmldjango: #}
+
+{% load productstatus %}
+
+<tr id="{{ data.id }}">
+    <td colspan="4"><strong>{{ data.time_period_begin }}</strong> to <strong>{{ data.time_period_end }}</strong></td>
+    <td>{% uuid data.id %}</td>
+    <td>{% admin object_type data.id %}</td>
+</tr>
+
+{% for datainstance in data.datainstance_set.all %}
+    {% core_object_mini datainstance %}
+{% endfor %}

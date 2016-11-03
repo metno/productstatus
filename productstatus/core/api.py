@@ -1,6 +1,7 @@
 from tastypie import fields, resources, authentication, authorization, serializers
 from django.conf import settings
 
+import django.db
 import dateutil.tz
 import tastypie.exceptions
 
@@ -39,7 +40,22 @@ class BaseResource(resources.ModelResource):
     """
     All resource classes should inherit this base class.
     """
-    pass
+
+    def obj_create(self, *args, **kwargs):
+        """!
+        @brief Catch Django IntegrityError exceptions, and transform them from
+        a server error into a client error.
+
+        This behaviour accomplishes the following:
+
+        a) informs the API user that it is the client's responsibility to check
+           for duplicate and correctly formed objects, and
+        b) avoids sending server error e-mails when the client makes an error.
+        """
+        try:
+            return super(BaseResource, self).obj_create(*args, **kwargs)
+        except django.db.IntegrityError as e:
+            raise tastypie.exceptions.BadRequest(e)
 
 
 class BaseMeta:

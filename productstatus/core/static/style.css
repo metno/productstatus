@@ -1,58 +1,18 @@
+/**
+ * Extra styles overriding the Semantic UI styling
+ */
+
 body {
-    width: 66%;
     margin: 3em auto;
-    color: #111;
-    font-family: "Source Sans Pro", "Bitstream Charter", "Times", serif;
 }
 
-table {
-    width: 100%;
-    border: 0;
-}
-
-table th {
-    border-bottom: 1px solid #444;
-    text-align: left;
-}
-
-table td, table th {
-    padding: 0.2em 0;
-}
-
-table table {
-    color: #777;
-    width: auto;
-    margin: 0 0 2em 1em;
-}
-
-table table td, table table th {
-    padding-right: 2em;
-}
-
-a {
-    color: crimson;
-}
-
-p {
-    margin: 0.5em 0;
-}
-
-strong {
-    color: #888;
-    font-size: 85%;
-    font-weight: bold;
-}
-
-.operational {
-    color: green;
-    text-transform: uppercase;
-}
-
-.non-operational {
-    color: crimson;
-    text-transform: uppercase;
-}
-
-li.data {
-    margin: 1em 0 0;
+footer {
+    margin: 3em auto;
+    text-align: center;
+    font-size: 90%;
+    color: rgba(0, 0, 0, 0.6);
+    border-color: #e8e8e8;
+    border-width: 1px 0 0;
+    border-style: solid;
+    padding: 1em 0 0;
 }

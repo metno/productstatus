@@ -1,5 +1,6 @@
 from django import template
 from django.utils.safestring import mark_safe
+from django.conf import settings
 
 import productstatus.core.models
 import productstatus.check.models
@@ -110,6 +111,10 @@ def product_checks(product):
         'product': product,
         'checks': checks,
     }
+
+@register.simple_tag
+def admins_with_email():
+    return mark_safe(', '.join(['<a href="mailto:%s">%s</a>' % (email, name) for name, email in settings.ADMINS]))
 
 def template_from_class(instance):
     class_list = [

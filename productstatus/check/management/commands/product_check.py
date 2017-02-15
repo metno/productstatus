@@ -36,14 +36,16 @@ class MultiStdoutPrinter(StdoutPrinter):
 
 
 class SensuPrinter(Printer):
-    def __init__(self):
+    def __init__(self, handlers=[]):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.handlers = handlers
 
     def format(self, result):
         data = {
             'name': result.check.name,
             'output': result.get_failing_message(),
             'status': result.get_code()[0],
+            'handlers': self.handlers,
         }
         return json.dumps(data)
 
@@ -59,6 +61,7 @@ class Command(BaseCommand):
         parser.add_argument('check_name', nargs='?', type=str)
         parser.add_argument('--list', action='store_true', required=False, help='List all available checks')
         parser.add_argument('--sensu', action='store_true', required=False, help='Send check output to a local Sensu client instead of stdout')
+        parser.add_argument('--sensu-handlers', nargs='*', metavar='HANDLER', help='Define which Sensu handlers to add to check outputs')
         parser.add_argument('--ignore-read-only', action='store_true', required=False, help='Suppress check output if the database is read-only')
 
     def read_only(self):
@@ -112,7 +115,7 @@ class Command(BaseCommand):
             print('%d check results have been ignored because the database is in read-only mode' % num_checks)
             return
         elif options['sensu'] is True:
-            printer = SensuPrinter()
+            printer = SensuPrinter(handlers=options['sensu_handlers'])
 
         # Send or print results
         max_severity = productstatus.check.OK

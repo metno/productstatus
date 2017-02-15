@@ -1,9 +1,12 @@
 from django.core.management.base import BaseCommand
 from django.conf import settings
+from django.db import connection
 
 import sys
 import json
 import socket
+
+import django.db.utils
 
 import productstatus.core.models
 import productstatus.check
@@ -20,6 +23,14 @@ class Printer(object):
 
     def print(self, result):
         print(self.format(result))
+
+
+class NullPrinter(Printer):
+    def format(self, result):
+        pass
+
+    def print(self, result):
+        pass
 
 
 class StdoutPrinter(Printer):
@@ -57,6 +68,18 @@ class Command(BaseCommand):
         parser.add_argument('check_name', nargs='?', type=str)
         parser.add_argument('--list', action='store_true', required=False, help='List all available checks')
         parser.add_argument('--sensu', action='store_true', required=False, help='Send check output to a local Sensu client instead of stdout')
+        parser.add_argument('--ignore-read-only', action='store_true', required=False, help='Suppress check output if the database is read-only')
+
+    def read_only(self):
+        query = 'SELECT pg_is_in_recovery()'
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute(query)
+                return bool(cursor.fetchone())
+        except django.db.utils.OperationalError:
+            # thrown e.g. when this is not a PostgreSQL database
+            sys.stderr.write("WARNING: ignoring database error while running query '%s'; assuming RW database\n" % query)
+            return False
 
     def print_check_list(self):
         checks = list(productstatus.check.models.Check.objects.all().order_by('name'))
@@ -94,7 +117,9 @@ class Command(BaseCommand):
             results[0].check = type("Foo", (object,), {})()
             results[0].check.name = options['check_name']
 
-        if options['sensu'] is True:
+        if options['ignore_read_only'] and self.read_only():
+            printer = NullPrinter()
+        elif options['sensu'] is True:
             printer = SensuPrinter()
 
         # Send or print results

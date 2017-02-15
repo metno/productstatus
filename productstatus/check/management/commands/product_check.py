@@ -25,14 +25,6 @@ class Printer(object):
         print(self.format(result))
 
 
-class NullPrinter(Printer):
-    def format(self, result):
-        pass
-
-    def print(self, result):
-        pass
-
-
 class StdoutPrinter(Printer):
     def format(self, result):
         return '%s - %s' % (result.get_code()[1], result.get_failing_message())
@@ -117,7 +109,8 @@ class Command(BaseCommand):
             results[0].check.name = options['check_name']
 
         if options['ignore_read_only'] and self.read_only():
-            printer = NullPrinter()
+            print('%d check results have been ignored because the database is in read-only mode' % num_checks)
+            return
         elif options['sensu'] is True:
             printer = SensuPrinter()
 

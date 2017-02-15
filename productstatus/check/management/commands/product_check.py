@@ -69,7 +69,7 @@ class Command(BaseCommand):
         try:
             with connection.cursor() as cursor:
                 cursor.execute(query)
-                return bool(cursor.fetchone())
+                return bool(cursor.fetchone()[0])
         except django.db.utils.OperationalError:
             # thrown e.g. when this is not a PostgreSQL database
             sys.stderr.write("WARNING: ignoring database error while running query '%s'; assuming RW database\n" % query)

@@ -8,7 +8,7 @@ class DataInstanceCollectionTest(BaseTestCases.ProductstatusCollectionTest):
         super(DataInstanceCollectionTest, self).setUp()
 
         self.base_url = "%s%s" % (self.url_prefix, "/datainstance/")
-        self.collection_size = 2
+        self.collection_size = 4
         self.post_data = {
             "expires": "2015-12-28T09:00:00Z",
             "format": "/api/v1/dataformat/4a052f4e-61b8-4a10-9235-11f2dbb31bcc/",

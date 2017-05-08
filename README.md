@@ -62,7 +62,7 @@ To create the `core.json` and `check.json` fixtures, first restore the database 
 
 Make your changes using the admin interface, then generate new JSON files:
 
-    ./manage.py dumpdata --indent 4 --exclude corsheaders --exclude contenttypes --exclude check --exclude admin --exclude sessions --output productstatus/core/fixtures/core.json
+    ./manage.py dumpdata --indent 4 --exclude corsheaders --exclude contenttypes --exclude check --exclude admin --exclude sessions --exclude core.pendingmessage --output productstatus/core/fixtures/core.json
     ./manage.py dumpdata --indent 4 --output productstatus/check/fixtures/check.json check
 
 ## Exporting core data

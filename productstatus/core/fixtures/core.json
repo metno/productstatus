@@ -1,6 +1,33 @@
 [
 {
     "model": "core.product",
+    "pk": "530d166a-ace9-46d5-b817-9168ca5946b1",
+    "fields": {
+        "object_version": 1,
+        "slug": "second-product",
+        "projection": null,
+        "contact": "b407e09d-b0c4-4289-95fe-75a2497f6eaa",
+        "institution": "b3528b13-84aa-49a2-8895-77c1b3fce9d8",
+        "license": "92a5a153-53a4-4170-a0bc-cbd4ed14a05c",
+        "source": null,
+        "name": "Second product",
+        "operational": false,
+        "grid_resolution": null,
+        "grid_resolution_unit": null,
+        "prognosis_length": null,
+        "time_steps": null,
+        "bounding_box": null,
+        "wdb_data_provider": null,
+        "file_count": null,
+        "source_key": null,
+        "created": "2017-05-08T13:44:49.564Z",
+        "modified": "2017-05-08T13:44:49.564Z",
+        "parents": [],
+        "variables": []
+    }
+},
+{
+    "model": "core.product",
     "pk": "7d3fe736-5902-44d5-a34c-86f877190523",
     "fields": {
         "object_version": 0,
@@ -39,6 +66,18 @@
         "version": 2,
         "created": "2016-09-12T13:26:26.229Z",
         "modified": "2016-09-12T13:26:26.229Z"
+    }
+},
+{
+    "model": "core.productinstance",
+    "pk": "10952789-fc86-4374-8840-5f96f50a52ba",
+    "fields": {
+        "object_version": 3,
+        "product": "530d166a-ace9-46d5-b817-9168ca5946b1",
+        "reference_time": "2017-05-08T00:00:00Z",
+        "version": 1,
+        "created": "2017-05-08T13:47:00.393Z",
+        "modified": "2017-05-08T13:47:18.331Z"
     }
 },
 {
@@ -119,6 +158,37 @@
     }
 },
 {
+    "model": "core.data",
+    "pk": "4c2eb376-5d2c-4923-aaf5-35e61181ea82",
+    "fields": {
+        "object_version": 1,
+        "product_instance": "10952789-fc86-4374-8840-5f96f50a52ba",
+        "time_period_begin": "2017-05-08T13:47:10Z",
+        "time_period_end": "2017-05-08T13:47:13Z",
+        "created": "2017-05-08T13:47:14.849Z",
+        "modified": "2017-05-08T13:47:18.335Z",
+        "variables": []
+    }
+},
+{
+    "model": "core.datainstance",
+    "pk": "031d357c-bcdb-457b-b794-0c958afd6e54",
+    "fields": {
+        "object_version": 0,
+        "data": "4c2eb376-5d2c-4923-aaf5-35e61181ea82",
+        "format": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc",
+        "service_backend": "7f287791-b10f-41c5-ada8-327783573e29",
+        "partial": false,
+        "url": "file:///test2",
+        "hash_type": null,
+        "hash": null,
+        "expires": "2013-05-08T13:46:10Z",
+        "deleted": true,
+        "created": "2017-05-08T13:46:15.095Z",
+        "modified": "2017-05-08T13:51:55.029Z"
+    }
+},
+{
     "model": "core.datainstance",
     "pk": "8e52633f-04bc-40d5-99e1-6b1c9b9010f4",
     "fields": {
@@ -148,10 +218,28 @@
         "url": "https://datastore1.example.com/test.nc",
         "hash_type": null,
         "hash": null,
-        "expires": null,
+        "expires": "2010-05-08T13:45:10Z",
         "deleted": false,
         "created": "2015-12-08T09:28:40.997Z",
-        "modified": "2015-12-08T09:28:40.997Z"
+        "modified": "2017-05-08T13:51:47.403Z"
+    }
+},
+{
+    "model": "core.datainstance",
+    "pk": "bf6893b6-7963-4b61-9149-5a0a67ecd78e",
+    "fields": {
+        "object_version": 0,
+        "data": "4c2eb376-5d2c-4923-aaf5-35e61181ea82",
+        "format": "4a052f4e-61b8-4a10-9235-11f2dbb31bcc",
+        "service_backend": "495bb3be-e327-4840-accf-afefcd411e06",
+        "partial": false,
+        "url": "file:///test1",
+        "hash_type": null,
+        "hash": null,
+        "expires": "2012-05-08T13:45:53Z",
+        "deleted": false,
+        "created": "2017-05-08T13:45:58.833Z",
+        "modified": "2017-05-08T13:51:52.253Z"
     }
 },
 {
@@ -944,7 +1032,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$24000$zaSyKjb8Zqpr$d88HJ5SUfkqFNAvhw54hSzSLg/+nxrZu5vexLmBzIJI=",
-        "last_login": "2016-09-12T13:24:24.765Z",
+        "last_login": "2017-05-08T13:44:24.810Z",
         "is_superuser": true,
         "username": "admin",
         "first_name": "",

@@ -9,7 +9,7 @@ import json
 import kafka
 
 
-MESSAGE_PROTOCOL_VERSION = [1, 5, 0]
+MESSAGE_PROTOCOL_VERSION = [1, 6, 0]
 
 
 class KafkaPublisher(object):
@@ -89,14 +89,25 @@ class KafkaPublisher(object):
 
         msg = KafkaPublisher.base_message()
         msg.update({
-            'message_id': str(uuid.uuid4()),
-            'message_timestamp': datetime.datetime.utcnow().replace(tzinfo=dateutil.tz.tzutc()).strftime('%Y-%m-%dT%H:%M:%SZ'),
             'object_version': model_instance.object_version,
             'url': model_instance.full_url(),
             'uri': model_instance.full_uri(),
-            'version': MESSAGE_PROTOCOL_VERSION,
             'resource': model_instance.resource_name(),
             'type': 'resource',
             'id': str(model_instance.id),
+        })
+        return msg
+
+    @staticmethod
+    def expired_message(service_backend, product, instances):
+        """
+        Generate a message containing expired resources.
+        """
+        msg = KafkaPublisher.base_message()
+        msg.update({
+            'type': 'expired',
+            'product': service_backend.full_uri(),
+            'service_backend': service_backend.full_uri(),
+            'uris': [instance.full_uri() for instance in instances],
         })
         return msg

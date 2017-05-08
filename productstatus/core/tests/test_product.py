@@ -8,7 +8,7 @@ class ProductCollectionTest(BaseTestCases.ProductstatusCollectionTest):
         super(ProductCollectionTest, self).setUp()
 
         self.base_url = "%s%s" % (self.url_prefix, "/product/")
-        self.collection_size = 1
+        self.collection_size = 2
         self.post_data = {
             "wdb_data_provider": "modelorama_indeed",
             "grid_resolution": "2500.00000",

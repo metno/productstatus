@@ -11,7 +11,7 @@ class ProductInstanceCollectionTest(BaseTestCases.ProductstatusCollectionTest):
 
         self.base_url = "%s%s" % (self.url_prefix, '/productinstance/')
         self.detail_url = "%s%s/" % (self.base_url, "88d28ffd-d448-4319-a94e-16889955f94a")
-        self.collection_size = 5
+        self.collection_size = 6
         self.post_data = {
             'product': '/api/v1/product/7d3fe736-5902-44d5-a34c-86f877190523/',
             'state': 0,
@@ -67,7 +67,7 @@ class ProductInstanceCollectionTest(BaseTestCases.ProductstatusCollectionTest):
         self.assertValidJSONResponse(resp)
 
         decoded_content = self.unserialize(resp)
-        self.assertEqual(decoded_content['objects'][0]['reference_time'], '2015-12-08T00:00:00Z')
+        self.assertEqual(decoded_content['objects'][0]['reference_time'], '2017-05-08T00:00:00Z')
 
     def test_increment_version(self):
         """
@@ -128,7 +128,7 @@ class ProductInstanceItemTest(BaseTestCases.ProductstatusItemTest):
         """!
         @brief Test that ProductInstance.previous returns the previous ProductInstance in the set.
         """
-        qs = ProductInstance.objects.all().order_by('reference_time', 'version')
+        qs = ProductInstance.objects.filter(product__id='7d3fe736-5902-44d5-a34c-86f877190523').order_by('reference_time', 'version')
         for index, instance in enumerate(qs):
             previous = instance.previous()
             if index == 0:
@@ -140,7 +140,7 @@ class ProductInstanceItemTest(BaseTestCases.ProductstatusItemTest):
         """!
         @brief Test that ProductInstance.next returns the next ProductInstance in the set.
         """
-        qs = ProductInstance.objects.all().order_by('reference_time', 'version')
+        qs = ProductInstance.objects.filter(product__id='7d3fe736-5902-44d5-a34c-86f877190523').order_by('reference_time', 'version')
         for index, instance in enumerate(qs):
             next_ = instance.next()
             if index + 1 == len(qs):

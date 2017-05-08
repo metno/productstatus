@@ -61,5 +61,5 @@ class LookupTest(django.test.TestCase):
         self.assertEqual(len(result), 2)
         self.assertIsInstance(result[0], productstatus.core.models.DataInstance)
         self.assertIsInstance(result[1], productstatus.core.models.DataInstance)
-        self.assertEqual(str(result[0].id), '8e52633f-04bc-40d5-99e1-6b1c9b9010f4')
-        self.assertEqual(str(result[1].id), 'ae443952-7990-4cee-9913-41dfd0092dc1')
+        self.assertEqual(str(result[0].id), 'ae443952-7990-4cee-9913-41dfd0092dc1')
+        self.assertEqual(str(result[1].id), '8e52633f-04bc-40d5-99e1-6b1c9b9010f4')

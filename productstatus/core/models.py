@@ -356,7 +356,7 @@ class DataInstance(BaseModel):
     hash_type = models.CharField(max_length=32, null=True, blank=True)
     hash = models.CharField(max_length=512, null=True, blank=True)
     expires = models.DateTimeField(null=True, blank=True, db_index=True)
-    deleted = models.BooleanField(default=False)
+    deleted = models.BooleanField(default=False, db_index=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     modified = models.DateTimeField(auto_now=True, editable=False)
 

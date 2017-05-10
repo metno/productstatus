@@ -31,7 +31,7 @@ class Command(BaseCommand):
         logging.debug('Sent heartbeat %d', self.heartbeat_count)
 
     def send_expired_check(self, product, servicebackend, datainstances):
-        msg = productstatus.core.kafkapublisher.KafkaPublisher.expired_message(product, servicebackend, datainstances)
+        msg = productstatus.core.kafkapublisher.KafkaPublisher.expired_message(*args)
         self.app.send_message(msg)
         logging.debug('Sent message about %d expired DataInstance resources in %s, %s', len(datainstances), product, servicebackend)
 

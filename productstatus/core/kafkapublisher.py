@@ -99,7 +99,7 @@ class KafkaPublisher(object):
         return msg
 
     @staticmethod
-    def expired_message(service_backend, product, instances):
+    def expired_message(product, service_backend, instances):
         """
         Generate a message containing expired resources.
         """

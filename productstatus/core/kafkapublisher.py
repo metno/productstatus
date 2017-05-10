@@ -106,7 +106,7 @@ class KafkaPublisher(object):
         msg = KafkaPublisher.base_message()
         msg.update({
             'type': 'expired',
-            'product': service_backend.full_uri(),
+            'product': product.full_uri(),
             'service_backend': service_backend.full_uri(),
             'uris': [instance.full_uri() for instance in instances],
         })

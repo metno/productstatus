@@ -76,7 +76,8 @@ class PagerDutyPrinter(Printer):
         payload = {
             'client': 'Productstatus',
             'client_url': url,
-            'description': result.get_failing_message().replace('; ', '\n'),
+            'description': 'Integrity check failed',
+            'details': result.messages(),
             'event_type': 'trigger',
             'incident_key': result.check.pagerduty_incident,
             'service_key': result.check.pagerduty_service,

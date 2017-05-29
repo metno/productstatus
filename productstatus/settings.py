@@ -194,6 +194,9 @@ PRODUCTSTATUS_HOST = 'localhost:8000'
 PRODUCTSTATUS_BASE_PATH = '/api/v1'
 PRODUCTSTATUS_PROTOCOL = 'http'
 
+# PagerDuty integration.
+PAGERDUTY_API_KEY = None
+
 # Blank Raven configuration, please configure in local_settings
 RAVEN_CONFIG = {}
 

@@ -5,6 +5,8 @@ from django.db import connection
 import sys
 import json
 import socket
+import requests
+import logging
 
 import django.db.utils
 
@@ -23,6 +25,7 @@ class Printer(object):
 
     def print(self, result):
         print(self.format(result))
+        return 1
 
 
 class StdoutPrinter(Printer):
@@ -52,6 +55,45 @@ class SensuPrinter(Printer):
     def print(self, result):
         payload = self.format(result)
         self.sock.sendto(payload.encode('ascii'), ('127.0.0.1', 3030))
+        return 1
+
+
+class PagerDutyPrinter(Printer):
+    """
+    Submit a check result to PagerDuty.
+    """
+    def format(self, result):
+        # No PagerDuty connection, ignore
+        if len(result.check.pagerduty_service) == 0:
+            return None
+
+        # Ignore OK conditions
+        if result.get_code() == productstatus.check.OK:
+            return None
+
+        return {
+            'client': 'Productstatus',
+            'description': result.get_failing_message().replace('; ', '\n'),
+            'event_type': 'trigger',
+            'service_key': result.check.pagerduty_service,
+        }
+
+    def print(self, result):
+        payload = self.format(result)
+        if payload is None:
+            return 0
+        pagerduty_session = requests.Session()
+        pagerduty_session.headers.update({
+            'Authorization': 'Token token=' + settings.PAGERDUTY_API_KEY,
+            'Accept': 'application/vnd.pagerduty+json;version=2'
+        })
+        payload = json.dumps(payload)
+        r = pagerduty_session.post('https://events.pagerduty.com/generic/2010-04-15/create_event.json', data=payload)
+        try:
+            r.raise_for_status()
+        except:
+            raise Exception(r.json())
+        return 1
 
 
 class Command(BaseCommand):
@@ -62,6 +104,7 @@ class Command(BaseCommand):
         parser.add_argument('--list', action='store_true', required=False, help='List all available checks')
         parser.add_argument('--sensu', action='store_true', required=False, help='Send check output to a local Sensu client instead of stdout')
         parser.add_argument('--sensu-handlers', nargs='*', metavar='HANDLER', help='Define which Sensu handlers to add to check outputs')
+        parser.add_argument('--pagerduty', action='store_true', required=False, help='Enable PagerDuty output')
         parser.add_argument('--ignore-read-only', action='store_true', required=False, help='Suppress check output if the database is read-only')
 
     def read_only(self):
@@ -116,14 +159,23 @@ class Command(BaseCommand):
             return
         elif options['sensu'] is True:
             printer = SensuPrinter(handlers=options['sensu_handlers'])
+        elif options['pagerduty'] is True:
+            printer = PagerDutyPrinter()
 
         # Send or print results
-        max_severity = productstatus.check.OK
-        for result in results:
-            max_severity = max(max_severity, result.get_code())
-            printer.print(result)
+        try:
+            submitted = 0
+            max_severity = productstatus.check.OK
+            for result in results:
+                max_severity = max(max_severity, result.get_code())
+                submitted += printer.print(result)
+        except Exception as e:
+            print('Check printer failed with exception:', e)
+            sys.exit(255)
 
-        if options['sensu'] is not True:
-            sys.exit(max_severity[0])
+        if options['sensu']:
+            print('%d check results have been submitted to Sensu' % submitted)
+        elif options['pagerduty']:
+            print('%d check results have been submitted to PagerDuty' % submitted)
         else:
-            print('%d check results have been submitted to Sensu' % num_checks)
+            sys.exit(max_severity[0])

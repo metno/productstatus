@@ -24,6 +24,8 @@ class Check(models.Model):
     product = models.ForeignKey(productstatus.core.models.Product)
     max_severity = models.IntegerField(choices=productstatus.check.SEVERITIES,
                                        default=productstatus.check.get_severity_code(productstatus.check.UNKNOWN))
+    pagerduty_service = models.CharField("PagerDuty service integration key",
+                                         unique=True, max_length=255, null=True, blank=True)
 
     def execute(self):
         """!

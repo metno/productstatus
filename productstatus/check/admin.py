@@ -12,6 +12,9 @@ class CheckConditionAgeInline(admin.TabularInline):
 
 
 class CheckAdmin(admin.ModelAdmin):
+    readonly_fields = [
+        'pagerduty_incident',
+    ]
     inlines = [
         CheckConditionDataInstanceInline,
         CheckConditionAgeInline,

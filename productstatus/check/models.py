@@ -26,6 +26,8 @@ class Check(models.Model):
                                        default=productstatus.check.get_severity_code(productstatus.check.UNKNOWN))
     pagerduty_service = models.CharField("PagerDuty service integration key",
                                          unique=True, max_length=255, null=True, blank=True)
+    pagerduty_incident = models.CharField("PagerDuty incident key",
+                                         unique=True, max_length=255, null=True, blank=True)
 
     def execute(self):
         """!

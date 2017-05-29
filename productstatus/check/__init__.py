@@ -45,14 +45,17 @@ class CheckResult(object):
     def get_message(self):
         return '; '.join([x.message for x in self.get_parts()])
 
-    def get_failing_message(self):
+    def messages(self):
         failing_parts = []
         for part in self.get_parts():
             if part.code > OK:
                 failing_parts += [part]
         if len(failing_parts) == 0:
-            return 'All tests pass'
-        return '; '.join([x.message for x in failing_parts])
+            return ['All tests pass']
+        return [x.message for x in failing_parts]
+
+    def get_failing_message(self):
+        return '; '.join(self.messages())
 
 
 class SimpleCheckResult(CheckResult):

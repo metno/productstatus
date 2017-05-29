@@ -67,32 +67,63 @@ class PagerDutyPrinter(Printer):
         if len(result.check.pagerduty_service) == 0:
             return None
 
-        # Ignore OK conditions
-        if result.get_code() == productstatus.check.OK:
-            return None
+        # Generate exploration URL so that users can drill down into the error.
+        url = "%s://%s/explore/?q=%s" % (settings.PRODUCTSTATUS_PROTOCOL,
+                                         settings.PRODUCTSTATUS_HOST,
+                                         result.check.product.id)
 
-        return {
+        # Create a payload, defaulting to trigger new incident.
+        payload = {
             'client': 'Productstatus',
+            'client_url': url,
             'description': result.get_failing_message().replace('; ', '\n'),
             'event_type': 'trigger',
+            'incident_key': result.check.pagerduty_incident,
             'service_key': result.check.pagerduty_service,
         }
 
+        # OK conditions result in a resolve event if we have an incident key.
+        if result.get_code() == productstatus.check.OK:
+            if len(result.check.pagerduty_incident) == 0:
+                return None
+            payload['event_type'] = 'resolve'
+
+        return payload
+
+
     def print(self, result):
+        # Ignore empty payloads
         payload = self.format(result)
         if payload is None:
             return 0
+
+        # Post to PagerDuty
         pagerduty_session = requests.Session()
         pagerduty_session.headers.update({
             'Authorization': 'Token token=' + settings.PAGERDUTY_API_KEY,
             'Accept': 'application/vnd.pagerduty+json;version=2'
         })
-        payload = json.dumps(payload)
-        r = pagerduty_session.post('https://events.pagerduty.com/generic/2010-04-15/create_event.json', data=payload)
-        try:
-            r.raise_for_status()
-        except:
-            raise Exception(r.json())
+        r = pagerduty_session.post('https://events.pagerduty.com/generic/2010-04-15/create_event.json',
+                                   data=json.dumps(payload))
+
+        # Fail on error statuses
+        response = r.json()
+        if r.status_code < 200 or r.status_code >= 300:
+            raise Exception(response)
+
+        # We should receive an incident key from PagerDuty.
+        if payload['event_type'] == 'trigger':
+            if 'incident_key' not in response:
+                raise Exception('Did not get incident key in response from PagerDuty.')
+            result.check.pagerduty_incident = response['incident_key']
+
+        # In case of a resolved incident, reset the incident key.
+        elif payload['event_type'] == 'resolve':
+            result.check.pagerduty_incident = None
+
+        # Persist the incident key.
+        result.check.save()
+
         return 1
 
 

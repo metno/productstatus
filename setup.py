@@ -21,6 +21,7 @@ config = {
         'python-dateutil==2.5.3',
         'psycopg2==2.6.1',
         'raven==5.16.0',
+        'requests==2.16.5',
     ],
     'packages': [],
     'scripts': [],

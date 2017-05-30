@@ -64,7 +64,7 @@ class PagerDutyPrinter(Printer):
     """
     def format(self, result):
         # No PagerDuty connection, ignore
-        if len(result.check.pagerduty_service) == 0:
+        if not result.check.pagerduty_service:
             return None
 
         # Generate exploration URL so that users can drill down into the error.
@@ -85,7 +85,7 @@ class PagerDutyPrinter(Printer):
 
         # OK conditions result in a resolve event if we have an incident key.
         if result.get_code() == productstatus.check.OK:
-            if len(result.check.pagerduty_incident) == 0:
+            if not result.check.pagerduty_incident:
                 return None
             payload['event_type'] = 'resolve'
 

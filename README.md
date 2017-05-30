@@ -4,26 +4,27 @@
 
 Productstatus is a persistent storage for weather product metadata and run-time information. It provides a REST API for data retrieval and manipulation.
 
-![Graphical representation of data model]
-(doc/model_graph.png)
+![Graphical representation of data model](doc/model_graph.png)
 
 ## Setting it up
 
-1. Checkout the source code from https://github.com/metno/productstatus.git
+1. Clone the source code from https://github.com/metno/productstatus.git.
 
-2. (Optional, recommended:) set up a virtual environment for the Productstatus python packages and their dependencies:
+2. Set up a virtual environment for the Productstatus python packages and their dependencies. Productstatus requires Python 3.x.
 
-    $ cd productstatus
-    $ virtualenv deps
-    $ . deps/bin/activate
+```
+$ cd productstatus
+$ virtualenv -p python3 deps
+$ . deps/bin/activate
+```
 
-3. Install  Zookeeper daemon and Kafka:
+3. Install the Productstatus dependencies with pip:
 
-   https://www.digitalocean.com/community/tutorials/how-to-install-apache-kafka-on-ubuntu-14-04
+```
+$ pip install -e .
+```
 
-4. Install the Productstatus dependencies:
-
-    $ pip install -e .
+4. Install and run Kafka (and the ZooKeeper daemon, since Kafka depends on it). Try the Docker container at https://github.com/spotify/docker-kafka, or set it up from scratch if you need to.
 
 ## Running
 
@@ -98,7 +99,7 @@ In order to post information about a product instance, you'll need the following
 
 ### Product
 
-A //Product// is a data set definition. It defines who is responsible, the bounding box, projection, grid resolution, number of time steps, and also includes references to names in other metadata systems such as WDB. The Product can be created from the Django administration interface, and retrieved using the API.
+A _Product_ is a data set definition. It defines who is responsible, the bounding box, projection, grid resolution, number of time steps, and also includes references to names in other metadata systems such as WDB. The Product can be created from the Django administration interface, and retrieved using the API.
 
 ### Reference time
 
@@ -128,9 +129,9 @@ Each data file must have an URL, from which it can be retrieved until its expiry
 
 This example is illustrated using [httpie](https://pypi.python.org/pypi/httpie).
 
-Imagine an instance of the product //Arome MetCoOp 2500m// has been generated, its reference time is //2015-10-29T00:00:00Z//, and the resulting data set is a //NetCDF// file which we have placed on our imaginary file servers //Datastore1// and //Datastore2//.
+Imagine an instance of the product _Arome MetCoOp 2500m_ has been generated, its reference time is _2015-10-29T00:00:00Z_, and the resulting data set is a _NetCDF_ file which we have placed on our imaginary file servers _Datastore1_ and _Datastore2_.
 
-How do we know which //Product// resource to reference? In a lot of cases, this value could be hard-coded into your configuration, since the UUID will not change. But you could also filter the Product resource collection to figure it out dynamically, for instance by searching for the WDB data provider name:
+How do we know which _Product_ resource to reference? In a lot of cases, this value could be hard-coded into your configuration, since the UUID will not change. But you could also filter the Product resource collection to figure it out dynamically, for instance by searching for the WDB data provider name:
 
     $ http GET http://localhost:8000/api/v1/product/?wdb_data_provider=arome_metcoop_2500m
 
@@ -311,7 +312,7 @@ We must connect our data files to three separate resource URIs: the newly create
         ]
     }
 
-Our fictional data is stored in NetCDF format on both //Datastore1// and //Datastore2//. Let's create an entry for each of them:
+Our fictional data is stored in NetCDF format on both _Datastore1_ and _Datastore2_. Let's create an entry for each of them:
 
     $ http --json POST http://localhost:8000/api/v1/data_file/ \
         data=/api/v1/data/8c381dc4-7d09-4edd-ae58-39715d04397c/ \

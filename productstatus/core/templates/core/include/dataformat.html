@@ -1,7 +1,0 @@
-{# vi: se ft=htmldjango: #}
-
-{% load productstatus %}
-
-<h3 id="{{ dataformat.name|slugify }}" class="ui block header">
-    Data format: {{ dataformat.name }} {% slug dataformat.slug %} {% uuid dataformat.id %} {% admin object_type dataformat.id %}
-</h3>

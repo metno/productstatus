@@ -29,6 +29,28 @@ Productstatus object is needed.
 
 ### Product definition
 
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| UUID  | `[16]int8` | Primary key. |
+| Title | `string` | Name of the product. |
+| Abstract | `string` | Long description of the product. |
+
+### Product
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| UUID  | `[16]int8` | Primary key. |
+| Definition  | `[16]int8` | Foreign key to _Product definition_ model. |
+| ReferenceTime | `time.Time` | Timestamp of the start of validity for the entire product. |
+| FileType | `string` | File type, typically one of _netcdf_, _grib1_, _grib2_. |
+| URL | `map[string]string` | List of URLs to this file, one for each location. |
+| IpfsHash | `string` | [IPFS](https://ipfs.io/) hash of the file. |
+| Begin | `time.Time` | Start timestamp of product validity. |
+| End | `time.Time` | End timestamp of product validity. |
+| Revision | `int` | Auto-incrementing field which increases if all other fields are equal. |
+
+### Discovery and use metadata
+
 Products need a minimal amount of metadata, in order to make operational
 products available for harvesting or indexing by NorDataNet. Relevant standard
 according to the NorDataNet specification is _MMD_, which is compliant with

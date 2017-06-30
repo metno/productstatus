@@ -21,6 +21,43 @@ what information is persisted. Upon registration, an event is emitted on a
 message queue, so that downstream consumers are notified immediately of its
 existence.
 
+Registration in the Productstatus index might happen using a command-line
+utility, which could also extract useful metadata.
+
+## Data synchronization
+
+A customizable selection of products must be synchronized immediately to a
+number of client systems once it becomes available. Examples of this include
+synchronization between Lustre stores A+B; transferring data from the Lustre
+stores to the MET API caches; and pushing a smaller selection of products to
+backup locations.
+
+Data synchronization requirements:
+
+* Data integrity check after transfers, using checksums.
+* Resource utilization should be either network-bound or disk-bound.
+* Ability to survive network outages and recover quickly.
+* Immediate synchronization when products become available.
+* Client-side runtime and configuration of product selection.
+
+### rsync
+
+| Pros | Cons |
+| ---- | ---- |
+| Battle-tested | Requires SSH credentials |
+| Stable code base | Lacks automatic restart/resume |
+| In-house competence | Requires separate state table and logic for transfers |
+
+### BitTorrent
+
+| Pros | Cons |
+| ---- | ---- |
+| Decentralized distribution | Requires additional peer rule configuration to avoid long-distance transfers |
+| BitTorrent client keeps state | Might be slower on local transfers |
+| Anonymous transfers | |
+| External distribution | |
+| File paths are irrelevant | |
+
 ## Data model
 
 All models are assigned a universally unique identifier (UUID), a randomized,

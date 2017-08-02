@@ -11,18 +11,17 @@ Meteorological data, or _products_, are obtained using a number of methods:
 * Retrieving files from other sources
 
 Once made available, data is regularly accessed by a diverse and heteorogenous
-selection of downstream processing systems. Some of these systems need to be
-notified about new product generation, and can often make use of metadata
-such as reference time and process lineage.
+selection of downstream processing systems. Some of these systems want to be
+notified that a new product is available, in order to update user interfaces,
+provide metrics, start a process, fill caches, or similar tasks.
 
-When a product is persisted, in form of a file or object, it may be registered
-in the Productstatus index. See [data model](#data-model) for details about
-what information is persisted. Upon registration, an event is emitted on a
-message queue, so that downstream consumers are notified immediately of its
-existence.
+When a product is persisted on disk, it is usually in the form of a file. This
+file may be scanned for metadata and submitted to Productstatus for indexing.
+After successfully indexing the metadata, a message is emitted on a
+publish/subscribe message queue, so that downstream consumers are notified
+immediately of its existence.
 
-Registration in the Productstatus index might happen using a command-line
-utility, which could also extract useful metadata.
+See [data model](#data-model) for details on what information is persisted.
 
 ## Data synchronization
 
@@ -34,8 +33,9 @@ backup locations.
 
 Data synchronization requirements:
 
-* Data integrity check after transfers, using checksums.
-* Resource utilization should be either network-bound or disk-bound.
+* Data integrity. The transferred files must be guaranteed to be exactly equal
+  to the original files.
+* Resource utilization should be disk bound.
 * Ability to survive network outages and recover quickly.
 * Immediate synchronization when products become available.
 * Client-side runtime and configuration of product selection.
@@ -52,11 +52,27 @@ Data synchronization requirements:
 
 | Pros | Cons |
 | ---- | ---- |
-| Decentralized distribution | Requires additional peer rule configuration to avoid long-distance transfers |
-| BitTorrent client keeps state | Might be slower on local transfers |
-| Anonymous transfers | |
+| Decentralized distribution | May require peer blacklist configuration to avoid long-distance transfers |
+| BitTorrent client keeps state | May be slower on local transfers |
+| Anonymous transfers | Network, memory and CPU overhead |
 | External distribution | |
 | File paths are irrelevant | |
+
+## Lifecycle management
+
+Data synchronization will result in hard drives being filled up. On most
+systems, only operational data is needed. Operational data is data that is
+useful for predicting the weather from the current point in time. At MET
+Norway, operational data is maximum three days old.
+
+Once a product has been indexed in Productstatus, other clients will start to
+rely on its availability. After a certain time period has passed, the data is
+considered non-operational, and it may be deleted to reclaim disk space. This
+deletion process can be handled by a cron job or a daemon program. The expiry
+time for the product must be stored in the Productstatus index so that clients
+know that the data will be unavailable, and can in turn give proper feedback to
+their users or clients.
+
 
 ## Data model
 

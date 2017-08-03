@@ -73,7 +73,6 @@ time for the product must be stored in the Productstatus index so that clients
 know that the data will be unavailable, and can in turn give proper feedback to
 their users or clients.
 
-
 ## Data model
 
 All models are assigned a universally unique identifier (UUID), a randomized,
@@ -93,7 +92,7 @@ Productstatus object is needed.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | UUID  | `[16]int8` | Primary key. |
-| Definition  | `[16]int8` | Foreign key to _Product definition_ model. |
+| ProductDefinition  | `[16]int8` | Foreign key to _Product definition_ model. |
 | ReferenceTime | `time.Time` | Timestamp of the start of validity for the entire product. |
 | FileType | `string` | File type, typically one of _netcdf_, _grib1_, _grib2_. |
 | URL | `map[string]string` | List of URLs to this file, one for each location. |
@@ -122,3 +121,18 @@ The following metadata elements are mandatory in ISO 19115:
 These attributes may be stored in NetCDF files, along with the _use metadata_.
 The only information needed in Productstatus is a name, slug, or other
 mechanism of discerning one data set from another when running queries.
+
+### Product validity metrics
+
+Metrics about average, mean, and Nth percentile of certain variables might be
+useful to examine model performance and integrity. Threshold values are equally
+useful, in order to enable alerting. These metrics might be calculated and
+submitted to the Productstatus index. The threshold values can be defined by
+the NetCDF producer, and stored as global variables in the NetCDF file.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| UUID  | `[16]int8` | Primary key. |
+| Product | `[16]int8` | Foreign key to _Product_ model. |
+| Metric | `string` | Metric name. |
+| Value | `float64` | Metric value. |

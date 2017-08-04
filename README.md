@@ -128,7 +128,7 @@ Metrics about average, mean, and Nth percentile of certain variables might be
 useful to examine model performance and integrity. Threshold values are equally
 useful, in order to enable alerting. These metrics might be calculated and
 submitted to the Productstatus index. The threshold values can be defined by
-the NetCDF producer, and stored as global variables in the NetCDF file.
+the NetCDF producer, and stored as variable attributes in the NetCDF file.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |

@@ -58,6 +58,12 @@ Data synchronization requirements:
 | External distribution | |
 | File paths are irrelevant | |
 
+### IPFS
+
+| Pros | Cons |
+| ---- | ---- |
+| | Alpha software. According to the project, it has been progressing from alpha towards beta since February 2015. |
+
 ## Lifecycle management
 
 Data synchronization will result in hard drives being filled up. On most

@@ -81,11 +81,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	defer cl.Close()
 
 	torrent, err := cl.AddTorrentFromFile(opts.Torrent)
 	if err != nil {
 		panic(err)
 	}
+	defer torrent.Drop()
 
 	infohash := torrent.InfoHash()
 	fmt.Printf("Loaded torrent %s with info hash %v\n", torrent.Name(), infohash)
@@ -94,21 +96,15 @@ func main() {
 	torrent.AddPeers(peers)
 	torrent.DownloadAll()
 
-	start := time.Now()
 	length := torrent.Length()
+	lastCompleted := int64(0)
 
+	// Print status updates
 	for {
 		completed := torrent.BytesCompleted()
 		percentComplete := float64(completed) / float64(length) * 100
-
-		speed := 0
-		if percentComplete < 100 {
-			since := time.Since(start)
-			secs := since.Seconds()
-			if secs > 0 {
-				speed = int(float64(completed) / secs)
-			}
-		}
+		speed := completed - lastCompleted
+		lastCompleted = completed
 
 		fmt.Printf("\033[2K")
 		fmt.Printf("\r%3.0f%% complete [%7s/%7s] [speed: %7s/s] [seeding: %t] [peers: %d]",
@@ -122,6 +118,4 @@ func main() {
 
 		time.Sleep(1 * time.Second)
 	}
-
-	cl.Close()
 }

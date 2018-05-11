@@ -108,6 +108,6 @@ class KafkaPublisher(object):
             'type': 'expired',
             'product': product.full_uri(),
             'service_backend': service_backend.full_uri(),
-            'uris': [instance.full_uri() for instance in instances],
+            'uris': [instance.full_uri() for instance in instances[:10]],
         })
         return msg

@@ -1,3 +1,6 @@
+# This project is discontinued
+Dependencies and security patches are not applied anymore.
+
 # Productstatus
 
 ## Abstract
